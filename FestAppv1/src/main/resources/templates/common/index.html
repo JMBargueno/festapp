@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <title>FestApp | Inicio</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/mainStyle.css">
+</head>
+
+<body>
+    <!--Header-->
+    <header th:insert="fragments/frag-header.html :: header">
+    </header>
+    <!--Section-->
+
+    <!--Carousel-->
+    <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            <!-- Primer Slide -->
+            <div class="carousel-item active foto1" style="background-image: url('../img/concer1.jpg')">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2 class="display-4">El mejor ambiente</h2>
+                    <p class="lead">Una discoteca con instalaciones y clientes inmejorables.</p>
+                </div>
+            </div>
+            <!-- Segundo Slide -->
+            <div class="carousel-item" style="background-image: url('../img/concer2.jpg')">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2 class="display-4">El mejor trato</h2>
+                    <p class="lead">Nuestro equipo trabajará para que disfrutes de manera excepcional.</p>
+                </div>
+            </div>
+            <!-- Tercer Slide -->
+            <div class="carousel-item" style="background-image: url('../img/concer3.jpg')">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2 class="display-4">La mejor fiesta</h2>
+                    <p class="lead">¡Te podremos dar un mix de sensaciones positivas increibles!</p>
+                </div>
+            </div>
+        </div>
+        <!--Boton carrusel anterior-->
+        <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Anterior</span>
+        </a>
+        <!--Boton carrusel siguiente-->
+        <a class="carousel-control-next" href="#carouselIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Siguiente</span>
+        </a>
+    </div>
+
+    <!--Footer-->
+    <footer th:insert="fragments/frag-footer.html :: footer"></footer>
+
+    <!--Reproductor-->
+    <audio preload autoplay loop src="../music/geoxor.mp3"  >
+
+    </audio>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+
+
+</body>
+
+</html>

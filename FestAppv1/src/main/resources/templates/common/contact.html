@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <title>FestApp | Inicio</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/mainStyle.css">
+</head>
+
+<body>
+    <!--Header-->
+    <header th:insert="fragments/frag-header.html :: header">
+    </header>
+    <!--Section-->
+    <section class="container-fluid col-12">
+        <div class="row">
+            <main class="col-12 col-md-12">
+
+                <div class="row w-25 p-3"></div>
+                <!--Formulario-->
+                <div class="col-12 d-flex justify-content-center">
+                    <form id="register" class="col-12 col-md-5">
+                        <br>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputName">Nombre</label>
+                                <input type="text" size="20" class="form-control" id="inputName"
+                                    aria-describedby="nameHelp" placeholder="Introduzca su nombre">
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="inputSurname">Apellidos</label>
+                                <input type="text" class="form-control" id="inputSurname" aria-describedby="surnameHelp"
+                                    placeholder="Introduzca sus apellidos">
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail">Correo Electrónico.</label>
+                                <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
+                                    placeholder="Introduzca su email">
+                                <small id="emailHelp" class="form-text text-muted">No compartiremos tu correo con
+                                    nadie.</small>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="inputText">¿Que sucede?</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            </div>
+                        </div>
+
+
+
+
+
+                        <!--Final Formulario-->
+                        <div class="form-row">
+                            <div class="form-group col-md-10">
+                                <div class="g-recaptcha" data-sitekey="6LfiW6EUAAAAAKQ6fNZE5Y7h-EMFm1yYeLnklLJ0"
+                                    data-callback="verifyRecaptchaCallback"
+                                    data-expired-callback="expiredRecaptchaCallback"></div>
+                                <input class="form-control d-none" data-recaptcha="true" required
+                                    data-error="Please complete the Captcha">
+                                <div class="help-block with-errors"></div>
+                            </div>
+
+                            <div class="form-group col-md-2 d-flex justify-align-right"><button id="registerb"
+                                    type="submit" class="btn btn-primary">Submit</button></div>
+                        </div>
+                    </form>
+
+
+                </div>
+            </main>
+        </div>
+    </section>
+   <!--Footer-->
+   <footer th:insert="fragments/frag-footer.html :: footer"></footer>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+        </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+        </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+        </script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</body>
+
+</html>

@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.jmbargueno.festapp.festappv1.formbean.UploadFormBean;
 import com.jmbargueno.festapp.festappv1.model.Consumable;
 import com.jmbargueno.festapp.festappv1.model.Event;
 import com.jmbargueno.festapp.festappv1.model.PartyType;
@@ -23,6 +26,7 @@ import com.jmbargueno.festapp.festappv1.service.ConsumableService;
 import com.jmbargueno.festapp.festappv1.service.EventService;
 import com.jmbargueno.festapp.festappv1.service.PartyTypeService;
 import com.jmbargueno.festapp.festappv1.service.TicketService;
+import com.jmbargueno.festapp.festappv1.service.UploadService;
 import com.jmbargueno.festapp.festappv1.service.UserService;
 import com.jmbargueno.festapp.festappv1.service.VipService;
 
@@ -46,6 +50,8 @@ public class AdminController {
 	PartyTypeService partyTypeService;
 	@Autowired
 	EventService eventService;
+	@Autowired
+	UploadService uploadService;
 
 	// Consumibles
 	@GetMapping("/consumables")
@@ -63,9 +69,17 @@ public class AdminController {
 	}
 
 	@PostMapping("/addConsumable/submit")
-	public String addConsumableSubmit(@ModelAttribute("consumableform") Consumable consumable, Model model) {
+	public String addConsumableSubmit(@ModelAttribute("consumableform") UploadFormBean uploadFormBean, Model model, @RequestParam("file") MultipartFile file) {
 		model.addAttribute("partiesList", partyTypeService.findAll());
-		consumableService.save(consumable);
+		
+		Consumable consumable = new Consumable();
+		consumable.setName(uploadFormBean.getName());
+		consumable.setDescription(uploadFormBean.getDescription());
+		consumable.setPrice(uploadFormBean.getPrice());
+		consumable.setStock(uploadFormBean.getStock());
+		consumable.setEventDate(uploadFormBean.getEventDate());
+		consumable.setMark(uploadFormBean.getMark());
+		uploadService.add(consumable, file);
 
 		return "redirect:/admin/consumables";
 	}

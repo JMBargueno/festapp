@@ -110,8 +110,16 @@ VALUES
 /*
 Events
 */
+INSERT INTO EVENT
+    (ID, DESCRIPTION, IMG_URL, NAME, EVENT_DATE)
+VALUES
+    (HIBERNATE_SEQUENCE.NEXTVAL, 'Nuestra primera fiesta vip, no deberias perderte esta fiesta de apertura.', NULL, 'Mensual Vip Party I', TO_DATE('01/06/2019', 'DD/MM/YYYY'));
 
 
+INSERT INTO EVENT
+    (ID, DESCRIPTION, IMG_URL, NAME, EVENT_DATE)
+VALUES
+    (HIBERNATE_SEQUENCE.NEXTVAL, 'Ya disponible entradas de uno de nuestros eventos con mayor rango de clientes, pillalas rápido que se acaban! PD: Recuerda que el disfraz es OBLIGATORIO', NULL, 'FestWeen XI', TO_DATE('31/10/2019', 'DD/MM/YYYY'));
 /*
 PartyTypes
 */

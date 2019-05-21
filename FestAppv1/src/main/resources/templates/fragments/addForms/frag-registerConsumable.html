@@ -9,7 +9,7 @@
     <div th:fragment="consumableform">
         <div class="col-12 d-flex justify-content-center">
             <form method="POST" th:action="@{/admin/addConsumable/submit}" th:object="${consumableform}" id="register"
-                class="col-12 col-md-5">
+                class="col-12 col-md-5" enctype="multipart/form-data">
                 <br>
 
                 <div class="form-row">
@@ -38,26 +38,31 @@
                             placeholder="0" required th:field="*{stock}">
                     </div>
                 </div>
-                
+
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputUser">Descripcion</label>
                         <input type="text" class="form-control" id="inputUser" aria-describedby="userHelp"
                             placeholder="Introduzca su nombre de usuario" required th:field="*{description}">
                     </div>
-                </div>
-                   
-
-                    <!--Sumbit-->
-                    <div class="form-group col-md-2 d-flex justify-align-right">
-                        <input class="btn btn-primarym registerb" type="submit" value="Submit" />
-
+                    <div class="form-group col-md-6">
+                        <label for="file">Imagen</label>
+                        <input type="file" class="input-file" id="file" name="file" aria-describedby="imgHelp"
+                            placeholder="Subir archivo">
                     </div>
                 </div>
-            </form>
 
 
+                <!--Sumbit-->
+                <div class="form-group col-md-2 d-flex justify-align-right">
+                    <input class="btn btn-primarym registerb" type="submit" value="Submit" />
+
+                </div>
         </div>
+        </form>
+
+
+    </div>
     </div>
 </body>
 

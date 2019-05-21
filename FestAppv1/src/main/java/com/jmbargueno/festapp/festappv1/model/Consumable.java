@@ -47,6 +47,13 @@ public class Consumable extends Product {
 		this.mark = mark;
 	}
 
+	public Consumable(long id, @NotNull String name, String description, @NotNull double price, int stock,
+			LocalDate eventDate, String imgUrl) {
+		super(id, name, description, price, stock, eventDate, imgUrl);
+	}
+	
+	
+
 	
 
 }

@@ -21,12 +21,14 @@ public class MvcConfig implements WebMvcConfigurer {
 		registry.addViewController("/access-denied");
 	}
 
-//	@Override
-//	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//		registry.addResourceHandler("/images/**").addResourceLocations("file:files/");
-//		registry.addResourceHandler("/img/**").addResourceLocations("classpath:static/img/");
-//		registry.addResourceHandler("/css/**").addResourceLocations("classpath:static/css/");
-//
-//	}
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("/images/**").addResourceLocations("file:files/");
+		registry.addResourceHandler("/img/**").addResourceLocations("classpath:static/img/");
+		registry.addResourceHandler("/css/**").addResourceLocations("classpath:static/css/");
+		registry.addResourceHandler("/js/**").addResourceLocations("classpath:static/js/");
+	registry.addResourceHandler("/music/**").addResourceLocations("classpath:static/music/");	
+
+	}
 
 }

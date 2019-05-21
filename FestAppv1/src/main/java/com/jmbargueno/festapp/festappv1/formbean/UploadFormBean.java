@@ -39,6 +39,9 @@ public class UploadFormBean {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private LocalDate eventDate;
 	private String mark;
+	
+	private int numTicket;
+
 
 	
 

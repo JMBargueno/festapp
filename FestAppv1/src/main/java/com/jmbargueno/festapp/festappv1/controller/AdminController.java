@@ -69,9 +69,10 @@ public class AdminController {
 	}
 
 	@PostMapping("/addConsumable/submit")
-	public String addConsumableSubmit(@ModelAttribute("consumableform") UploadFormBean uploadFormBean, Model model, @RequestParam("file") MultipartFile file) {
+	public String addConsumableSubmit(@ModelAttribute("consumableform") UploadFormBean uploadFormBean, Model model,
+			@RequestParam("file") MultipartFile file) {
 		model.addAttribute("partiesList", partyTypeService.findAll());
-		
+
 		Consumable consumable = new Consumable();
 		consumable.setName(uploadFormBean.getName());
 		consumable.setDescription(uploadFormBean.getDescription());
@@ -131,10 +132,18 @@ public class AdminController {
 	}
 
 	@PostMapping("/addTicket/submit")
-	public String addTicketSubmit(@ModelAttribute("ticketform") Ticket ticket, Model model) {
+	public String addTicketSubmit(@ModelAttribute("ticketform") UploadFormBean uploadFormBean, Model model,
+			@RequestParam("file") MultipartFile file) {
 		model.addAttribute("partiesList", partyTypeService.findAll());
 
-		ticketService.save(ticket);
+		Ticket ticket = new Ticket();
+		ticket.setName(uploadFormBean.getName());
+		ticket.setDescription(uploadFormBean.getDescription());
+		ticket.setPrice(uploadFormBean.getPrice());
+		ticket.setStock(uploadFormBean.getStock());
+		ticket.setEventDate(uploadFormBean.getEventDate());
+		ticket.setNumTicket(uploadFormBean.getNumTicket());
+		uploadService.add(ticket, file);
 
 		return "redirect:/admin/tickets";
 	}
@@ -273,7 +282,7 @@ public class AdminController {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
 		userFA.setPassword(passwordEncoder.encode(userFA.getPassword()));
-		
+
 		userService.edit(userFA);
 		return "redirect:/admin/users";
 	}

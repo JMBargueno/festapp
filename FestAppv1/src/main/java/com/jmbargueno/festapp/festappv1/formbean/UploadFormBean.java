@@ -10,6 +10,8 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.jmbargueno.festapp.festappv1.model.Consumable;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -35,12 +37,23 @@ public class UploadFormBean {
 	@NotNull
 	private double price;
 	private int stock;
+	private String imgUrl;
 	
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private LocalDate eventDate;
-	private String mark;
 	
+	//Consumable
+	private String mark;
+
+	//Ticket
 	private int numTicket;
+
+	
+	//Vip
+	private int numPersons;
+	private int numVip;
+	private Consumable consumeVip;
+	
 
 
 	

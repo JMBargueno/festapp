@@ -46,9 +46,6 @@ public class UserController {
 	public String registroSubmit(@ModelAttribute("userform") UserFA userFA, Model model) {
 		model.addAttribute("partiesList", partyTypeService.findAll());
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		SimpleDateFormat sm = new SimpleDateFormat("dd/MM/yyyy");
-		
-		
 		userFA.setPassword(passwordEncoder.encode(userFA.getPassword()));
 		userService.save(userFA);
 

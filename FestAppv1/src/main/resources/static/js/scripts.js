@@ -15,26 +15,23 @@ switch (ruta) {
     case '/index':
         var elemento = document.getElementById("index");
         elemento.className += " active";
-        
-        //Música bienvenida
         var vid = document.getElementById("welcomes");
-        if (window.mobilecheck == false) {
-            vid.volume = 0.02;
-        } else {
+        vid.volume = 0.02;
+
+        if (window.mobilecheck) {
             vid.autoplay = "false";
             vid.preload = "false";
         }
+
         break;
 
     case '/':
         var elemento = document.getElementById("index");
         elemento.className += " active";
-
-        //Música bienvenida
         var vid = document.getElementById("welcomes");
-        if (window.mobilecheck == false) {
-            vid.volume = 0.02;
-        } else {
+        vid.volume = 0.02;
+
+        if (window.mobilecheck) {
             vid.autoplay = "false";
             vid.preload = "false";
         }
@@ -65,8 +62,15 @@ switch (ruta) {
         elemento.className += " active";
         break;
 
+
+
     case '/admin/tickets':
         var elemento = document.getElementById("adminzone");
+        elemento.className += " active";
+        break;
+
+    case '/products/list':
+        var elemento = document.getElementById("buy");
         elemento.className += " active";
         break;
 

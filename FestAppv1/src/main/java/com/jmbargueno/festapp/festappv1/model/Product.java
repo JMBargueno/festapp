@@ -34,7 +34,7 @@ import lombok.Setter;
 @Entity
 //@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class T {
+public abstract class Product {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -54,7 +54,7 @@ public abstract class T {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private LocalDate eventDate;
 	private String imgUrl;
-	public T(long id, @NotNull String name, String description, @NotNull double price, int stock,
+	public Product(long id, @NotNull String name, String description, @NotNull double price, int stock,
 			LocalDate eventDate, String imgUrl) {
 		super();
 		this.id = id;

@@ -26,7 +26,7 @@ import lombok.ToString;
 @DiscriminatorValue("C")
 @Entity
 
-public class Consumable extends T {
+public class Consumable extends Product {
 
 	private String mark;
 

@@ -34,7 +34,7 @@ import lombok.ToString;
 @DiscriminatorValue("V")
 @Entity
 
-public class Vip extends T {
+public class Vip extends Product {
 	
 	@NotNull
 	private int numPersons;

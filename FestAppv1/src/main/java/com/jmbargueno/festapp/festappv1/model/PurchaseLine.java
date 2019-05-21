@@ -31,7 +31,7 @@ public class PurchaseLine {
 	@Setter(AccessLevel.NONE)
 	private long Id;
 	@ManyToOne
-	private T t;
+	private Product t;
 	@NotNull
 	private int quantity;
 	@NotNull
@@ -46,7 +46,7 @@ public class PurchaseLine {
 	 * @param linePrice Precio final de la linea de producto
 	 * @param purchase  Compra donde va la linea de compra.
 	 */
-	public PurchaseLine(T t, int quantity, double linePrice, Purchase purchase) {
+	public PurchaseLine(Product t, int quantity, double linePrice, Purchase purchase) {
 		super();
 		this.t = t;
 		this.quantity = quantity;

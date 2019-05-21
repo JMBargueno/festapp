@@ -196,10 +196,20 @@ public class AdminController {
 	}
 
 	@PostMapping("/addVip/submit")
-	public String addTVipSubmit(@ModelAttribute("vipform") Vip vip, Model model) {
+	public String addTVipSubmit(@ModelAttribute("vipform") UploadFormBean uploadFormBean, Model model,
+			@RequestParam("file") MultipartFile file) {
 		model.addAttribute("partiesList", partyTypeService.findAll());
 
-		vipService.save(vip);
+		Vip vip = new Vip();
+		vip.setName(uploadFormBean.getName());
+		vip.setDescription(uploadFormBean.getDescription());
+		vip.setPrice(uploadFormBean.getPrice());
+		vip.setStock(uploadFormBean.getStock());
+		vip.setEventDate(uploadFormBean.getEventDate());
+		vip.setNumPersons(uploadFormBean.getNumPersons());
+		vip.setNumVip(uploadFormBean.getNumVip());
+		vip.setConsumeVip(uploadFormBean.getConsumeVip());
+		uploadService.add(vip, file);
 
 		return "redirect:/admin/vips";
 	}

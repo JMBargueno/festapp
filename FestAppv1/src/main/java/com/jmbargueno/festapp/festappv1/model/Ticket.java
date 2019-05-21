@@ -27,7 +27,7 @@ import lombok.ToString;
 @DiscriminatorValue("T")
 @Entity
 
-public class Ticket extends Product {
+public class Ticket extends T {
 
 	private int numTicket;
 

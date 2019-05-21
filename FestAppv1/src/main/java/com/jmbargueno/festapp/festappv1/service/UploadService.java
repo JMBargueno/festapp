@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.jmbargueno.festapp.festappv1.model.Product;
+import com.jmbargueno.festapp.festappv1.model.T;
 import com.jmbargueno.festapp.festappv1.repository.ProductRepository;
 import com.jmbargueno.festapp.festappv1.storage.StorageService;
 
@@ -27,14 +27,14 @@ public class UploadService {
 	@Autowired
 	StorageService storageService;
 	
-	public void add(Product product, MultipartFile file) {
+	public void add(T t, MultipartFile file) {
 		
 		String fileName = storageService.store(file);//Guarda la imagen
 		//Guardamos nombre de la imagen almacenada en el atributo de la entidad
-		product.setImgUrl(fileName);
+		t.setImgUrl(fileName);
 		//Guardamos la entidad en la base de datos y en ella ya irá el nombre del archivo
 		//en la correspondiente propiedad (fileUrl)
-		productRepository.save(product);
+		productRepository.save(t);
 		
 	}
 	
@@ -44,10 +44,10 @@ public class UploadService {
 	 * Este /images/ debe ser el mismo que el que hayamos dado en la clase 
 	 * MvcConfig del paquete Hello*/
 	
-	public List<Product> list() {
+	public List<T> list() {
 				
-		List<Product> partialResult = productRepository.findAll();
-		List<Product> result = new LinkedList<Product>(partialResult);
+		List<T> partialResult = productRepository.findAll();
+		List<T> result = new LinkedList<T>(partialResult);
 		
 		for(int i = 0; i < partialResult.size(); i++) {
 			String fileName = partialResult.get(i).getImgUrl();

@@ -8,8 +8,8 @@
 <body>
     <div th:fragment="ticketform">
         <div class="col-12 d-flex justify-content-center">
-            <form method="POST" th:action="@{/admin/addTicket/submit}" th:object="${ticketform}" id="register"
-                class="col-12 col-md-5">
+            <form method="POST" th:action="@{/admin/editTicket/submit}" th:object="${ticketform}" id="register"
+                class="col-12 col-md-5" enctype="multipart/form-data">
                 <br>
                 <input th:if="${ticketform.id != 0}" type="hidden" name="id" th:field="*{id}" />
                 <div class="form-row">

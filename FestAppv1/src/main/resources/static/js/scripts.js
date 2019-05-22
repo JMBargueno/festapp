@@ -97,7 +97,27 @@ function passwordValidator() {
 //Colorear nav
 $(function () {
     $(document).scroll(function () {
-      var $nav = $(".fixed-top");
-      $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+        var $nav = $(".fixed-top");
+        $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+
     });
-  });
+});
+
+
+/**Fondo gradante */
+/*
+var granimInstance = new Granim({
+    element: '#canvas-basic',
+    direction: 'diagonal',
+    isPausedWhenNotInView: true,
+    states : {
+        "default-state": {
+            gradients: [
+                ['#AA076B', '#61045F'],
+                ['#02AAB0', '#00CDAC'],
+                ['#DA22FF', '#9733EE']
+            ]
+        }
+    }
+});
+*/

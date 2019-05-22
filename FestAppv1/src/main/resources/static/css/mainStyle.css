@@ -1,6 +1,7 @@
 /*Body
 
-background-color: #272D2D;*/
+background-color: #272D2D;
+*/
 body {
     background-color: rgb(114, 116, 116) !important;
 }
@@ -83,7 +84,7 @@ h1 {
 footer {
     background-color: rgb(78, 31, 74);
     color: #F6F8FF !important;
-    
+
 }
 
 .footera {
@@ -106,24 +107,40 @@ tbody tr:hover {
 
 }
 
-#add{
+#add {
     background-color: #28a745;
     border: 1px solid #28a745 !important;
 }
-#add:hover{
+
+#add:hover {
     background-color: #8de4a1;
     border: 1px solid #8de4a1 !important;
 }
 
-.foto1{
+.foto1 {
     background-image: url('../img/concer1.jpg');
 }
 
 .fixed-top.scrolled {
     background-color: #A846A0 !important;
     transition: background-color 200ms linear;
-  }
+}
 
-  .fixed-top.scrolled .nav-link {
-    
-  }
+.fixed-top.scrolled .nav-link {
+
+}
+
+
+/* Para granim js*/
+/*
+#canvas-basic {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+*/

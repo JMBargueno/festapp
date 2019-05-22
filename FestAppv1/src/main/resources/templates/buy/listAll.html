@@ -29,7 +29,7 @@
         <div class="row">
             <div class="col-6 col-md-3" th:each="product : ${productlist}">
                 <figure class="card card-product">
-                    <div class="img-wrap"><img th:src="${product.imgUrl}"></div>
+                    <div class="img-wrap"><img th:src="${product.imgUrl}" class = "img-responsive"></div>
                     <figcaption class="info-wrap">
                         <h4 class="title" th:text="${product.name}"></h4>
                         <p class="desc" th:text="${product.description}"></p>
@@ -60,7 +60,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+    <script type="text/javascript" th:src="@{/js/granim.js}" charset="utf-8"></script>
 </body>
 
 </html>

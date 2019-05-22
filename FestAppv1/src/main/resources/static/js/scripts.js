@@ -105,7 +105,7 @@ $(function () {
 
 
 /**Fondo gradante */
-/*
+
 var granimInstance = new Granim({
     element: '#canvas-basic',
     direction: 'diagonal',
@@ -120,4 +120,3 @@ var granimInstance = new Granim({
         }
     }
 });
-*/

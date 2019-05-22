@@ -45,6 +45,11 @@ public class StaticsController {
 		model.addAttribute("partiesList", partyTypeService.findAll());
 		return "common/legal.html";
 	}
+	
+	@GetMapping("/images/null")
+	public String imageNull(Model model) {
+		return "redirect:/index";
+	}
 
 	
 	@GetMapping("/party/{id}")

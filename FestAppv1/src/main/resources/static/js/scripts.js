@@ -76,3 +76,28 @@ switch (ruta) {
 
 
 }
+
+//Comprobar contraseña
+function passwordValidator() {
+    var p1 = document.getElementById("passwordOne").value;;
+    var p2 = document.getElementById("passwordTwo").value;
+    if (p1 == '')
+        alert("Por favor, introduzca una contraseña");
+    else if (p2 == '')
+        alert("Por favor, confirme su contraseña");
+    else if (p1 != p2) {
+        alert("\nLas contraseñas no coinciden, intentelo de nuevo")
+        return false;
+    } else {
+        alert("Registro con éxito")
+        document.register.submit();
+    }
+}
+
+//Colorear nav
+$(function () {
+    $(document).scroll(function () {
+      var $nav = $(".fixed-top");
+      $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+    });
+  });

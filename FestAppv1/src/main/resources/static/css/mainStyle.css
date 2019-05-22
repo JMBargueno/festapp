@@ -82,9 +82,15 @@ h1 {
 }
 
 footer {
-    background-color: rgb(78, 31, 74);
+    background-color: rgb(78, 31, 74) !important;
     color: #F6F8FF !important;
+    
 
+left: 0;
+
+right: 0;
+
+bottom: 0;
 }
 
 .footera {
@@ -142,4 +148,5 @@ tbody tr:hover {
     right: 0;
     bottom: 0;
     left: 0;
+    z-index: -1;
 }

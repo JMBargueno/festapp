@@ -3,7 +3,11 @@
  */
 package com.jmbargueno.festapp.festappv1.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.jmbargueno.festapp.festappv1.formbean.UploadFormBean;
 import com.jmbargueno.festapp.festappv1.model.Consumable;
 import com.jmbargueno.festapp.festappv1.model.Event;
+import com.jmbargueno.festapp.festappv1.model.Pager;
 import com.jmbargueno.festapp.festappv1.model.PartyType;
 import com.jmbargueno.festapp.festappv1.model.Ticket;
 import com.jmbargueno.festapp.festappv1.model.UserFA;
@@ -53,9 +58,38 @@ public class AdminController {
 	@Autowired
 	UploadService uploadService;
 
+	private static final int BUTTONS_TO_SHOW = 5;
+	private static final int INITIAL_PAGE = 0;
+	private static final int INITIAL_PAGE_SIZE = 5;
+	private static final int[] PAGE_SIZES = { 5, 10, 20, 50 };
+
 	// Consumibles
 	@GetMapping("/consumables")
-	public String showConsumables(Model model) {
+	public String showConsumables(@RequestParam("pageSize") Optional<Integer> pageSize,
+			@RequestParam("page") Optional<Integer> page, Model model) {
+
+		// Evalúa el tamaño de página. Si el parámetro es "nulo", devuelve
+		// el tamaño de página inicial.
+		int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
+
+		// Calcula qué página se va a mostrar. Si el parámetro es "nulo" o menor
+		// que 0, se devuelve el valor inicial. De otro modo, se devuelve el valor
+		// del parámetro decrementado en 1.
+		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
+
+		// Obtenemos la página definida por evalPage y evalPageSize de objetos de
+		// nuestro modelo
+		Page<Consumable> consumable = consumableService.findAllPageable(PageRequest.of(evalPage, evalPageSize));
+		// Creamos el objeto Pager (paginador) indicando los valores correspondientes.
+		// Este sirve para que la plantilla sepa cuantas páginas hay en total, cuantos
+		// botones
+		// debe mostrar y cuál es el número de objetos a dibujar.
+		Pager pager = new Pager(consumable.getTotalPages(), consumable.getNumber(), BUTTONS_TO_SHOW);
+		model.addAttribute("consumable", consumable);
+		model.addAttribute("selectedPageSize", evalPageSize);
+		model.addAttribute("pageSizes", PAGE_SIZES);
+		model.addAttribute("pager", pager);
+
 		model.addAttribute("partiesList", partyTypeService.findAll());
 		model.addAttribute("consumablesList", consumableService.findAll());
 		return "admin/tables/consumables.html";

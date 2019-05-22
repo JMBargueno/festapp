@@ -18,6 +18,7 @@
     <header th:insert="fragments/frag-header.html :: header">
     </header>
     <!--Section-->
+    <canvas id="canvas-basic"></canvas>
     <section class="container-fluid col-12">
         <div class="row">
             <main class="col-12 col-md-12">
@@ -27,37 +28,85 @@
                 <div class="row w-25 p-3"></div>
                 <!--Tabla-->
                 <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Descripción</th>
-                            <th scope="col">Marca</th>
-                            <th scope="col">Precio</th>
-                            <th scope="col">Stock</th>
-                            <th scope="col">Edit</th>
-                            <th scope="col">Borrar</th>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Descripción</th>
+                                <th scope="col">Marca</th>
+                                <th scope="col">Precio</th>
+                                <th scope="col">Stock</th>
+                                <th scope="col">Edit</th>
+                                <th scope="col">Borrar</th>
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="consumable : ${consumablesList}">
-                            <td th:text="${consumable.id}"></td>
-                            <td th:text="${consumable.name}"></td>
-                            <td th:text="${consumable.description}"></td>
-                            <td th:text="${consumable.mark}"></td>
-                            <td th:text="${consumable.price}+'€'"></td>
-                            <td th:text="${consumable.stock}"></td>
-                            <td><a href="" th:href="@{/admin/editConsumable/{id}(id=${consumable.id})}">Editar</a></td>
-                            <td><a href="#" th:href="@{/admin/delConsumable/{id}(id=${consumable.id})}" onclick="return confirm('¿Está seguro de que desea borrar este producto?')">Borrar</a></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="consumable : ${consumable}">
+                                <td th:text="${consumable.id}"></td>
+                                <td th:text="${consumable.name}"></td>
+                                <td th:text="${consumable.description}"></td>
+                                <td th:text="${consumable.mark}"></td>
+                                <td th:text="${consumable.price}+'€'"></td>
+                                <td th:text="${consumable.stock}"></td>
+                                <td><a href="" th:href="@{/admin/editConsumable/{id}(id=${consumable.id})}">Editar</a>
+                                </td>
+                                <td><a href="#" th:href="@{/admin/delConsumable/{id}(id=${consumable.id})}"
+                                        onclick="return confirm('¿Está seguro de que desea borrar este producto?')">Borrar</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
                 <a type="button" class="btn btn-primary" th:href="@{/admin/addConsumable}">
                     Añadir
                 </a>
+                <div class="row">
+                        <div class="form-group col-md-1">
+                            <select class="form-control pagination" id="pageSizeSelect">
+                                <option th:each="pageSize : ${pageSizes}" th:text="${pageSize}"
+                                    th:value="${pageSize}"
+                                    th:selected="${pageSize} == ${selectedPageSize}"></option>
+                            </select>
+                        </div>
+                        <div th:if="${consumable.totalPages != 1}"
+                            class="form-group col-md-11 pagination-centered">
+                            <ul class="pagination">
+                                <!-- Si el número de página es cero, deshabilitamos el enlace -->
+                                <li th:class="${consumable.number == 0} ? disabled">
+                                    <!-- Este enlace nos debe llevar a la primera página, con el tamaño de página actual -->
+                                    <a class="pageLink"
+                                    th:href="@{admin/consumables/(pageSize=${selectedPageSize}, page=1)}">&laquo;</a>
+                                </li>
+                                <!-- Si el número de página es cero, deshabilitamos el enlace -->
+                                <li th:class="${consumable.number == 0} ? disabled">
+                                    <!-- Este enlace nos debe llevar a la página anterior, con el tamaño de página actual -->						
+                                    <a class="pageLink" th:href="@{admin/consumables/(pageSize=${selectedPageSize}, page=${consumable.number})}">&larr;</a>
+                                </li>
+                                <!-- Este bucle genera los enlaces para las demás páginas -->
+                                <li
+                                    th:class="${consumable.number == (page - 1)} ? 'active pointer-disabled'"
+                                    th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+                                    <a class="pageLink"
+                                    th:href="@{admin/consumables/(pageSize=${selectedPageSize}, page=${page})}"
+                                    th:text="${page}"></a>
+                                </li>
+                                <!-- Enlace a la siguiente página; si estamos en la última queda desabilitado  -->
+                                <li
+                                    th:class="${consumable.number + 1 == consumable.totalPages} ? disabled">
+                                    <a class="pageLink"
+                                    th:href="@{admin/consumables/(pageSize=${selectedPageSize}, page=${consumable.number + 2})}">&rarr;</a>
+                                </li>
+                                <!-- Enlace a la última página; si estamos en la última queda desabilitado  -->				
+                                <li
+                                    th:class="${consumable.number + 1 == consumable.totalPages} ? disabled">
+                                    <a class="pageLink"
+                                    th:href="@{admin/consumables/(pageSize=${selectedPageSize}, page=${consumable.totalPages})}">&raquo;</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
             </main>
         </div>
     </section>
@@ -70,15 +119,16 @@
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script>
+        </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-    </script>
+        </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-    </script>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+        </script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+     <script type="text/javascript" th:src="@{/js/granim.js}" charset="utf-8"></script>
+     <script type="text/javascript" th:src="@{/js/scripts.js}"></script>
 </body>
 
 </html>

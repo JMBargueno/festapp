@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -24,7 +26,7 @@ import com.jmbargueno.festapp.festappv1.storage.StorageService;
 public class ProductService extends BaseService<Product, Long, ProductRepository> {
 
 	@Autowired
-	ProductRepository productoRepository;
+	ProductRepository productRepository;
 
 	@Autowired
 	StorageService storageService;
@@ -37,13 +39,13 @@ public class ProductService extends BaseService<Product, Long, ProductRepository
 		// Guardamos la entidad en la base de datos y en ella ya irá el nombre del
 		// archivo
 		// en la correspondiente propiedad (fileUrl)
-		productoRepository.save(p);
+		productRepository.save(p);
 
 	}
 
 	public List<Product> list() {
 
-		List<Product> partialResult = productoRepository.findAll();
+		List<Product> partialResult = productRepository.findAll();
 		List<Product> result = new LinkedList<Product>(partialResult);
 
 		for (int i = 0; i < partialResult.size(); i++) {
@@ -56,7 +58,7 @@ public class ProductService extends BaseService<Product, Long, ProductRepository
 
 	public List<Product> productListFormBean() {
 
-		List<Product> lista = productoRepository.findAll();
+		List<Product> lista = productRepository.findAll();
 
 		lista = lista.stream().map(p -> {
 			p.setImgUrl("/images/" + p.getImgUrl());
@@ -65,5 +67,7 @@ public class ProductService extends BaseService<Product, Long, ProductRepository
 
 		return lista;
 	}
+
+	
 
 }

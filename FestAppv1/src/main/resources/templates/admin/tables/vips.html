@@ -46,7 +46,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="vip : ${vipsList}">
+                        <tr th:each="vip : ${vip}">
                             <td th:text="${vip.id}"></td>
                             <td th:text="${vip.name}"></td>
                             <td th:text="${vip.description}"></td>
@@ -55,7 +55,7 @@
                             <td th:text="${vip.eventDate}"></td>
                             <td th:text="${vip.numPersons}"></td>
                             <td th:text="${vip.numVip}"></td>
-                            <td th:text="${vip.consumeVip}"></td>
+                           <!-- <td th:text="${vip.consumeVip}"></td>-->
                             <td></td>
                             <td><a href="" th:href="@{/admin/editVip/{id}(id=${vip.id})}">Editar</a></td>
                             <td><a href="" th:href="@{/admin/delVip/{id}(id=${vip.id})}" onclick="return confirm('¿Está seguro de que desea borrar este reservado?')">Borrar</a></td>
@@ -66,10 +66,57 @@
                 <a type="button" class="btn btn-primary" th:href="@{/admin/addVip}">
                     Añadir
                 </a>
+                <div class="row">
+                        <div class="form-group col-md-1">
+                            <select class="form-control pagination" id="pageSizeSelect">
+                                <option th:each="pageSize : ${pageSizes}" th:text="${pageSize}" th:value="${pageSize}"
+                                    th:selected="${pageSize} == ${selectedPageSize}"></option>
+                            </select>
+                        </div>
+    
+                        <div class="col-3"></div>
+                        <div class="col-4" style="text-align: center;">
+                            <nav aria-label="Page navigation example mx-auto">
+                                <ul th:if="${vip.totalPages != 1}" class="pagination pagination-circle pg-blue">
+                                    <li th:class="${vip.number == 0} ? disabled" class="page-item disabled">
+                                        <a th:href="@{/admin/vips/(pageSize=${selectedPageSize}, page=1)}"
+                                            class="page-link">First</a>
+                                    </li>
+    
+                                    <li th:class="${vip.number == 0} ? disabled" class="page-item disabled"></li>
+                                    <a th:href="@{/admin/vips/(pageSize=${selectedPageSize}, page=${vip.number})}"
+                                        class="page-link" aria-label="Previous">
+                                        <span aria-hidden="true">&larr;</span>
+                                    </a>
+                                    </li>
+    
+                                    <li th:class="${vip.number == (page - 1)} ? 'active pointer-disabled'"
+                                        class="page-item active" th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+                                          <a th:href="@{/admin/vips/(pageSize=${selectedPageSize}, page=${page})}" class="page-link" th:text="${page}">1</a>
+                                        </li>
+                              
+                                      <li th:class="${vip.number + 1 == vip.totalPages} ? disabled" class="page-item">
+                                          <a th:href="@{/admin/vips/(pageSize=${selectedPageSize}, page=${vip.number + 2})}" class="page-link">&rarr;</a>
+                                        </li>
+                                      
+                                      <li th:class="${vip.number + 1 == vip.totalPages} ? disabled" class="page-item">
+                                          <a th:href="@{/admin/vips/(pageSize=${selectedPageSize}, page=${vip.totalPages})}" class="page-link">Last</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div class="col-4"></div>
+                        </div>
 
             </main>
         </div>
     </section>
+    <div class="row w-25 p-3"></div>
+    <div class="row w-25 p-3"></div>
+    <div class="row w-25 p-3"></div>
+    <div class="row w-25 p-3"></div>
+    <div class="row w-25 p-3"></div>
+    <div class="row w-25 p-3"></div>
     <!--Footer-->
     <footer th:insert="fragments/frag-footer.html :: footer"></footer>
 

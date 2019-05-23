@@ -152,7 +152,20 @@ public class AdminController {
 
 	// Tickets
 	@GetMapping("/tickets")
-	public String showTickets(Model model) {
+	public String showTickets(@RequestParam("pageSize") Optional<Integer> pageSize,
+			@RequestParam("page") Optional<Integer> page, Model model) {
+		int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
+		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
+
+		Page<Ticket> ticket = ticketService.findAllPageable(PageRequest.of(evalPage, evalPageSize));
+
+		Pager pager = new Pager(ticket.getTotalPages(), ticket.getNumber(), BUTTONS_TO_SHOW);
+
+		model.addAttribute("ticket", ticket);
+		model.addAttribute("selectedPageSize", evalPageSize);
+		model.addAttribute("pageSizes", PAGE_SIZES);
+		model.addAttribute("pager", pager);
+
 		model.addAttribute("partiesList", partyTypeService.findAll());
 		model.addAttribute("ticketsList", ticketService.findAll());
 		return "admin/tables/tickets.html";
@@ -216,7 +229,21 @@ public class AdminController {
 
 	// Reservados
 	@GetMapping("/vips")
-	public String showVips(Model model) {
+	public String showVips(@RequestParam("pageSize") Optional<Integer> pageSize,
+			@RequestParam("page") Optional<Integer> page, Model model) {
+
+		int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
+		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
+
+		Page<Vip> vip = vipService.findAllPageable(PageRequest.of(evalPage, evalPageSize));
+
+		Pager pager = new Pager(vip.getTotalPages(), vip.getNumber(), BUTTONS_TO_SHOW);
+
+		model.addAttribute("vip", vip);
+		model.addAttribute("selectedPageSize", evalPageSize);
+		model.addAttribute("pageSizes", PAGE_SIZES);
+		model.addAttribute("pager", pager);
+
 		model.addAttribute("partiesList", partyTypeService.findAll());
 		model.addAttribute("vipsList", vipService.findAll());
 		return "admin/tables/vips.html";
@@ -282,7 +309,20 @@ public class AdminController {
 	// Usuarios
 
 	@GetMapping("/users")
-	public String showUsers(Model model) {
+	public String showUsers(@RequestParam("pageSize") Optional<Integer> pageSize,
+			@RequestParam("page") Optional<Integer> page, Model model) {
+		int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
+		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
+
+		Page<UserFA> user = userService.findAllPageable(PageRequest.of(evalPage, evalPageSize));
+
+		Pager pager = new Pager(user.getTotalPages(), user.getNumber(), BUTTONS_TO_SHOW);
+
+		model.addAttribute("user", user);
+		model.addAttribute("selectedPageSize", evalPageSize);
+		model.addAttribute("pageSizes", PAGE_SIZES);
+		model.addAttribute("pager", pager);
+
 		model.addAttribute("partiesList", partyTypeService.findAll());
 		model.addAttribute("usersList", userService.findAll());
 		return "admin/tables/users.html";
@@ -342,7 +382,19 @@ public class AdminController {
 
 	// PartyType
 	@GetMapping("/parties")
-	public String showpartyTypes(Model model) {
+	public String showpartyTypes(@RequestParam("pageSize") Optional<Integer> pageSize,
+			@RequestParam("page") Optional<Integer> page, Model model) {
+		int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
+		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
+
+		Page<PartyType> partyType = partyTypeService.findAllPageable(PageRequest.of(evalPage, evalPageSize));
+
+		Pager pager = new Pager(partyType.getTotalPages(), partyType.getNumber(), BUTTONS_TO_SHOW);
+
+		model.addAttribute("partyType", partyType);
+		model.addAttribute("selectedPageSize", evalPageSize);
+		model.addAttribute("pageSizes", PAGE_SIZES);
+		model.addAttribute("pager", pager);
 		model.addAttribute("partiesList", partyTypeService.findAll());
 		model.addAttribute("partiesList", partyTypeService.findAll());
 		return "admin/tables/parties.html";
@@ -397,7 +449,21 @@ public class AdminController {
 ////////////////////////////////////////////////////////////
 	// Events
 	@GetMapping("/events")
-	public String showEvents(Model model) {
+	public String showEvents(@RequestParam("pageSize") Optional<Integer> pageSize,
+			@RequestParam("page") Optional<Integer> page, Model model) {
+
+		int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
+		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
+
+		Page<Event> event = eventService.findAllPageable(PageRequest.of(evalPage, evalPageSize));
+
+		Pager pager = new Pager(event.getTotalPages(), event.getNumber(), BUTTONS_TO_SHOW);
+
+		model.addAttribute("event", event);
+		model.addAttribute("selectedPageSize", evalPageSize);
+		model.addAttribute("pageSizes", PAGE_SIZES);
+		model.addAttribute("pager", pager);
+
 		model.addAttribute("partiesList", partyTypeService.findAll());
 		model.addAttribute("eventsList", eventService.findAll());
 		return "admin/tables/events.html";

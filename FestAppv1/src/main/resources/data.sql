@@ -28,8 +28,25 @@ INSERT INTO USERFA
 VALUES
     (HIBERNATE_SEQUENCE.NEXTVAL, NULL, NULL, 'usuario@usuario.com', NULL, FALSE, 'Broncano', '$2a$10$8pHfjdq8zHKT6e8TqHM/iOSV2plG1cM/3fsOqh5MGqUq4NNCRL.AW', '654987329', SYSDATE, NULL, 'usuario' );
 
+INSERT INTO USERFA
+    (ID, BIRTHDAY, DNI, EMAIL, GENDER, IS_ADMIN, NAME, PASSWORD, PHONE_NUMBER, REGISTER_DATE, SURNAME, USERNAME)
+VALUES
+    (HIBERNATE_SEQUENCE.NEXTVAL, NULL, NULL, 'usuario1@usuario.com', NULL, FALSE, 'Daniel', '$2a$10$8pHfjdq8zHKT6e8TqHM/iOSV2plG1cM/3fsOqh5MGqUq4NNCRL.AW', '654987328', SYSDATE, NULL, 'daniel' );
 
+INSERT INTO USERFA
+    (ID, BIRTHDAY, DNI, EMAIL, GENDER, IS_ADMIN, NAME, PASSWORD, PHONE_NUMBER, REGISTER_DATE, SURNAME, USERNAME)
+VALUES
+    (HIBERNATE_SEQUENCE.NEXTVAL, NULL, NULL, 'usuario2@usuario.com', NULL, FALSE, 'Mario', '$2a$10$8pHfjdq8zHKT6e8TqHM/iOSV2plG1cM/3fsOqh5MGqUq4NNCRL.AW', '654987327', SYSDATE, NULL, 'mario' );
 
+INSERT INTO USERFA
+    (ID, BIRTHDAY, DNI, EMAIL, GENDER, IS_ADMIN, NAME, PASSWORD, PHONE_NUMBER, REGISTER_DATE, SURNAME, USERNAME)
+VALUES
+    (HIBERNATE_SEQUENCE.NEXTVAL, NULL, NULL, 'usuario3@usuario.com', NULL, FALSE, 'Tere', '$2a$10$8pHfjdq8zHKT6e8TqHM/iOSV2plG1cM/3fsOqh5MGqUq4NNCRL.AW', '654987326', SYSDATE, NULL, 'tere' );
+
+INSERT INTO USERFA
+    (ID, BIRTHDAY, DNI, EMAIL, GENDER, IS_ADMIN, NAME, PASSWORD, PHONE_NUMBER, REGISTER_DATE, SURNAME, USERNAME)
+VALUES
+    (HIBERNATE_SEQUENCE.NEXTVAL, NULL, NULL, 'usuario4@usuario.com', NULL, FALSE, 'javi', '$2a$10$8pHfjdq8zHKT6e8TqHM/iOSV2plG1cM/3fsOqh5MGqUq4NNCRL.AW', '654987325', SYSDATE, NULL, 'javi' );
 /*
 Consumables
 */
@@ -78,6 +95,30 @@ VALUES
 /*
 Reservado sin fechas
 */
+INSERT INTO PRODUCT
+    (DTYPE, ID, NAME, DESCRIPTION, PRICE, STOCK, EVENT_DATE, NUM_PERSONS, NUM_VIP)
+VALUES
+    ('V', HIBERNATE_SEQUENCE.NEXTVAL, 'Reservado Olimpo', 'Sientete como los dioses', 10, 200, NULL, 5, 5);
+
+INSERT INTO PRODUCT
+    (DTYPE, ID, NAME, DESCRIPTION, PRICE, STOCK, EVENT_DATE, NUM_PERSONS, NUM_VIP)
+VALUES
+    ('V', HIBERNATE_SEQUENCE.NEXTVAL, 'Reservado Roma', 'Sientete como un César', 10, 200, NULL, 5, 5);
+
+INSERT INTO PRODUCT
+    (DTYPE, ID, NAME, DESCRIPTION, PRICE, STOCK, EVENT_DATE, NUM_PERSONS, NUM_VIP)
+VALUES
+    ('V', HIBERNATE_SEQUENCE.NEXTVAL, 'Reservado Inferno', 'Al lado de la pista, se un diablo', 10, 200, NULL, 5, 5);
+
+INSERT INTO PRODUCT
+    (DTYPE, ID, NAME, DESCRIPTION, PRICE, STOCK, EVENT_DATE, NUM_PERSONS, NUM_VIP)
+VALUES
+    ('V', HIBERNATE_SEQUENCE.NEXTVAL, 'Reservado Heaven', 'El de la planta de arriba con vistas', 10, 200, NULL, 5, 5);
+
+INSERT INTO PRODUCT
+    (DTYPE, ID, NAME, DESCRIPTION, PRICE, STOCK, EVENT_DATE, NUM_PERSONS, NUM_VIP)
+VALUES
+    ('V', HIBERNATE_SEQUENCE.NEXTVAL, 'Reservado Shot', 'Con phocall privado', 10, 200, NULL, 5, 5);
 
 /*
 Reservados con fecha
@@ -103,10 +144,30 @@ INSERT INTO PRODUCT
 VALUES
     ('T', HIBERNATE_SEQUENCE.NEXTVAL, 'Miércoles Funky Night', 'Este evento reune a los mejores grupos de baile Funky en nuestra sala, ¡No te lo pierdas!', 20, 173, TO_DATE('12/06/2019', 'DD/MM/YYYY'), NUMTICKET_SEQUENCE.NEXTVAL);
 
+INSERT INTO PRODUCT
+    (DTYPE, ID, NAME, DESCRIPTION, PRICE, STOCK, EVENT_DATE, NUM_TICKET)
+VALUES
+    ('T', HIBERNATE_SEQUENCE.NEXTVAL, 'Jueves', 'Este evento reune a los mejores grupos de baile Funky en nuestra sala, ¡No te lo pierdas!', 20, 173, TO_DATE('13/06/2019', 'DD/MM/YYYY'), NUMTICKET_SEQUENCE.NEXTVAL);
 
+INSERT INTO PRODUCT
+    (DTYPE, ID, NAME, DESCRIPTION, PRICE, STOCK, EVENT_DATE, NUM_TICKET)
+VALUES
+    ('T', HIBERNATE_SEQUENCE.NEXTVAL, 'Viernes Night', 'Este evento reune a los mejores grupos de baile Funky en nuestra sala, ¡No te lo pierdas!', 20, 173, TO_DATE('15/06/2019', 'DD/MM/YYYY'), NUMTICKET_SEQUENCE.NEXTVAL);
 
+INSERT INTO PRODUCT
+    (DTYPE, ID, NAME, DESCRIPTION, PRICE, STOCK, EVENT_DATE, NUM_TICKET)
+VALUES
+    ('T', HIBERNATE_SEQUENCE.NEXTVAL, 'Sabado Fever', 'Este evento reune a los mejores grupos de baile Funky en nuestra sala, ¡No te lo pierdas!', 20, 173, TO_DATE('16/06/2019', 'DD/MM/YYYY'), NUMTICKET_SEQUENCE.NEXTVAL);
 
+INSERT INTO PRODUCT
+    (DTYPE, ID, NAME, DESCRIPTION, PRICE, STOCK, EVENT_DATE, NUM_TICKET)
+VALUES
+    ('T', HIBERNATE_SEQUENCE.NEXTVAL, 'Sunday', 'Este evento reune a los mejores grupos de baile Funky en nuestra sala, ¡No te lo pierdas!', 20, 173, TO_DATE('17/06/2019', 'DD/MM/YYYY'), NUMTICKET_SEQUENCE.NEXTVAL);
 
+INSERT INTO PRODUCT
+    (DTYPE, ID, NAME, DESCRIPTION, PRICE, STOCK, EVENT_DATE, NUM_TICKET)
+VALUES
+    ('T', HIBERNATE_SEQUENCE.NEXTVAL, 'Monday Relax', 'Este evento reune a los mejores grupos de baile Funky en nuestra sala, ¡No te lo pierdas!', 20, 173, TO_DATE('18/06/2019', 'DD/MM/YYYY'), NUMTICKET_SEQUENCE.NEXTVAL);
 /*
 Events
 */
@@ -119,7 +180,32 @@ VALUES
 INSERT INTO EVENT
     (ID, DESCRIPTION, IMG_URL, NAME, EVENT_DATE)
 VALUES
-    (HIBERNATE_SEQUENCE.NEXTVAL, 'Ya disponible entradas de uno de nuestros eventos con mayor rango de clientes, pillalas rápido que se acaban! PD: Recuerda que el disfraz es OBLIGATORIO', NULL, 'FestWeen XI', TO_DATE('31/10/2019', 'DD/MM/YYYY'));
+    (HIBERNATE_SEQUENCE.NEXTVAL, 'Ya disponible entradas de uno de nuestros eventos con mayor rango de clientes, pillalas rápido que se acaban! PD: Recuerda que el disfraz es OBLIGATORIO', NULL, 'Navidad', TO_DATE('31/10/2019', 'DD/MM/YYYY'));
+
+INSERT INTO EVENT
+    (ID, DESCRIPTION, IMG_URL, NAME, EVENT_DATE)
+VALUES
+    (HIBERNATE_SEQUENCE.NEXTVAL, 'Disponible', NULL, 'Año nuevo', TO_DATE('01/11/2019', 'DD/MM/YYYY'));
+
+INSERT INTO EVENT
+    (ID, DESCRIPTION, IMG_URL, NAME, EVENT_DATE)
+VALUES
+    (HIBERNATE_SEQUENCE.NEXTVAL, 'Disponible ya', NULL, 'PostExamenes', TO_DATE('20/07/2019', 'DD/MM/YYYY'));
+
+INSERT INTO EVENT
+    (ID, DESCRIPTION, IMG_URL, NAME, EVENT_DATE)
+VALUES
+    (HIBERNATE_SEQUENCE.NEXTVAL, 'Disponible ya', NULL, 'San Juan', TO_DATE('23/06/2019', 'DD/MM/YYYY'));
+
+INSERT INTO EVENT
+    (ID, DESCRIPTION, IMG_URL, NAME, EVENT_DATE)
+VALUES
+    (HIBERNATE_SEQUENCE.NEXTVAL, 'Disponible ya', NULL, 'El dia 1', TO_DATE('01/08/2019', 'DD/MM/YYYY'));
+
+INSERT INTO EVENT
+    (ID, DESCRIPTION, IMG_URL, NAME, EVENT_DATE)
+VALUES
+    (HIBERNATE_SEQUENCE.NEXTVAL, 'Disponible ya', NULL, 'PreWork', TO_DATE('09/09/2019', 'DD/MM/YYYY'));
 /*
 PartyTypes
 */
@@ -137,3 +223,17 @@ INSERT INTO PARTY_TYPE
     (ID, DESCRIPTION, IMG_URL, NAME)
 VALUES
     (HIBERNATE_SEQUENCE.NEXTVAL, 'Nuestra mitiquísima fiesta de Halloween, apúntate si quieres pasar una noche terriblemente divertida. Por cierto, si no vas disfrazado, no entras ;)', NULL, 'Licorween');
+INSERT INTO PARTY_TYPE
+    (ID, DESCRIPTION, IMG_URL, NAME)
+VALUES
+    (HIBERNATE_SEQUENCE.NEXTVAL, 'Nuestra mitiquísima fiesta San Juana', NULL, 'San Juana Party');
+
+    INSERT INTO PARTY_TYPE
+    (ID, DESCRIPTION, IMG_URL, NAME)
+VALUES
+    (HIBERNATE_SEQUENCE.NEXTVAL, '¿¡Queda poco!', NULL, 'PreworkParty');
+
+    INSERT INTO PARTY_TYPE
+    (ID, DESCRIPTION, IMG_URL, NAME)
+VALUES
+    (HIBERNATE_SEQUENCE.NEXTVAL, '¡Bienvenido al nuevo año!', NULL, 'Final Age');

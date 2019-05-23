@@ -41,7 +41,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="event : ${eventsList}">
+                        <tr th:each="event : ${event}">
                             <td th:text="${event.id}"></td>
                             <td th:text="${event.name}"></td>
                             <td th:text="${event.description}"></td>
@@ -55,9 +55,56 @@
                 <a type="button" class="btn btn-primary" th:href="@{/admin/addEvent}">
                     Añadir
                 </a>
+                <div class="row">
+                        <div class="form-group col-md-1">
+                            <select class="form-control pagination" id="pageSizeSelect">
+                                <option th:each="pageSize : ${pageSizes}" th:text="${pageSize}" th:value="${pageSize}"
+                                    th:selected="${pageSize} == ${selectedPageSize}"></option>
+                            </select>
+                        </div>
+    
+                        <div class="col-3"></div>
+                        <div class="col-4" style="text-align: center;">
+                            <nav aria-label="Page navigation example mx-auto">
+                                <ul th:if="${event.totalPages != 1}" class="pagination pagination-circle pg-blue">
+                                    <li th:class="${event.number == 0} ? disabled" class="page-item disabled">
+                                        <a th:href="@{/admin/events/(pageSize=${selectedPageSize}, page=1)}"
+                                            class="page-link">First</a>
+                                    </li>
+    
+                                    <li th:class="${event.number == 0} ? disabled" class="page-item disabled"></li>
+                                    <a th:href="@{/admin/events/(pageSize=${selectedPageSize}, page=${event.number})}"
+                                        class="page-link" aria-label="Previous">
+                                        <span aria-hidden="true">&larr;</span>
+                                    </a>
+                                    </li>
+    
+                                    <li th:class="${event.number == (page - 1)} ? 'active pointer-disabled'"
+                                        class="page-item active" th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+                                          <a th:href="@{/admin/events/(pageSize=${selectedPageSize}, page=${page})}" class="page-link" th:text="${page}">1</a>
+                                        </li>
+                              
+                                      <li th:class="${event.number + 1 == event.totalPages} ? disabled" class="page-item">
+                                          <a th:href="@{/admin/events/(pageSize=${selectedPageSize}, page=${event.number + 2})}" class="page-link">&rarr;</a>
+                                        </li>
+                                      
+                                      <li th:class="${event.number + 1 == event.totalPages} ? disabled" class="page-item">
+                                          <a th:href="@{/admin/events/(pageSize=${selectedPageSize}, page=${event.totalPages})}" class="page-link">Last</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div class="col-4"></div>
+                        </div>
             </main>
         </div>
     </section>
+    <div class="row w-25 p-3"></div>
+    <div class="row w-25 p-3"></div>
+    <div class="row w-25 p-3"></div>
+    <div class="row w-25 p-3"></div>
+    <div class="row w-25 p-3"></div>
+    <div class="row w-25 p-3"></div>
     <!--Footer-->
     <footer th:insert="fragments/frag-footer.html :: footer"></footer>
 

@@ -28,29 +28,29 @@
                 <div class="row w-25 p-3"></div>
                 <!--Tabla-->
                 <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Descripción</th>
-                            <th scope="col">Precio</th>
-                            <th scope="col">Stock</th>
-                            <th scope="col">Fecha</th>
-                            <th scope="col">Número Ticket</th>
-                            <th scope="col">Edit</th>
-                            <th scope="col">Borrar</th>
-                        
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="ticket : ${ticketsList}">
-                            <td th:text="${ticket.id}"></td>
-                            <td th:text="${ticket.name}"></td>
-                            <td th:text="${ticket.description}"></td>
-                            <td th:text="${ticket.price}"></td>
-                            <td th:text="${ticket.stock}"></td>
-                            <td th:text="${#temporals.format(ticket.eventDate, 'dd/MM/yyyy')}"></td>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Descripción</th>
+                                <th scope="col">Precio</th>
+                                <th scope="col">Stock</th>
+                                <th scope="col">Fecha</th>
+                                <th scope="col">Número Ticket</th>
+                                <th scope="col">Edit</th>
+                                <th scope="col">Borrar</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="ticket : ${ticket}">
+                                <td th:text="${ticket.id}"></td>
+                                <td th:text="${ticket.name}"></td>
+                                <td th:text="${ticket.description}"></td>
+                                <td th:text="${ticket.price}"></td>
+                                <td th:text="${ticket.stock}"></td>
+                                <td th:text="${#temporals.format(ticket.eventDate, 'dd/MM/yyyy')}"></td>
                             <td th:text="${ticket.numTicket}"></td>
                             <td><a href="" th:href="@{/admin/editTicket/{id}(id=${ticket.id})}">Editar</a></td>
                             <td><a href="" th:href="@{/admin/delTicket/{id}(id=${ticket.id})}" onclick="return confirm('¿Está seguro de que desea borrar esta entrada?')">Borrar</a></td>
@@ -61,10 +61,58 @@
                 <a type="button" class="btn btn-primary" th:href="@{/admin/addTicket}">
                     Añadir
                 </a>
+                <div class="row">
+                        <div class="form-group col-md-1">
+                            <select class="form-control pagination" id="pageSizeSelect">
+                                <option th:each="pageSize : ${pageSizes}" th:text="${pageSize}" th:value="${pageSize}"
+                                    th:selected="${pageSize} == ${selectedPageSize}"></option>
+                            </select>
+                        </div>
+    
+                        <div class="col-3"></div>
+                        <div class="col-4" style="text-align: center;">
+                            <nav aria-label="Page navigation example mx-auto">
+                                <ul th:if="${ticket.totalPages != 1}" class="pagination pagination-circle pg-blue">
+                                    <li th:class="${ticket.number == 0} ? disabled" class="page-item disabled">
+                                        <a th:href="@{/admin/tickets/(pageSize=${selectedPageSize}, page=1)}"
+                                            class="page-link">First</a>
+                                    </li>
+    
+                                    <li th:class="${ticket.number == 0} ? disabled" class="page-item disabled"></li>
+                                    <a th:href="@{/admin/tickets/(pageSize=${selectedPageSize}, page=${ticket.number})}"
+                                        class="page-link" aria-label="Previous">
+                                        <span aria-hidden="true">&larr;</span>
+                                    </a>
+                                    </li>
+    
+                                    <li th:class="${ticket.number == (page - 1)} ? 'active pointer-disabled'"
+                                        class="page-item active" th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+                                          <a th:href="@{/admin/tickets/(pageSize=${selectedPageSize}, page=${page})}" class="page-link" th:text="${page}">1</a>
+                                        </li>
+                              
+                                      <li th:class="${ticket.number + 1 == ticket.totalPages} ? disabled" class="page-item">
+                                          <a th:href="@{/admin/tickets/(pageSize=${selectedPageSize}, page=${ticket.number + 2})}" class="page-link">&rarr;</a>
+                                        </li>
+                                      
+                                      <li th:class="${ticket.number + 1 == ticket.totalPages} ? disabled" class="page-item">
+                                          <a th:href="@{/admin/tickets/(pageSize=${selectedPageSize}, page=${ticket.totalPages})}" class="page-link">Last</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div class="col-4"></div>
+                        </div>
+                        
 
             </main>
         </div>
     </section>
+    <div class="row w-25 p-3"></div>
+    <div class="row w-25 p-3"></div>
+    <div class="row w-25 p-3"></div>
+    <div class="row w-25 p-3"></div>
+    <div class="row w-25 p-3"></div>
+    <div class="row w-25 p-3"></div>
     <!--Footer-->
     <footer th:insert="fragments/frag-footer.html :: footer"></footer>
 

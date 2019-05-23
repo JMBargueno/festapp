@@ -63,53 +63,58 @@
                     Añadir
                 </a>
                 <div class="row">
-                        <div class="form-group col-md-1">
-                            <select class="form-control pagination" id="pageSizeSelect">
-                                <option th:each="pageSize : ${pageSizes}" th:text="${pageSize}"
-                                    th:value="${pageSize}"
-                                    th:selected="${pageSize} == ${selectedPageSize}"></option>
-                            </select>
-                        </div>
-                        <div th:if="${consumable.totalPages != 1}"
-                            class="form-group col-md-11 pagination-centered">
-                            <ul class="pagination">
-                                <!-- Si el número de página es cero, deshabilitamos el enlace -->
-                                <li th:class="${consumable.number == 0} ? disabled">
-                                    <!-- Este enlace nos debe llevar a la primera página, con el tamaño de página actual -->
-                                    <a class="pageLink"
-                                    th:href="@{admin/consumables/(pageSize=${selectedPageSize}, page=1)}">&laquo;</a>
-                                </li>
-                                <!-- Si el número de página es cero, deshabilitamos el enlace -->
-                                <li th:class="${consumable.number == 0} ? disabled">
-                                    <!-- Este enlace nos debe llevar a la página anterior, con el tamaño de página actual -->						
-                                    <a class="pageLink" th:href="@{admin/consumables/(pageSize=${selectedPageSize}, page=${consumable.number})}">&larr;</a>
-                                </li>
-                                <!-- Este bucle genera los enlaces para las demás páginas -->
-                                <li
-                                    th:class="${consumable.number == (page - 1)} ? 'active pointer-disabled'"
-                                    th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
-                                    <a class="pageLink"
-                                    th:href="@{admin/consumables/(pageSize=${selectedPageSize}, page=${page})}"
-                                    th:text="${page}"></a>
-                                </li>
-                                <!-- Enlace a la siguiente página; si estamos en la última queda desabilitado  -->
-                                <li
-                                    th:class="${consumable.number + 1 == consumable.totalPages} ? disabled">
-                                    <a class="pageLink"
-                                    th:href="@{admin/consumables/(pageSize=${selectedPageSize}, page=${consumable.number + 2})}">&rarr;</a>
-                                </li>
-                                <!-- Enlace a la última página; si estamos en la última queda desabilitado  -->				
-                                <li
-                                    th:class="${consumable.number + 1 == consumable.totalPages} ? disabled">
-                                    <a class="pageLink"
-                                    th:href="@{admin/consumables/(pageSize=${selectedPageSize}, page=${consumable.totalPages})}">&raquo;</a>
-                                </li>
-                            </ul>
-                        </div>
+                    <div class="form-group col-md-1">
+                        <select class="form-control pagination" id="pageSizeSelect">
+                            <option th:each="pageSize : ${pageSizes}" th:text="${pageSize}" th:value="${pageSize}"
+                                th:selected="${pageSize} == ${selectedPageSize}"></option>
+                        </select>
                     </div>
+
+                    <div class="col-3"></div>
+                    <div class="col-4" style="text-align: center;">
+                        <nav aria-label="Page navigation example mx-auto">
+                            <ul th:if="${consumable.totalPages != 1}" class="pagination pagination-circle pg-blue">
+                                <li th:class="${consumable.number == 0} ? disabled" class="page-item disabled">
+                                    <a th:href="@{/admin/consumables/(pageSize=${selectedPageSize}, page=1)}"
+                                        class="page-link">First</a>
+                                </li>
+
+                                <li th:class="${consumable.number == 0} ? disabled" class="page-item disabled"></li>
+                                <a th:href="@{/admin/consumables/(pageSize=${selectedPageSize}, page=${consumable.number})}"
+                                    class="page-link" aria-label="Previous">
+                                    <span aria-hidden="true">&larr;</span>
+                                </a>
+                                </li>
+
+                                <li th:class="${consumable.number == (page - 1)} ? 'active pointer-disabled'"
+                                    class="page-item active" th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+                                      <a th:href="@{/admin/consumables/(pageSize=${selectedPageSize}, page=${page})}" class="page-link" th:text="${page}">1</a>
+                                    </li>
+                          
+                                  <li th:class="${consumable.number + 1 == consumable.totalPages} ? disabled" class="page-item">
+                                      <a th:href="@{/admin/consumables/(pageSize=${selectedPageSize}, page=${consumable.number + 2})}" class="page-link">&rarr;</a>
+                                    </li>
+                                  
+                                  <li th:class="${consumable.number + 1 == consumable.totalPages} ? disabled" class="page-item">
+                                      <a th:href="@{/admin/consumables/(pageSize=${selectedPageSize}, page=${consumable.totalPages})}" class="page-link">Last</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="col-4"></div>
+                    </div>
+                    
+                
             </main>
         </div>
     </section>
+    <div class="row w-25 p-3"></div>
+    <div class="row w-25 p-3"></div>
+    <div class="row w-25 p-3"></div>
+    <div class="row w-25 p-3"></div>
+    <div class="row w-25 p-3"></div>
+    <div class="row w-25 p-3"></div>
+    
     <!--Footer-->
     <footer th:insert="fragments/frag-footer.html :: footer"></footer>
 

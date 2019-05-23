@@ -9,7 +9,7 @@
     <div th:fragment="vipform">
         <div class="col-12 d-flex justify-content-center">
             <form method="POST" th:action="@{/admin/addVip/submit}" th:object="${vipform}" id="register"
-                class="col-12 col-md-5">
+                class="col-12 col-md-5" enctype="multipart/form-data">
                 <br>
 
                 <div class="form-row">
@@ -51,6 +51,11 @@
                         <input type="text" class="form-control" id="inputUser" aria-describedby="userHelp"
                             placeholder="Introduzca su nombre de usuario" required th:field="*{description}">
                     </div>
+                    <div class="form-group col-md-6">
+                            <label for="file">Imagen</label>
+                            <input type="file" class="input-file" id="file" name="file" aria-describedby="imgHelp"
+                                placeholder="Subir archivo">
+                        </div>
                 </div>
                    
 

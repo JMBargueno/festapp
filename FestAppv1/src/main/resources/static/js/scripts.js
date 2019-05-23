@@ -1,6 +1,7 @@
 //Encontrar ruta actual
 var ruta = window.location.pathname;
 
+//Comprobar navegador
 window.mobilecheck = function () {
     var check = false;
     (function (a) {
@@ -8,6 +9,11 @@ window.mobilecheck = function () {
     })(navigator.userAgent || navigator.vendor || window.opera);
     return check;
 };
+
+//Recarga de página
+$(document).ready(function() {
+	changePageAndSize();
+});
 
 //alert(ruta);
 //Switch para darle el active a su correspondiente
@@ -122,14 +128,11 @@ var granimInstance = new Granim({
 });
 
 
-//Recarga de página
-$(document).ready(function() {
-	changePageAndSize();
-});
+
 
 // Permite recargar la página cada vez que cambia el tamaño de página
 function changePageAndSize() {
 	$('#pageSizeSelect').change(function(evt) {
-		window.location.replace("/consumables/?pageSize=" + this.value + "&page=1");
+		window.location.replace("/admin/consumables/?pageSize=" + this.value + "&page=1");
 	});
 }

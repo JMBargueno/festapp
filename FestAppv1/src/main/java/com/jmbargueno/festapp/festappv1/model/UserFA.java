@@ -44,6 +44,7 @@ public class UserFA {
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate birthday;
+	
 	@Column(unique = true)
 	private String dni;
 

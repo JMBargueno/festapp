@@ -37,8 +37,8 @@ public class Purchase {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Setter(AccessLevel.NONE)
 	private long id;
-	
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate date;
 	private double finalPrice;
 
@@ -52,7 +52,7 @@ public class Purchase {
 	 * @param date         Fecha de la compra.
 	 * @param finalPrice   Precio final de la compra.
 	 * @param purchaselist Lista de lineas de compra.
-	 * @param userFA         Usuario que ha relalizado la compra.
+	 * @param userFA       Usuario que ha relalizado la compra.
 	 * 
 	 */
 	public Purchase(LocalDate date, double finalPrice, List<PurchaseLine> purchaseList, UserFA userFA) {
@@ -61,6 +61,17 @@ public class Purchase {
 		this.finalPrice = finalPrice;
 		this.purchaseList = purchaseList;
 		this.userFA = userFA;
+	}
+
+	public void addPurchaseLine(PurchaseLine purchaseLine) {
+		this.purchaseList.add(purchaseLine);
+		purchaseLine.setPurchase(this);
+	}
+
+	public void removePurchaseLine(PurchaseLine purchaseLine) {
+		this.purchaseList.remove(purchaseLine);
+		purchaseLine.setPurchase(null);
+		;
 	}
 
 }

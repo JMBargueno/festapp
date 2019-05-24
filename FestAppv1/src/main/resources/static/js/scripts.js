@@ -1,5 +1,5 @@
 //Encontrar ruta actual
-var ruta = window.location.pathname;
+var path = window.location.pathname;
 
 //Comprobar navegador
 window.mobilecheck = function () {
@@ -17,7 +17,7 @@ $(document).ready(function() {
 
 //alert(ruta);
 //Switch para darle el active a su correspondiente
-switch (ruta) {
+switch (path) {
     case '/index':
         var elemento = document.getElementById("index");
         elemento.className += " active";
@@ -133,6 +133,6 @@ var granimInstance = new Granim({
 // Permite recargar la página cada vez que cambia el tamaño de página
 function changePageAndSize() {
 	$('#pageSizeSelect').change(function(evt) {
-		window.location.replace("/admin/consumables/?pageSize=" + this.value + "&page=1");
+		window.location.replace(path+"?pageSize=" + this.value + "&page=1");
 	});
 }

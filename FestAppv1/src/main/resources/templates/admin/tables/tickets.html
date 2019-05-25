@@ -58,8 +58,8 @@
                                 <td th:text="${ticket.stock}"></td>
                                 <td th:text="${#temporals.format(ticket.eventDate, 'dd/MM/yyyy')}"></td>
                             <td th:text="${ticket.numTicket}"></td>
-                            <td><a href="" th:href="@{/admin/editTicket/{id}(id=${ticket.id})}">Editar</a></td>
-                            <td><a href="" th:href="@{/admin/delTicket/{id}(id=${ticket.id})}" onclick="return confirm('¿Está seguro de que desea borrar esta entrada?')">Borrar</a></td>
+                            <td><a href="" th:href="@{/admin/editTicket/{id}(id=${ticket.id})}">✏</a></td>
+                            <td><a href="" th:href="@{/admin/delTicket/{id}(id=${ticket.id})}" onclick="return confirm('¿Está seguro de que desea borrar esta entrada?')">❌</a></td>
                         </tr>
                     </tbody>
                 </table>

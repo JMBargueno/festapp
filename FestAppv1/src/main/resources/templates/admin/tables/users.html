@@ -64,8 +64,8 @@
                                 <td th:text="${user.phoneNumber}"></td>
                                 <td th:text="${#temporals.format(user.registerDate, 'dd/MM/yyyy')}"></td>
                             <th scope="col">Historial</th>
-                            <td><a href="" th:href="@{/admin/editUser/{id}(id=${user.id})}">Editar</a></td>
-                            <td><a href="#" th:href="@{/admin/delUser/{id}(id=${user.id})}" onclick="return confirm('¿Está seguro de que desea borrar este usuario?')">Borrar</a></td>
+                            <td><a href="" th:href="@{/admin/editUser/{id}(id=${user.id})}">✏</a></td>
+                            <td><a href="#" th:href="@{/admin/delUser/{id}(id=${user.id})}" onclick="return confirm('¿Está seguro de que desea borrar este usuario?')">❌</a></td>
 
                         </tr>
                     </tbody>

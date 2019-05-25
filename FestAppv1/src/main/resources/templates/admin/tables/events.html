@@ -52,7 +52,7 @@
                             <td th:text="${event.name}"></td>
                             <td th:text="${event.description}"></td>
                             <td th:text="${#temporals.format(event.eventDate, 'dd/MM/yyyy')}"></td>
-                            <td><a href="" th:href="@{/admin/editEvent/{id}(id=${event.id})}">Editar</a></td>
+                            <td><a href="" th:href="@{/admin/editEvent/{id}(id=${event.id})}">✏</a></td>
                             <td><a href="" th:href="@{/admin/delEvent/{id}(id=${event.id})}" onclick="return confirm('¿Está seguro de que desea borrar este evento?')">❌</a></td>
                         </tr>
                     </tbody>

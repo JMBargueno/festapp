@@ -50,8 +50,8 @@
                             <td th:text="${party.id}"></td>
                             <td th:text="${party.name}"></td>
                             <td th:text="${party.description}"></td>
-                            <td><a href="" th:href="@{/admin/editParty/{id}(id=${party.id})}">Editar</a></td>
-                            <td><a href="" th:href="@{/admin/delParty/{id}(id=${party.id})}" onclick="return confirm('¿Está seguro de que desea borrar esta fiesta?')">Borrar</a></td>
+                            <td><a href="" th:href="@{/admin/editParty/{id}(id=${party.id})}">✏</a></td>
+                            <td><a href="" th:href="@{/admin/delParty/{id}(id=${party.id})}" onclick="return confirm('¿Está seguro de que desea borrar esta fiesta?')">❌</a></td>
                         </tr>
                     </tbody>
                 </table>

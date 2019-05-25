@@ -32,6 +32,7 @@ public class ProductService extends BaseService<Product, Long, ProductRepository
 	StorageService storageService;
 
 	public void add(Product p, MultipartFile file) {
+		
 
 		String fileName = storageService.store(file);// Guarda la imagen
 		// Guardamos nombre de la imagen almacenada en el atributo de la entidad
@@ -66,6 +67,27 @@ public class ProductService extends BaseService<Product, Long, ProductRepository
 		}).collect(Collectors.toList());
 
 		return lista;
+	}
+	
+	public Product findById(Long id) {
+		// Antes estaba escrito
+		// repository.findOne(id)
+		// Al cambiar la versin de Spring Boot, ha cambiado la de JPA y algunos metodos
+		return productRepository.findById(id).orElse(null);
+	}
+
+	public List<Product> findByName(String name){
+		return productRepository.findByNameContainingIgnoreCase(name);
+	}
+
+
+	public Page<Product> findAllPageable(Pageable pageable) {
+		return productRepository.findAll(pageable);
+	}
+
+	public  Page<Product> findByNombreContainingIgnoreCasePageable(String name, Pageable pageable)
+	{
+		return productRepository.findByNameContainingIgnoreCase(name, pageable);
 	}
 
 	

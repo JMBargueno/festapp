@@ -62,8 +62,8 @@
                             <td th:text="${vip.numVip}"></td>
                            <!-- <td th:text="${vip.consumeVip}"></td>-->
                             <td></td>
-                            <td><a href="" th:href="@{/admin/editVip/{id}(id=${vip.id})}">Editar</a></td>
-                            <td><a href="" th:href="@{/admin/delVip/{id}(id=${vip.id})}" onclick="return confirm('¿Está seguro de que desea borrar este reservado?')">Borrar</a></td>
+                            <td><a href="" th:href="@{/admin/editVip/{id}(id=${vip.id})}">Editar ✏</a></td>
+                            <td><a href="" th:href="@{/admin/delVip/{id}(id=${vip.id})}" onclick="return confirm('¿Está seguro de que desea borrar este reservado?')">❌</a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -125,7 +125,7 @@
     <div class="row w-25 p-3"></div>
     <div class="row w-25 p-3"></div>
     <!--Footer-->
-    <footer th:insert="fragments/frag-footer.html :: footer"></footer>
+    <footer th:insert="fragments/frag-footer.html :: footer"class="footer mt-auto py-3"></footer>
 
 
     <!-- Optional JavaScript -->

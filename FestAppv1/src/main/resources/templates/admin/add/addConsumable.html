@@ -18,6 +18,7 @@
     <header th:insert="fragments/frag-header.html :: header">
     </header>
     <!--Section-->
+    <canvas id="canvas-basic"></canvas>
     <section class="container-fluid col-12">
         <div class="row">
             <main class="col-12 col-md-12">
@@ -30,6 +31,8 @@
             </main>
         </div>
     </section>
+    <div class="row w-25 p-3"></div>
+                <div class="row w-25 p-3"></div>
     <!--Footer-->
     <footer th:insert="fragments/frag-footer.html :: footer"></footer>
 
@@ -46,8 +49,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
         </script>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <script src="js/scripts.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/granim.js}" charset="utf-8"></script>
+    <script type="text/javascript" th:src="@{/js/scripts.js}"></script>
 </body>
 
 </html>

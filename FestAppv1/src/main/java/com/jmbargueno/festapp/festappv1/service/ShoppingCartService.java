@@ -37,9 +37,7 @@ public class ShoppingCartService {
 
 	@Autowired
 	private ProductService productService;
-	
-	
-	
+
 	private List<PurchaseLine> purchaseLines = new ArrayList<>();
 
 	@Autowired
@@ -57,8 +55,6 @@ public class ShoppingCartService {
 	 */
 
 	public void addPurchaseLine(Long id) {
-		
-		
 
 		purchaseLines.add(new PurchaseLine(productService.findById(id), 1));
 
@@ -72,8 +68,8 @@ public class ShoppingCartService {
 	 * @param producto
 	 */
 
-	public void removePurchaseLine(PurchaseLine p) {
-		purchaseLines.remove(p);
+	public void removePurchaseLine(int index) {
+		purchaseLines.remove(index);
 	}
 
 	/**

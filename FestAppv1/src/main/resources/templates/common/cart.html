@@ -62,7 +62,7 @@
                                                         <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;" th:src="${element.key.image}" /> </a>-->
                                                     <div class="media-body">
                                                         <h4 class="media-heading"><a href="#"><span
-                                                                    th:text="${element.id}">Product name</span></a></h4>
+                                                                    th:text="${element.t.id}">Product name</span></a></h4>
 
                                                         <h4 class="media-heading"><a href="#"><span
                                                                     th:text="${element.t.name}">Product name</span></a>
@@ -86,7 +86,7 @@
                                             <td class="col-sm-1 col-md-1">
 
 
-                                                <a href="#" th:href="@{/cart/remove/{id}(id=${element.id})}"
+                                                <a href="#" th:href="@{/cart/remove/{id}(id=${element.t.id})}"
                                                     onclick="return confirm('¿Está seguro de que desea borrar este producto?')">❌</a>
                                             </td>
                                         </tr>

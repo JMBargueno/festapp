@@ -65,9 +65,10 @@ public class AdminController {
 
 	// Consumibles
 	@GetMapping("/consumables")
-	public String showConsumables(@RequestParam("pageSize") Optional<Integer> pageSize,
-			@RequestParam("page") Optional<Integer> page, Model model) {
-
+	public String showConsumable(@RequestParam("pageSize") Optional<Integer> pageSize,
+			@RequestParam("page") Optional<Integer> page, @RequestParam("nombre") Optional<String> nombre,
+			Model model) {
+		model.addAttribute("partiesList", partyTypeService.findAll());
 		// Evalúa el tamaño de página. Si el parámetro es "nulo", devuelve
 		// el tamaño de página inicial.
 		int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
@@ -77,21 +78,32 @@ public class AdminController {
 		// del parámetro decrementado en 1.
 		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
 
+		String evalNombre = nombre.orElse(null);
+
+		Page<Consumable> consumables = null;
+
+		if (evalNombre == null) {
+			consumables = consumableService.findAllPageable(PageRequest.of(evalPage, evalPageSize));
+		} else {
+			consumables = consumableService.findByNombreContainingIgnoreCasePageable(evalNombre,
+					PageRequest.of(evalPage, evalPageSize));
+		}
+
 		// Obtenemos la página definida por evalPage y evalPageSize de objetos de
 		// nuestro modelo
-		Page<Consumable> consumable = consumableService.findAllPageable(PageRequest.of(evalPage, evalPageSize));
+		// Page<Producto> products =
+		// productService.findAllPageable(PageRequest.of(evalPage, evalPageSize));
 		// Creamos el objeto Pager (paginador) indicando los valores correspondientes.
 		// Este sirve para que la plantilla sepa cuantas páginas hay en total, cuantos
 		// botones
 		// debe mostrar y cuál es el número de objetos a dibujar.
-		Pager pager = new Pager(consumable.getTotalPages(), consumable.getNumber(), BUTTONS_TO_SHOW);
-		model.addAttribute("consumable", consumable);
+		Pager pager = new Pager(consumables.getTotalPages(), consumables.getNumber(), BUTTONS_TO_SHOW);
+
+		model.addAttribute("consumable", consumables);
 		model.addAttribute("selectedPageSize", evalPageSize);
 		model.addAttribute("pageSizes", PAGE_SIZES);
 		model.addAttribute("pager", pager);
 
-		model.addAttribute("partiesList", partyTypeService.findAll());
-		model.addAttribute("consumablesList", consumableService.findAll());
 		return "admin/tables/consumables.html";
 	}
 

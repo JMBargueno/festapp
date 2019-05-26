@@ -14,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.jmbargueno.festapp.festappv1.model.Consumable;
+import com.jmbargueno.festapp.festappv1.model.UserFA;
 import com.jmbargueno.festapp.festappv1.repository.ConsumableRepository;
 import com.jmbargueno.festapp.festappv1.service.base.BaseService;
 
@@ -55,9 +56,23 @@ public class ConsumableService extends BaseService<Consumable, Long, ConsumableR
 		return list;
 	}
 
-	 @Override
-	    public Page<Consumable> findAllPageable(Pageable pageable) {
-	        return consumableRepository.findAll(pageable);
-	    }
+	public Consumable findById(Long id) {
+		// Antes estaba escrito
+		// repository.findOne(id)
+		// Al cambiar la versin de Spring Boot, ha cambiado la de JPA y algunos metodos
+		return consumableRepository.findById(id).orElse(null);
+	}
+
+	public List<Consumable> findByName(String name) {
+		return consumableRepository.findByNameContainingIgnoreCase(name);
+	}
+
+	public Page<Consumable> findAllPageable(Pageable pageable) {
+		return consumableRepository.findAll(pageable);
+	}
+
+	public Page<Consumable> findByNombreContainingIgnoreCasePageable(String name, Pageable pageable) {
+		return consumableRepository.findByNameContainingIgnoreCase(name, pageable);
+	}
 
 }

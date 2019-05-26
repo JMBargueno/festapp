@@ -310,21 +310,45 @@ public class AdminController {
 
 	@GetMapping("/users")
 	public String showUsers(@RequestParam("pageSize") Optional<Integer> pageSize,
-			@RequestParam("page") Optional<Integer> page, Model model) {
+			@RequestParam("page") Optional<Integer> page, @RequestParam("nombre") Optional<String> nombre,
+			Model model) {
+		model.addAttribute("partiesList", partyTypeService.findAll());
+		// Evalúa el tamaño de página. Si el parámetro es "nulo", devuelve
+		// el tamaño de página inicial.
 		int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
+
+		// Calcula qué página se va a mostrar. Si el parámetro es "nulo" o menor
+		// que 0, se devuelve el valor inicial. De otro modo, se devuelve el valor
+		// del parámetro decrementado en 1.
 		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
 
-		Page<UserFA> user = userService.findAllPageable(PageRequest.of(evalPage, evalPageSize));
+		String evalNombre = nombre.orElse(null);
 
-		Pager pager = new Pager(user.getTotalPages(), user.getNumber(), BUTTONS_TO_SHOW);
+		Page<UserFA> users = null;
 
-		model.addAttribute("user", user);
+		if (evalNombre == null) {
+			users = userService.findAllPageable(PageRequest.of(evalPage, evalPageSize));
+		} else {
+			users = userService.findByNombreContainingIgnoreCasePageable(evalNombre,
+					PageRequest.of(evalPage, evalPageSize));
+		}
+
+		// Obtenemos la página definida por evalPage y evalPageSize de objetos de
+		// nuestro modelo
+		// Page<Producto> products =
+		// productService.findAllPageable(PageRequest.of(evalPage, evalPageSize));
+		// Creamos el objeto Pager (paginador) indicando los valores correspondientes.
+		// Este sirve para que la plantilla sepa cuantas páginas hay en total, cuantos
+		// botones
+		// debe mostrar y cuál es el número de objetos a dibujar.
+		Pager pager = new Pager(users.getTotalPages(), users.getNumber(), BUTTONS_TO_SHOW);
+
+		model.addAttribute("user", users);
 		model.addAttribute("selectedPageSize", evalPageSize);
 		model.addAttribute("pageSizes", PAGE_SIZES);
 		model.addAttribute("pager", pager);
-
-		model.addAttribute("partiesList", partyTypeService.findAll());
 		model.addAttribute("usersList", userService.findAll());
+
 		return "admin/tables/users.html";
 	}
 

@@ -46,12 +46,12 @@ public class PurchaseLine {
 	 * @param linePrice Precio final de la linea de producto
 	 * @param purchase  Compra donde va la linea de compra.
 	 */
-	public PurchaseLine(Product t, int quantity, double linePrice, Purchase purchase) {
+	public PurchaseLine(Product t, int quantity) {
 		super();
 		this.t = t;
 		this.quantity = quantity;
 		this.linePrice = calcLinePrice();
-		this.purchase = purchase;
+		
 	}
 
 	public void addProduct(Product product) {

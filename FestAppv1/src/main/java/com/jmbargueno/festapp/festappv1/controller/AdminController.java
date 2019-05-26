@@ -165,21 +165,44 @@ public class AdminController {
 	// Tickets
 	@GetMapping("/tickets")
 	public String showTickets(@RequestParam("pageSize") Optional<Integer> pageSize,
-			@RequestParam("page") Optional<Integer> page, Model model) {
+			@RequestParam("page") Optional<Integer> page, @RequestParam("nombre") Optional<String> nombre,
+			Model model) {
+		model.addAttribute("partiesList", partyTypeService.findAll());
+		// Evalúa el tamaño de página. Si el parámetro es "nulo", devuelve
+		// el tamaño de página inicial.
 		int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
+
+		// Calcula qué página se va a mostrar. Si el parámetro es "nulo" o menor
+		// que 0, se devuelve el valor inicial. De otro modo, se devuelve el valor
+		// del parámetro decrementado en 1.
 		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
 
-		Page<Ticket> ticket = ticketService.findAllPageable(PageRequest.of(evalPage, evalPageSize));
+		String evalNombre = nombre.orElse(null);
 
-		Pager pager = new Pager(ticket.getTotalPages(), ticket.getNumber(), BUTTONS_TO_SHOW);
+		Page<Ticket> tickets = null;
 
-		model.addAttribute("ticket", ticket);
+		if (evalNombre == null) {
+			tickets = ticketService.findAllPageable(PageRequest.of(evalPage, evalPageSize));
+		} else {
+			tickets = ticketService.findByNombreContainingIgnoreCasePageable(evalNombre,
+					PageRequest.of(evalPage, evalPageSize));
+		}
+
+		// Obtenemos la página definida por evalPage y evalPageSize de objetos de
+		// nuestro modelo
+		// Page<Producto> products =
+		// productService.findAllPageable(PageRequest.of(evalPage, evalPageSize));
+		// Creamos el objeto Pager (paginador) indicando los valores correspondientes.
+		// Este sirve para que la plantilla sepa cuantas páginas hay en total, cuantos
+		// botones
+		// debe mostrar y cuál es el número de objetos a dibujar.
+		Pager pager = new Pager(tickets.getTotalPages(), tickets.getNumber(), BUTTONS_TO_SHOW);
+
+		model.addAttribute("ticket", tickets);
 		model.addAttribute("selectedPageSize", evalPageSize);
 		model.addAttribute("pageSizes", PAGE_SIZES);
 		model.addAttribute("pager", pager);
 
-		model.addAttribute("partiesList", partyTypeService.findAll());
-		model.addAttribute("ticketsList", ticketService.findAll());
 		return "admin/tables/tickets.html";
 	}
 
@@ -440,21 +463,45 @@ public class AdminController {
 
 	// PartyType
 	@GetMapping("/parties")
-	public String showpartyTypes(@RequestParam("pageSize") Optional<Integer> pageSize,
-			@RequestParam("page") Optional<Integer> page, Model model) {
+	public String showParties(@RequestParam("pageSize") Optional<Integer> pageSize,
+			@RequestParam("page") Optional<Integer> page, @RequestParam("nombre") Optional<String> nombre,
+			Model model) {
+		model.addAttribute("partiesList", partyTypeService.findAll());
+		// Evalúa el tamaño de página. Si el parámetro es "nulo", devuelve
+		// el tamaño de página inicial.
 		int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
+
+		// Calcula qué página se va a mostrar. Si el parámetro es "nulo" o menor
+		// que 0, se devuelve el valor inicial. De otro modo, se devuelve el valor
+		// del parámetro decrementado en 1.
 		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
 
-		Page<PartyType> partyType = partyTypeService.findAllPageable(PageRequest.of(evalPage, evalPageSize));
+		String evalNombre = nombre.orElse(null);
 
-		Pager pager = new Pager(partyType.getTotalPages(), partyType.getNumber(), BUTTONS_TO_SHOW);
+		Page<PartyType> parties = null;
 
-		model.addAttribute("partyType", partyType);
+		if (evalNombre == null) {
+			parties = partyTypeService.findAllPageable(PageRequest.of(evalPage, evalPageSize));
+		} else {
+			parties = partyTypeService.findByNombreContainingIgnoreCasePageable(evalNombre,
+					PageRequest.of(evalPage, evalPageSize));
+		}
+
+		// Obtenemos la página definida por evalPage y evalPageSize de objetos de
+		// nuestro modelo
+		// Page<Producto> products =
+		// productService.findAllPageable(PageRequest.of(evalPage, evalPageSize));
+		// Creamos el objeto Pager (paginador) indicando los valores correspondientes.
+		// Este sirve para que la plantilla sepa cuantas páginas hay en total, cuantos
+		// botones
+		// debe mostrar y cuál es el número de objetos a dibujar.
+		Pager pager = new Pager(parties.getTotalPages(), parties.getNumber(), BUTTONS_TO_SHOW);
+
+		model.addAttribute("partyType", parties);
 		model.addAttribute("selectedPageSize", evalPageSize);
 		model.addAttribute("pageSizes", PAGE_SIZES);
 		model.addAttribute("pager", pager);
-		model.addAttribute("partiesList", partyTypeService.findAll());
-		model.addAttribute("partiesList", partyTypeService.findAll());
+
 		return "admin/tables/parties.html";
 	}
 
@@ -508,30 +555,45 @@ public class AdminController {
 	// Events
 	@GetMapping("/events")
 	public String showEvents(@RequestParam("pageSize") Optional<Integer> pageSize,
-			@RequestParam("page") Optional<Integer> page, Model model) {
-
+			@RequestParam("page") Optional<Integer> page, @RequestParam("nombre") Optional<String> nombre,
+			Model model) {
+		model.addAttribute("partiesList", partyTypeService.findAll());
+		// Evalúa el tamaño de página. Si el parámetro es "nulo", devuelve
+		// el tamaño de página inicial.
 		int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
+
+		// Calcula qué página se va a mostrar. Si el parámetro es "nulo" o menor
+		// que 0, se devuelve el valor inicial. De otro modo, se devuelve el valor
+		// del parámetro decrementado en 1.
 		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
 
-		Page<Event> event = eventService.findAllPageable(PageRequest.of(evalPage, evalPageSize));
+		String evalNombre = nombre.orElse(null);
 
-		Pager pager = new Pager(event.getTotalPages(), event.getNumber(), BUTTONS_TO_SHOW);
+		Page<Event> events = null;
 
-		model.addAttribute("event", event);
+		if (evalNombre == null) {
+			events = eventService.findAllPageable(PageRequest.of(evalPage, evalPageSize));
+		} else {
+			events = eventService.findByNombreContainingIgnoreCasePageable(evalNombre,
+					PageRequest.of(evalPage, evalPageSize));
+		}
+
+		// Obtenemos la página definida por evalPage y evalPageSize de objetos de
+		// nuestro modelo
+		// Page<Producto> products =
+		// productService.findAllPageable(PageRequest.of(evalPage, evalPageSize));
+		// Creamos el objeto Pager (paginador) indicando los valores correspondientes.
+		// Este sirve para que la plantilla sepa cuantas páginas hay en total, cuantos
+		// botones
+		// debe mostrar y cuál es el número de objetos a dibujar.
+		Pager pager = new Pager(events.getTotalPages(), events.getNumber(), BUTTONS_TO_SHOW);
+
+		model.addAttribute("event", events);
 		model.addAttribute("selectedPageSize", evalPageSize);
 		model.addAttribute("pageSizes", PAGE_SIZES);
 		model.addAttribute("pager", pager);
 
-		model.addAttribute("partiesList", partyTypeService.findAll());
-		model.addAttribute("eventsList", eventService.findAll());
 		return "admin/tables/events.html";
-	}
-
-	@GetMapping("/addEvent")
-	public String addEvent(Model model) {
-		model.addAttribute("partiesList", partyTypeService.findAll());
-		model.addAttribute("eventform", new Event());
-		return "admin/add/addEvent.html";
 	}
 
 	@PostMapping("/addEvent/submit")

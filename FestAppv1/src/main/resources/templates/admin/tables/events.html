@@ -30,6 +30,12 @@
     <section class="container-fluid col-12">
         <div class="row">
             <main class="col-12 col-md-12">
+                    <form action="#" th:action="@{/admin/events}" method="GET">
+                        <input type="text" name="nombre" placeholder="Buscar Por Nombre" style="margin-left: 5%; padding: 4px;" />
+                        <button class="btn- btn-danger" type="submit"  style="padding: 4px;">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                        </form>
 
                 
                 <!--Tabla-->

@@ -29,7 +29,7 @@
                         <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">Fiestas</a>
                         <div class="dropdown-menu" aria-labelledby="dropdownId">
-                                <span th:each="party : ${partiesList}"><a class="dropdown-item" href="addTicket" th:href="@{/party(id=${party.id})}"><span th:text="${party.name}"></span></a></span>
+                                <span th:each="party : ${partiesList}"><a class="dropdown-item" href="addTicket" th:href="@{/party/{id}(id=${party.id})}"><span th:text="${party.name}"></span></a></span>
                         </div>
                     </li>
 

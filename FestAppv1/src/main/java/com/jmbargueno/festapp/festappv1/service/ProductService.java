@@ -43,6 +43,11 @@ public class ProductService extends BaseService<Product, Long, ProductRepository
 		productRepository.save(p);
 
 	}
+	
+public void addEmpty(Product p) {
+		productRepository.save(p);
+
+	}
 
 	public List<Product> list() {
 

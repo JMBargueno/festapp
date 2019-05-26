@@ -30,15 +30,25 @@
             <form action="#" th:action="@{/products/list}" method="GET">
                 <input type="text" name="nombre" placeholder="Buscar Por Nombre"
                     style="margin-left: 5%; padding: 4px;" />
-                    <button class="btn- btn-danger" type="submit" style="padding: 4px;">
-                            <span class="glyphicon glyphicon-search">🔎</span>
-                        </button>
+                <button class="btn- btn-danger" type="submit" style="padding: 4px;">
+                    <span class="glyphicon glyphicon-search">🔎</span>
+                </button>
             </form>
             <div class="row">
                 <div class="col-6 col-md-3" th:each="product : ${productos}">
                     <figure class="card card-product">
-                        <div class="img-wrap"><img th:src="@{/images/}+${product.imgUrl}"
-                                class="card-img-top mt-3 img-fluid mx-auto img-responsive img-thumbnail"></div>
+                        <div class="img-wrap">
+                                <span th:if="${product.imgUrl == null}"> <img th:src="@{/images/null.jpg}" class="card-img-top mt-3 img-fluid mx-auto img-responsive img-thumbnail"/></span>
+                                <span th:unless="${product.imgUrl == null}"><img th:src="@{/images/}+${product.imgUrl}" class="card-img-top mt-3 img-fluid mx-auto img-responsive img-thumbnail"/></span>
+                            
+                            
+                            
+                            
+
+
+
+
+                            </div>
                         <figcaption class="info-wrap">
                             <h4 class="title" th:text="${product.name}"></h4>
                             <p class="desc" th:text="${product.description}"></p>

@@ -86,20 +86,20 @@ public class StaticsController {
 	 * @param model
 	 * @return
 	 */
-	@GetMapping("/party/{id}")
-	public String showParty(@PathVariable("id") long id, Model model) {
-		model.addAttribute("partiesList", partyTypeService.findAll());
-
-		PartyType showedParty = partyTypeService.findById(id);
-
-		if (showedParty != null) {
-			model.addAttribute("showedParty", showedParty);
-			return "common/party";
-		} else {
-			// No existe ningún alumno con el Id proporcionado.
-			// Redirigimos hacia el listado.
-			return "redirect:/";
-		}
-	}
+//	@GetMapping("/party/{id}")
+//	public String showParty(@PathVariable("id") long id, Model model) {
+//		model.addAttribute("partiesList", partyTypeService.findAll());
+//
+//		PartyType showedParty = partyTypeService.findById(id);
+//
+//		if (showedParty != null) {
+//			model.addAttribute("showedParty", showedParty);
+//			return "common/party";
+//		} else {
+//			// No existe ningún alumno con el Id proporcionado.
+//			// Redirigimos hacia el listado.
+//			return "redirect:/";
+//		}
+//	}
 
 }

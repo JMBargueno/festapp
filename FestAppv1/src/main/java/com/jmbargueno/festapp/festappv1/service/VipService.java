@@ -3,7 +3,7 @@
  */
 package com.jmbargueno.festapp.festappv1.service;
 
-
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -25,8 +25,24 @@ public class VipService extends BaseService<Vip, Long, VipRepository> {
 
 	@Autowired
 	VipRepository vipRepository;
-	
+
+	public Vip findById(Long id) {
+		// Antes estaba escrito
+		// repository.findOne(id)
+		// Al cambiar la versin de Spring Boot, ha cambiado la de JPA y algunos metodos
+		return vipRepository.findById(id).orElse(null);
+	}
+
+	public List<Vip> findByName(String name) {
+		return vipRepository.findByNameContainingIgnoreCase(name);
+	}
+
 	public Page<Vip> findAllPageable(Pageable pageable) {
-        return vipRepository.findAll(pageable);
-    }
+		return vipRepository.findAll(pageable);
+	}
+
+	public Page<Vip> findByNombreContainingIgnoreCasePageable(String name, Pageable pageable) {
+		return vipRepository.findByNameContainingIgnoreCase(name, pageable);
+	}
+
 }

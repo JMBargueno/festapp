@@ -36,7 +36,7 @@
             <div class="row">
                 <div class="col-6 col-md-3" th:each="product : ${productos}">
                     <figure class="card card-product">
-                        <div class="img-wrap"><img th:src="${product.imgUrl}" class="img-responsive"></div>
+                        <div class="img-wrap"><img th:src="@{/images/}+${product.imgUrl}" class="img-responsive"></div>
                         <figcaption class="info-wrap">
                             <h4 class="title" th:text="${product.name}"></h4>
                             <p class="desc" th:text="${product.description}"></p>
@@ -52,49 +52,45 @@
             </div>
         </div>
         <div class="row">
-                <div class="form-group col-md-1">
-                    <select class="form-control pagination" id="pageSizeSelect">
-                        <option th:each="pageSize : ${pageSizes}" th:text="${pageSize}"
-                            th:value="${pageSize}"
-                            th:selected="${pageSize} == ${selectedPageSize}"></option>
-                    </select>
+            <div class="form-group col-md-1">
+                <select class="form-control pagination" id="pageSizeSelect">
+                    <option th:each="pageSize : ${pageSizes}" th:text="${pageSize}" th:value="${pageSize}"
+                        th:selected="${pageSize} == ${selectedPageSize}"></option>
+                </select>
+            </div>
+
+            <div class="col-3"></div>
+            <div class="col-4" style="text-align: center;">
+                <nav aria-label="Page navigation example mx-auto">
+                    <ul th:if="${productos.totalPages != 1}" class="pagination pagination-circle pg-blue">
+                        <li th:class="${productos.number == 0} ? disabled" class="page-item disabled">
+                            <a th:href="@{/products/list/(pageSize=${selectedPageSize}, page=1)}"
+                                class="page-link">First</a>
+                        </li>
+
+                        <li th:class="${productos.number == 0} ? disabled" class="page-item disabled"></li>
+                        <a th:href="@{/products/list/(pageSize=${selectedPageSize}, page=${productos.number})}"
+                            class="page-link" aria-label="Previous">
+                            <span aria-hidden="true">&larr;</span>
+                        </a>
+                        </li>
+
+                        <li th:class="${productos.number == (page - 1)} ? 'active pointer-disabled'"
+                            class="page-item active" th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+                              <a th:href="@{/products/list/(pageSize=${selectedPageSize}, page=${page})}" class="page-link" th:text="${page}">1</a>
+                            </li>
+                  
+                          <li th:class="${productos.number + 1 == productos.totalPages} ? disabled" class="page-item">
+                              <a th:href="@{/products/list/(pageSize=${selectedPageSize}, page=${productos.number + 2})}" class="page-link">&rarr;</a>
+                            </li>
+                          
+                          <li th:class="${productos.number + 1 == productos.totalPages} ? disabled" class="page-item">
+                              <a th:href="@{/products/list/(pageSize=${selectedPageSize}, page=${productos.totalPages})}" class="page-link">Last</a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
-                <div th:if="${productos.totalPages != 1}"
-                    class="form-group col-md-11 pagination-centered">
-                    <ul class="pagination">
-                        <!-- Si el número de página es cero, deshabilitamos el enlace -->
-                        <li th:class="${productos.number == 0} ? disabled">
-                            <!-- Este enlace nos debe llevar a la primera página, con el tamaño de página actual -->
-                            <a class="pageLink"
-                            th:href="@{/products/list/(pageSize=${selectedPageSize}, page=1, nombre=${param.nombre})}">&laquo;</a>
-                        </li>
-                        <!-- Si el número de página es cero, deshabilitamos el enlace -->
-                        <li th:class="${productos.number == 0} ? disabled">
-                            <!-- Este enlace nos debe llevar a la página anterior, con el tamaño de página actual -->						
-                            <a class="pageLink" th:href="@{/products/list/(pageSize=${selectedPageSize}, page=${productos.number}, nombre=${param.nombre})}">&larr;</a>
-                        </li>
-                        <!-- Este bucle genera los enlaces para las demás páginas -->
-                        <li
-                            th:class="${productos.number == (page - 1)} ? 'active pointer-disabled'"
-                            th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
-                            <a class="pageLink"
-                            th:href="@{/products/list/(pageSize=${selectedPageSize}, page=${page}, nombre=${param.nombre})}"
-                            th:text="${page}"></a>
-                        </li>
-                        <!-- Enlace a la siguiente página; si estamos en la última queda desabilitado  -->
-                        <li
-                            th:class="${productos.number + 1 == productos.totalPages} ? disabled">
-                            <a class="pageLink"
-                            th:href="@{/products/list/(pageSize=${selectedPageSize}, page=${productos.number + 2}, nombre=${param.nombre})}">&rarr;</a>
-                        </li>
-                        <!-- Enlace a la última página; si estamos en la última queda desabilitado  -->				
-                        <li
-                            th:class="${productos.number + 1 == productos.totalPages} ? disabled">
-                            <a class="pageLink"
-                            th:href="@{/products/list/(pageSize=${selectedPageSize}, page=${productos.totalPages}), nombre=${param.nombre}}">&raquo;</a>
-                        </li>
-                    </ul>
-                </div>
+                <div class="col-4"></div>
             </div>
     </section>
     <div class="row w-25 p-3"></div>

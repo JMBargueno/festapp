@@ -45,8 +45,8 @@ public class ProductController {
 
 	private static final int BUTTONS_TO_SHOW = 5;
 	private static final int INITIAL_PAGE = 0;
-	private static final int INITIAL_PAGE_SIZE = 10;
-	private static final int[] PAGE_SIZES = { 10, 20, 40 };
+	private static final int INITIAL_PAGE_SIZE =12;
+	private static final int[] PAGE_SIZES = { 8, 12, 16, 24, 40 };
 
 	@GetMapping("/list")
 	public String showProductsPage(@RequestParam("pageSize") Optional<Integer> pageSize,

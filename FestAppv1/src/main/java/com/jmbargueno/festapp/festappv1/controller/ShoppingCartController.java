@@ -47,15 +47,15 @@ public class ShoppingCartController {
 	}
 
 	@GetMapping("/cart/add/{id}")
-	public String productoACarrito(@PathVariable("id") Long id, Model model) {
+	public String productoACarrito(@PathVariable("id") long id, Model model) {
 
-		shoppingCartService.addPurchaseLine(productService.findById(id));
+		shoppingCartService.addPurchaseLine((id));
 
 		return "redirect:/products/list";
 	}
 
 	@GetMapping("/cart/remove/{id}")
-	public String removeProductFromCart(@PathVariable("id") Long id) {
+	public String removeProductFromCart(@PathVariable("id") long id) {
 
 		shoppingCartService.removePurchaseLine(purchaseLineService.findById(id));
 		return "redirect:/cart";

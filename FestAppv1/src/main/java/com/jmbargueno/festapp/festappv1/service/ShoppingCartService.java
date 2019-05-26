@@ -3,7 +3,6 @@ package com.jmbargueno.festapp.festappv1.service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -11,7 +10,6 @@ import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.jmbargueno.festapp.festappv1.model.Product;
 import com.jmbargueno.festapp.festappv1.model.PurchaseLine;
 import com.jmbargueno.festapp.festappv1.repository.PurchaseLineRepository;
 
@@ -37,10 +35,14 @@ public class ShoppingCartService {
 
 	private PurchaseLineRepository purchaseLineRepo;
 
+	@Autowired
+	private ProductService productService;
+	
+	
+	
 	private List<PurchaseLine> purchaseLines = new ArrayList<>();
 
 	@Autowired
-
 	public ShoppingCartService(PurchaseLineRepository purchaseLineRepository) {
 		this.purchaseLineRepo = purchaseLineRepository;
 	}
@@ -54,13 +56,11 @@ public class ShoppingCartService {
 	 * @param producto
 	 */
 
-	public void addPurchaseLine(Product p) {
+	public void addPurchaseLine(Long id) {
 		
 		
-		
-		purchaseLines.add(new PurchaseLine(p, 1));
-		
-		
+
+		purchaseLines.add(new PurchaseLine(productService.findById(id), 1));
 
 	}
 

@@ -29,7 +29,7 @@ public class PurchaseLine {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Setter(AccessLevel.NONE)
-	private long Id;
+	private long id;
 	@ManyToOne
 	private Product t;
 	@NotNull

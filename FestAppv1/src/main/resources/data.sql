@@ -51,46 +51,46 @@ VALUES
 Consumables
 */
 INSERT INTO PRODUCT
-    (DTYPE, ID, NAME, DESCRIPTION, PRICE, STOCK, MARK)
+    (DTYPE, ID, NAME, DESCRIPTION, PRICE, STOCK, MARK, IMG_URL)
 VALUES
-    ('C', HIBERNATE_SEQUENCE.NEXTVAL, 'Pack Larios', 'Pack de botella Larios con 6 refrescos', 60, 20, 'Larios');
+    ('C', HIBERNATE_SEQUENCE.NEXTVAL, 'Pack Larios', 'Pack de botella Larios con 6 refrescos', 60, 20, 'Larios','larios.jpg');
 
 INSERT INTO PRODUCT
-    (DTYPE, ID, NAME, DESCRIPTION, PRICE, STOCK, MARK)
+    (DTYPE, ID, NAME, DESCRIPTION, PRICE, STOCK, MARK, IMG_URL)
 VALUES
-    ('C', HIBERNATE_SEQUENCE.NEXTVAL, 'Pack Larios +', 'Pack de 2 botellas de Larios con 12 refrescos y cachimba', 120, 20, 'Larios');
-
-
-INSERT INTO PRODUCT
-    (DTYPE, ID, NAME, DESCRIPTION, PRICE, STOCK, MARK)
-VALUES
-    ('C', HIBERNATE_SEQUENCE.NEXTVAL, 'Pack Legendario', 'Pack de botella Legendario con 6 refrescos', 60, 20, 'Legendario');
-
-INSERT INTO PRODUCT
-    (DTYPE, ID, NAME, DESCRIPTION, PRICE, STOCK, MARK)
-VALUES
-    ('C', HIBERNATE_SEQUENCE.NEXTVAL, 'Pack Legendario +', 'Pack de 2 botellas de Legendario con 12 refrescos y cachimba', 120, 20, 'Legendario');
+    ('C', HIBERNATE_SEQUENCE.NEXTVAL, 'Pack Larios +', 'Pack de 2 botellas de Larios con 12 refrescos y cachimba', 120, 20, 'Larios','larios.jpg');
 
 
 INSERT INTO PRODUCT
-    (DTYPE, ID, NAME, DESCRIPTION, PRICE, STOCK, MARK)
+    (DTYPE, ID, NAME, DESCRIPTION, PRICE, STOCK, MARK, IMG_URL)
 VALUES
-    ('C', HIBERNATE_SEQUENCE.NEXTVAL, 'Pack Jäger', 'Pack de botella Jägermeister con 6 refrescos', 80, 10, 'Jager');
+    ('C', HIBERNATE_SEQUENCE.NEXTVAL, 'Pack Legendario', 'Pack de botella Legendario con 6 refrescos', 60, 20, 'Legendario','legendario.jpg');
 
 INSERT INTO PRODUCT
-    (DTYPE, ID, NAME, DESCRIPTION, PRICE, STOCK, MARK)
+    (DTYPE, ID, NAME, DESCRIPTION, PRICE, STOCK, MARK, IMG_URL)
 VALUES
-    ('C', HIBERNATE_SEQUENCE.NEXTVAL, 'Pack Jäger +', 'Pack de 2 botellas de Jägermeister con 12 refrescos y cachimba', 160, 20, 'Jager');
+    ('C', HIBERNATE_SEQUENCE.NEXTVAL, 'Pack Legendario +', 'Pack de 2 botellas de Legendario con 12 refrescos y cachimba', 120, 20, 'Legendario','legendario.jpg');
+
 
 INSERT INTO PRODUCT
-    (DTYPE, ID, NAME, DESCRIPTION, PRICE, STOCK, MARK)
+    (DTYPE, ID, NAME, DESCRIPTION, PRICE, STOCK, MARK, IMG_URL)
 VALUES
-    ('C', HIBERNATE_SEQUENCE.NEXTVAL, 'Pack JägerBomb', 'Pack de 1 botellas de Jägermeister con 6 Redbulls y cachimba', 90, 20, 'Jager');
+    ('C', HIBERNATE_SEQUENCE.NEXTVAL, 'Pack Jäger', 'Pack de botella Jägermeister con 6 refrescos', 80, 10, 'Jager','jager.png');
 
 INSERT INTO PRODUCT
-    (DTYPE, ID, NAME, DESCRIPTION, PRICE, STOCK, MARK)
+    (DTYPE, ID, NAME, DESCRIPTION, PRICE, STOCK, MARK, IMG_URL)
 VALUES
-    ('C', HIBERNATE_SEQUENCE.NEXTVAL, 'Pack Moetbomb', 'Pack de botella Moet con 8 Redbulls', 100, 10, 'Moet');
+    ('C', HIBERNATE_SEQUENCE.NEXTVAL, 'Pack Jäger +', 'Pack de 2 botellas de Jägermeister con 12 refrescos y cachimba', 160, 20, 'Jager','jager.png');
+
+INSERT INTO PRODUCT
+    (DTYPE, ID, NAME, DESCRIPTION, PRICE, STOCK, MARK, IMG_URL)
+VALUES
+    ('C', HIBERNATE_SEQUENCE.NEXTVAL, 'Pack JägerBomb', 'Pack de 1 botellas de Jägermeister con 6 Redbulls y cachimba', 90, 20, 'Jager','jager.png');
+
+INSERT INTO PRODUCT
+    (DTYPE, ID, NAME, DESCRIPTION, PRICE, STOCK, MARK, IMG_URL)
+VALUES
+    ('C', HIBERNATE_SEQUENCE.NEXTVAL, 'Pack Moetbomb', 'Pack de botella Moet con 8 Redbulls', 100, 10, 'Moet','moet.jpg');
 
 /*
 Reservado sin fechas

@@ -41,6 +41,9 @@ public class ShoppingCartService {
 	private List<PurchaseLine> purchaseLines = new ArrayList<>();
 
 	@Autowired
+	PurchaseLineService purchaseLineService;
+
+	@Autowired
 	public ShoppingCartService(PurchaseLineRepository purchaseLineRepository) {
 		this.purchaseLineRepo = purchaseLineRepository;
 	}
@@ -56,7 +59,26 @@ public class ShoppingCartService {
 
 	public void addPurchaseLine(Long id) {
 
-		purchaseLines.add(new PurchaseLine(productService.findById(id), 1));
+		boolean added = false;
+		int index = 0;
+		for (PurchaseLine purchaseLine : purchaseLines) {
+			if (purchaseLine.getT() == productService.findById(id)) {
+				index = purchaseLines.indexOf(purchaseLine);
+
+				added = true;
+			}
+
+		}
+
+		if (added) {
+
+			purchaseLines.set(index,
+					new PurchaseLine(productService.findById(id), purchaseLines.get(index).getQuantity() + 1));
+
+		}
+		if (!added) {
+			purchaseLines.add(new PurchaseLine(productService.findById(id), 1));
+		}
 
 	}
 

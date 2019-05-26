@@ -20,7 +20,7 @@
                         <a class="nav-link" id="index" th:href="@{/index}" href="index">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a  id="buy" class="nav-link" href="buy.html" th:href="@{/searchList}">Comprar</a>
+                        <a  id="buy" class="nav-link" href="buy.html" th:href="@{/products/list}">Comprar</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link  disabled" href="calendar.html"th:href="@{/calendar}">Calendario</a>
@@ -76,7 +76,7 @@
                     </li>
 
                     <li>
-                        <form id="buscador" class="form-inline my-2 my-lg-0">
+                        <form id="buscador" class="form-inline my-2 my-lg-0" th:action="@{/products/list}" method="GET">
                             <input class="form-control mr-sm-2" type="text" placeholder="Buscar...">
                             <button class=" btn btn-outline-success my-2 my-sm-0 bsearch" type="submit">Buscar</button>
                         </form>

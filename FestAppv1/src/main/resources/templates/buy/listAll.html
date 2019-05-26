@@ -40,14 +40,6 @@
                         <div class="img-wrap">
                                 <span th:if="${product.imgUrl == null}"> <img th:src="@{/images/null.jpg}" class="card-img-top mt-3 img-fluid mx-auto img-responsive img-thumbnail"/></span>
                                 <span th:unless="${product.imgUrl == null}"><img th:src="@{/images/}+${product.imgUrl}" class="card-img-top mt-3 img-fluid mx-auto img-responsive img-thumbnail"/></span>
-                            
-                            
-                            
-                            
-
-
-
-
                             </div>
                         <figcaption class="info-wrap">
                             <h4 class="title" th:text="${product.name}"></h4>

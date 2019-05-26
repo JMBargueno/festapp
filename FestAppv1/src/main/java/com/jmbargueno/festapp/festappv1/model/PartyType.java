@@ -29,6 +29,13 @@ public class PartyType {
 	private String name;
 	private String description;
 	private String imgUrl;
+	
+	/**
+	 * 
+	 * @param name Nombre de la categoriua de fiesta
+	 * @param description Descripcion de la categoria de fiesta
+	 * @param imgUrl Url de la imagen de la categoria de la fiesta 
+	 */
 	public PartyType(String name, String description, String imgUrl) {
 		super();
 		this.name = name;

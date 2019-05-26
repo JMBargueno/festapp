@@ -41,10 +41,10 @@ public class Event {
 	
 	/**
 	 * 
-	 * @param name
-	 * @param description
-	 * @param eventDate
-	 * @param imgUrl
+	 * @param name Nombre del evento
+	 * @param description Descripcion del evento
+	 * @param eventDate Fecha del evento
+	 * @param imgUrl Url de la imagen el evento
 	 */
 	
 	public Event(String name, String description, LocalDate eventDate, String imgUrl) {

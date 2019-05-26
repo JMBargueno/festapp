@@ -1,5 +1,5 @@
 /**
- * Paquete donde se encuentran todos los demas servicios de la aplicación.
+ * Servicios de la aplicación que interactuan con los repositorios.
  * 
  * @author jmbargueno
  *

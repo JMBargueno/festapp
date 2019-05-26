@@ -1,5 +1,5 @@
 /**
- * Paquete donde se encuentran los repositorios de la aplicación.
+ * Repositorios de la aplicación, son los que se envian y reciben peticiones de la base de datos.
  * 
  * @author jmbargueno
  *

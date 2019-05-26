@@ -19,6 +19,7 @@ import com.jmbargueno.festapp.festappv1.service.PartyTypeService;
 import com.jmbargueno.festapp.festappv1.service.UserService;
 
 /**
+ * Clase con los controladores de usuario
  * @author jmbargueno
  *
  */
@@ -35,6 +36,12 @@ public class UserController {
 		this.userService = userService;
 	}
 
+	/**
+	 * Controller que lleva a la panta de registro de usuario
+	 * 
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/registro")
 	public String signUp(Model model) {
 		model.addAttribute("partiesList", partyTypeService.findAll());
@@ -42,6 +49,12 @@ public class UserController {
 		return "common/register.html";
 	}
 
+	/**
+	 * Submit del registro del usuario
+	 * @param userFA
+	 * @param model
+	 * @return
+	 */
 	@PostMapping("/registro/submit")
 	public String registroSubmit(@ModelAttribute("userform") UserFA userFA, Model model) {
 		model.addAttribute("partiesList", partyTypeService.findAll());

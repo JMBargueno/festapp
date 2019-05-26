@@ -24,9 +24,7 @@ public class EventService extends BaseService<Event, Long, EventRepository> {
 	EventRepository eventRepository;
 
 	public Event findById(Long id) {
-		// Antes estaba escrito
-		// repository.findOne(id)
-		// Al cambiar la versin de Spring Boot, ha cambiado la de JPA y algunos metodos
+		
 		return eventRepository.findById(id).orElse(null);
 	}
 

@@ -29,11 +29,14 @@ public class UploadService {
 	
 	public void add(Product t, MultipartFile file) {
 		
-		String fileName = storageService.store(file);//Guarda la imagen
+		//Guarda la imagen
+		String fileName = storageService.store(file);
+		
 		//Guardamos nombre de la imagen almacenada en el atributo de la entidad
 		t.setImgUrl(fileName);
+		
 		//Guardamos la entidad en la base de datos y en ella ya irá el nombre del archivo
-		//en la correspondiente propiedad (fileUrl)
+		//en la correspondiente propiedad (imgUrl)
 		productRepository.save(t);
 		
 	}

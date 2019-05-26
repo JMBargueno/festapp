@@ -58,20 +58,44 @@ public class Purchase {
 	public Purchase(LocalDate date, double finalPrice, List<PurchaseLine> purchaseList, UserFA userFA) {
 		super();
 		this.date = date;
-		this.finalPrice = finalPrice;
+		this.finalPrice = calcFinalPrice();
 		this.purchaseList = purchaseList;
 		this.userFA = userFA;
 	}
 
+	/**
+	 * Añade una Linea de compra a la compra y setea a la linea de compra su compra.
+	 * @param purchaseLine
+	 */
 	public void addPurchaseLine(PurchaseLine purchaseLine) {
 		this.purchaseList.add(purchaseLine);
 		purchaseLine.setPurchase(this);
 	}
-
+/**
+ * Borra una linea de compra
+ * 
+ * @param purchaseLine
+ */
 	public void removePurchaseLine(PurchaseLine purchaseLine) {
 		this.purchaseList.remove(purchaseLine);
 		purchaseLine.setPurchase(null);
-		;
+
+	}
+/**
+ * Calcula el precio final de la compra con un bucle for sacando cada precio de cada linea de compra 
+ * y sumandolos entre si haya el precio.
+ * 
+ * @return finalPrice Precio final de la compra
+ */
+	public double calcFinalPrice() {
+		double finalPrice = 0;
+		for (PurchaseLine purchaseLine : purchaseList) {
+			finalPrice += purchaseLine.getLinePrice();
+
+		}
+
+		return finalPrice;
+
 	}
 
 }

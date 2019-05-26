@@ -7,9 +7,9 @@ public class SearchBean {
 	 * en nuestro bucle para mostrarlo en nuestra plantilla
 	 */
 	private String search;
-	
-	public SearchBean(){
-		
+
+	public SearchBean() {
+
 	}
 
 	public String getSearch() {
@@ -19,6 +19,5 @@ public class SearchBean {
 	public void setSearch(String search) {
 		this.search = search;
 	}
-	
-	
+
 }

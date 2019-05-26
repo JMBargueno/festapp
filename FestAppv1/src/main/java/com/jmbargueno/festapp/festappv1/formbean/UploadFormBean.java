@@ -28,8 +28,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UploadFormBean {
 
-	
-
 	@NotNull
 	@Column(unique = true)
 	private String name;
@@ -38,25 +36,19 @@ public class UploadFormBean {
 	private double price;
 	private int stock;
 	private String imgUrl;
-	
+
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private LocalDate eventDate;
-	
-	//Consumable
+
+	// Consumable
 	private String mark;
 
-	//Ticket
+	// Ticket
 	private int numTicket;
 
-	
-	//Vip
+	// Vip
 	private int numPersons;
 	private int numVip;
 	private Consumable consumeVip;
-	
-
-
-	
-
 
 }

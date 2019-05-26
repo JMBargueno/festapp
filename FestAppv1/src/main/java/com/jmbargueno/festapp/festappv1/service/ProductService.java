@@ -70,9 +70,7 @@ public class ProductService extends BaseService<Product, Long, ProductRepository
 	}
 	
 	public Product findById(Long id) {
-		// Antes estaba escrito
-		// repository.findOne(id)
-		// Al cambiar la versin de Spring Boot, ha cambiado la de JPA y algunos metodos
+		
 		return productRepository.findById(id).orElse(null);
 	}
 

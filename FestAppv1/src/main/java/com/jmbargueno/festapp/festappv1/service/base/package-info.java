@@ -1,5 +1,5 @@
 /**
- *Se encuentra el servicio base de los demas repositorios. 
+ *Se encuentra el servicio base de los demas servicios. 
  *
  * @author jmbargueno
  *

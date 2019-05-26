@@ -1,5 +1,5 @@
 /**
- * Paquete donde se encuentran todos las clases modelos de la aplicación.
+ * Clases modelo de la aplicación.
  * 
  * @author jmbargueno
  *

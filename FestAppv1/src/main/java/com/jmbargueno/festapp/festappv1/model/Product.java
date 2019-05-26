@@ -54,6 +54,18 @@ public abstract class Product {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private LocalDate eventDate;
 	private String imgUrl;
+	
+	
+	/**
+	 * 
+	 * @param id Id del producto
+	 * @param name Nombre del producto
+	 * @param description Descripcion del producto
+	 * @param price Precio del producto
+	 * @param stock Stock del producto
+	 * @param eventDate Fecha del producto
+	 * @param imgUrl Url de la imagen del producto
+	 */
 	public Product(long id, @NotNull String name, String description, @NotNull double price, int stock,
 			LocalDate eventDate, String imgUrl) {
 		super();
@@ -67,14 +79,8 @@ public abstract class Product {
 	}
 	
 	
-	/**
-	 * @param id
-	 * @param name
-	 * @param description
-	 * @param price
-	 * @param stock
-	 * @param eventDate
-	 */
+	
+	
 	
 	
 

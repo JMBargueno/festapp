@@ -32,14 +32,14 @@ public class Consumable extends Product {
 
 	/**
 	 * 
-	 * @param id
-	 * @param name
-	 * @param description
-	 * @param price
-	 * @param stock
-	 * @param eventDate
-	 * @param imgUrl
-	 * @param mark
+	 * @param id Id del consumible del usuario
+	 * @param name Nombre del consumible
+	 * @param description Descripcion del consumible
+	 * @param price Precio del consumible
+	 * @param stock Stock del producto
+	 * @param eventDate Fecha del consumible
+	 * @param imgUrl Url de la imagen del consumible
+	 * @param mark Marca del consumible
 	 */
 	public Consumable(long id, @NotNull String name, String description, @NotNull double price, int stock,
 			LocalDate eventDate, String imgUrl, String mark) {

@@ -48,6 +48,16 @@ public class ProductController {
 	private static final int INITIAL_PAGE_SIZE =12;
 	private static final int[] PAGE_SIZES = { 8, 12, 16, 24, 40 };
 
+	
+	/**
+	 * Controlador que lleva a lista de productos general
+	 * 
+	 * @param pageSize
+	 * @param page
+	 * @param nombre
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/list")
 	public String showProductsPage(@RequestParam("pageSize") Optional<Integer> pageSize,
 			@RequestParam("page") Optional<Integer> page, @RequestParam("nombre") Optional<String> nombre,

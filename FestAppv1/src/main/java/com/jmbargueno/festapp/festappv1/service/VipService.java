@@ -27,9 +27,6 @@ public class VipService extends BaseService<Vip, Long, VipRepository> {
 	VipRepository vipRepository;
 
 	public Vip findById(Long id) {
-		// Antes estaba escrito
-		// repository.findOne(id)
-		// Al cambiar la versin de Spring Boot, ha cambiado la de JPA y algunos metodos
 		return vipRepository.findById(id).orElse(null);
 	}
 

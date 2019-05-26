@@ -26,9 +26,7 @@ public class PartyTypeService extends BaseService<PartyType, Long, PartyTypeRepo
 	
 	
 	public PartyType findById(Long id) {
-		// Antes estaba escrito
-		// repository.findOne(id)
-		// Al cambiar la versin de Spring Boot, ha cambiado la de JPA y algunos metodos
+		
 		return partyTypeRepository.findById(id).orElse(null);
 	}
 

@@ -21,7 +21,8 @@ import org.springframework.web.multipart.MultipartFile;
  * almacenamiento. No forman parte de lo que damos en este curso, 
  * por lo que se puede añadir a nuestro proyecto para usarla y ya está.
  * Los métodos están relacionados con la gestión de objetos MultipartFile,
- * almacenar con un nombre que incluya la hora para que no se puedan guardar dos archivos con el mismo nombre, borrar, etc.*/
+ * almacenar con un nombre que incluya la hora para que no se puedan guardar dos archivos con el mismo nombre, borrar, etc.
+ * */
 
 @Service
 public class FileSystemStorageService implements StorageService {

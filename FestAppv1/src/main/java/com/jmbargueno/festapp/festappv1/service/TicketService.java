@@ -12,7 +12,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.jmbargueno.festapp.festappv1.model.Ticket;
-import com.jmbargueno.festapp.festappv1.model.UserFA;
 import com.jmbargueno.festapp.festappv1.repository.TicketRepository;
 import com.jmbargueno.festapp.festappv1.service.base.BaseService;
 
@@ -32,9 +31,7 @@ public class TicketService extends BaseService<Ticket, Long, TicketRepository> {
 	
 	
 	public Ticket findById(Long id) {
-		// Antes estaba escrito
-		// repository.findOne(id)
-		// Al cambiar la versin de Spring Boot, ha cambiado la de JPA y algunos metodos
+		
 		return ticketRepository.findById(id).orElse(null);
 	}
 

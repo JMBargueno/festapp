@@ -83,9 +83,7 @@ public class UserFA {
 	 * @param isAdmin      Booleano para saber si el usuario es administrador.
 	 * @param registerDate Fecha de registro del usuario.
 	 * @param purchase     ArrayList de las compras que ha realizado el usuario.
-	 */
-
-	// Metodo constructor
+	 */	
 	public UserFA(@NotNull String name, String surname, Character gender, LocalDate birthday, String dni,
 			@NotNull String username, @NotNull String password, @NotNull String email, @NotNull boolean isAdmin,
 			LocalDate registerDate, List<Purchase> purchase) {

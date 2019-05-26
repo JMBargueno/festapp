@@ -1,6 +1,4 @@
 
-
-
 package com.jmbargueno.festapp.festappv1.service.base;
 
 import java.util.List;
@@ -18,7 +16,7 @@ public abstract class BaseService<T, ID, R extends JpaRepository<T, ID>> {
 	protected R repo;
 
 	/**
-	 * Almacenamos una nueva entidad a través del repositorio
+	 * Almacena una nueva entidad a través del repositorio
 	 * 
 	 * @param t tipo
 	 * @return t
@@ -28,17 +26,17 @@ public abstract class BaseService<T, ID, R extends JpaRepository<T, ID>> {
 	}
 
 	/**
-	 * Localizamos una entidad en base a su Id
+	 * Localiza una entidad en base a su Id
 	 * 
 	 * @param id id
 	 * @return id
-	 */ 
+	 */
 	public T findById(ID id) {
 		return repo.findById(id).orElse(null);
 	}
 
 	/**
-	 * Obtenemos todas las entidades de un tipo de entidad
+	 * Obtiene todas las entidades de un tipo de entidad
 	 * 
 	 * @return id
 	 */
@@ -47,7 +45,7 @@ public abstract class BaseService<T, ID, R extends JpaRepository<T, ID>> {
 	}
 
 	/**
-	 * Editamos una instancia de una entidad (si no tiene Id, la insertamos).
+	 * Edita una instancia de una entidad (si no tiene Id, la insertamos).
 	 * 
 	 * @param t id
 	 * @return id
@@ -57,7 +55,7 @@ public abstract class BaseService<T, ID, R extends JpaRepository<T, ID>> {
 	}
 
 	/**
-	 * Eliminamos una instancia de una entidad
+	 * Elimina una instancia de una entidad
 	 * 
 	 * @param t id
 	 */
@@ -66,7 +64,7 @@ public abstract class BaseService<T, ID, R extends JpaRepository<T, ID>> {
 	}
 
 	/**
-	 * Eliminamos una instancia en base a su ID
+	 * Elimina una instancia en base a su ID
 	 * 
 	 * @param id id
 	 */

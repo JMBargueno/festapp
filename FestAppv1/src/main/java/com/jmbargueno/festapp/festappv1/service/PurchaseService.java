@@ -22,5 +22,6 @@ import com.jmbargueno.festapp.festappv1.service.base.BaseService;
 public class PurchaseService extends BaseService<Purchase, Long, PurchaseRepository> {
 
 	
+	
 
 }

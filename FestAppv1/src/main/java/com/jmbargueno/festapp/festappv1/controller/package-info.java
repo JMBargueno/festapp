@@ -1,5 +1,5 @@
 /**
- * Paquete donde se encuentran todas las clases controller
+ * Controllers de la aplicación web
  * @author jmbargueno
  *
  */

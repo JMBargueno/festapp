@@ -41,7 +41,7 @@ public class PurchaseLine {
 	private Purchase purchase;
 
 	/**
-	 * @param t   Objeto tipo producto.
+	 * @param t         Objeto tipo producto.
 	 * @param quantity  Cantidad del producto
 	 * @param linePrice Precio final de la linea de producto
 	 * @param purchase  Compra donde va la linea de compra.
@@ -50,8 +50,23 @@ public class PurchaseLine {
 		super();
 		this.t = t;
 		this.quantity = quantity;
-		this.linePrice = linePrice;
+		this.linePrice = calcLinePrice();
 		this.purchase = purchase;
+	}
+
+	public void addProduct(Product product) {
+		this.setT(product);
+	}
+
+	public void removeProduct(Product product) {
+		this.setT(null);
+
+		;
+	}
+
+	public double calcLinePrice() {
+		return this.getT().getPrice() * this.getQuantity();
+
 	}
 
 }

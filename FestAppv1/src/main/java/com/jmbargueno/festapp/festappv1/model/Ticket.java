@@ -34,14 +34,14 @@ public class Ticket extends Product {
 	
 	/**
 	 * 
-	 * @param id
-	 * @param name
-	 * @param description
-	 * @param price
-	 * @param stock
-	 * @param eventDate
-	 * @param imgUrl
-	 * @param numTicket
+	 * @param id Id de la entrada
+	 * @param name Nombre de la entrada
+	 * @param description Descripción de la entrada
+	 * @param price Precio de la entrada
+	 * @param stock Cantidad de entradas disponibles
+	 * @param eventDate Fecha de la entrada
+	 * @param imgUrl Imagen de la entrada
+	 * @param numTicket Numero de entrada
 	 */
 	public Ticket(long id, @NotNull String name, String description, @NotNull double price, int stock,
 			LocalDate eventDate, String imgUrl, int numTicket) {

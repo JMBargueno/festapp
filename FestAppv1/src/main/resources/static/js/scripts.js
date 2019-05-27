@@ -80,6 +80,11 @@ switch (path) {
         elemento.className += " active";
         break;
 
+    case '/party/**':
+            var elemento = document.getElementById("party");
+            elemento.className += " active";
+            break;
+
 
 }
 

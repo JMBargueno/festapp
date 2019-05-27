@@ -23,7 +23,7 @@ public class ShoppingCartController {
 
 	@Autowired
 	PartyTypeService partyTypeService;
-	
+
 	@Autowired
 	private ShoppingCartService shoppingCartService;
 
@@ -53,9 +53,9 @@ public class ShoppingCartController {
 	}
 
 	@GetMapping("/cart/add/{id}")
-	public String productoACarrito(@PathVariable("id") long id, Model model) {		
-		
-		shoppingCartService.addPurchaseLine((id));
+	public String productoACarrito(@PathVariable("id") long id, Model model) {
+
+		shoppingCartService.addPurchaseLine((productService.findById(id)));
 
 		return "redirect:/products/list";
 	}
@@ -92,15 +92,12 @@ public class ShoppingCartController {
 
 		return 0.0;
 	}
-	
+
 	@PostMapping("/cart/checkout")
-	public String cartSubmit(@ModelAttribute("products") Purchase purchase , Model model) {
+	public String cartSubmit(@ModelAttribute("products") Purchase purchase, Model model) {
 		model.addAttribute("partiesList", partyTypeService.findAll());
-		
-		
 
 		return "redirect:/";
 	}
-	
-	
+
 }

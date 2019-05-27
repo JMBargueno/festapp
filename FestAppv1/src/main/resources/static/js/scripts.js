@@ -75,7 +75,7 @@ switch (path) {
         elemento.className += " active";
         break;
 
-    case '/searchList':
+    case '/products/list':
         var elemento = document.getElementById("buy");
         elemento.className += " active";
         break;

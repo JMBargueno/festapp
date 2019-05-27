@@ -17,5 +17,5 @@ import com.jmbargueno.festapp.festappv1.model.Purchase;
 
 @Repository
 public interface PurchaseRepository extends JpaRepository<Purchase, Long> {
-
+	
 }

@@ -1,25 +1,37 @@
 package com.jmbargueno.festapp.festappv1.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import com.jmbargueno.festapp.festappv1.model.Purchase;
 import com.jmbargueno.festapp.festappv1.model.PurchaseLine;
+import com.jmbargueno.festapp.festappv1.model.UserFA;
 import com.jmbargueno.festapp.festappv1.service.PartyTypeService;
 import com.jmbargueno.festapp.festappv1.service.ProductService;
 import com.jmbargueno.festapp.festappv1.service.PurchaseLineService;
 import com.jmbargueno.festapp.festappv1.service.PurchaseService;
 import com.jmbargueno.festapp.festappv1.service.ShoppingCartService;
+import com.jmbargueno.festapp.festappv1.service.UserService;
 
 @Controller
 public class ShoppingCartController {
+	private static final int BUTTONS_TO_SHOW = 5;
+	private static final int INITIAL_PAGE = 0;
+	private static final int INITIAL_PAGE_SIZE = 5;
+	private static final int[] PAGE_SIZES = { 5, 10, 20, 50 };
+
+	@Autowired
+	UserService userService;
 
 	@Autowired
 	PartyTypeService partyTypeService;
@@ -93,11 +105,30 @@ public class ShoppingCartController {
 		return 0.0;
 	}
 
-	@PostMapping("/cart/checkout")
-	public String cartSubmit(@ModelAttribute("products") Purchase purchase, Model model) {
-		model.addAttribute("partiesList", partyTypeService.findAll());
+	@GetMapping("/cart/checkout")
+	public String showCompra(Model model) {
 
-		return "redirect:/";
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+		User user = (User) auth.getPrincipal();
+		UserFA usuario = userService.searchByUsername(user.getUsername());
+
+		List<PurchaseLine> productInCart = shoppingCartService.getProductsInCart();
+		Purchase purchase = new Purchase();
+
+		for (PurchaseLine purchaseLine : productInCart) {
+			purchaseLine.setPurchase(purchase);
+
+		}
+		purchase.setDate(LocalDate.now());
+		purchase.setFinalPrice(shoppingCartService.calcFinalPrice());
+		purchase.setPurchaseList(productInCart);
+		purchase.setUserFA(usuario);
+
+		model.addAttribute("purchase", purchaseService.save(purchase));
+		shoppingCartService.resetCart();
+
+		return "common/checkout.html";
 	}
 
 }

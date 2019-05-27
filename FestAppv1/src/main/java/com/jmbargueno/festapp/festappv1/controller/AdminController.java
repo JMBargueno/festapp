@@ -24,12 +24,14 @@ import com.jmbargueno.festapp.festappv1.model.Consumable;
 import com.jmbargueno.festapp.festappv1.model.Event;
 import com.jmbargueno.festapp.festappv1.model.Pager;
 import com.jmbargueno.festapp.festappv1.model.PartyType;
+import com.jmbargueno.festapp.festappv1.model.Purchase;
 import com.jmbargueno.festapp.festappv1.model.Ticket;
 import com.jmbargueno.festapp.festappv1.model.UserFA;
 import com.jmbargueno.festapp.festappv1.model.Vip;
 import com.jmbargueno.festapp.festappv1.service.ConsumableService;
 import com.jmbargueno.festapp.festappv1.service.EventService;
 import com.jmbargueno.festapp.festappv1.service.PartyTypeService;
+import com.jmbargueno.festapp.festappv1.service.PurchaseService;
 import com.jmbargueno.festapp.festappv1.service.TicketService;
 import com.jmbargueno.festapp.festappv1.service.UploadService;
 import com.jmbargueno.festapp.festappv1.service.UserService;
@@ -43,6 +45,9 @@ import com.jmbargueno.festapp.festappv1.service.VipService;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
+	@Autowired
+	PurchaseService purchaseService;
+
 	@Autowired
 	ConsumableService consumableService;
 	@Autowired
@@ -633,6 +638,36 @@ public class AdminController {
 		model.addAttribute("partiesList", partyTypeService.findAll());
 		eventService.deleteById(id);
 		return "redirect:/admin/events";
+	}
+
+	@GetMapping("/purchases")
+	public String showMenu(@RequestParam("pageSize") Optional<Integer> pageSize,
+			@RequestParam("page") Optional<Integer> page, Model model) {
+
+		// Evalúa el tamaño de página. Si el parámetro es "nulo", devuelve
+		// el tamaño de página inicial.
+		int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
+
+		// Calcula qué página se va a mostrar. Si el parámetro es "nulo" o menor
+		// que 0, se devuelve el valor inicial. De otro modo, se devuelve el valor
+		// del parámetro decrementado en 1.
+		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
+
+		// Obtenemos la página definida por evalPage y evalPageSize de objetos de
+		// nuestro modelo
+		Page<Purchase> compras = purchaseService.findAllPageable(PageRequest.of(evalPage, evalPageSize));
+		// Creamos el objeto Pager (paginador) indicando los valores correspondientes.
+		// Este sirve para que la plantilla sepa cuantas páginas hay en total, cuantos
+		// botones
+		// debe mostrar y cuál es el número de objetos a dibujar.
+		Pager pager = new Pager(compras.getTotalPages(), compras.getNumber(), BUTTONS_TO_SHOW);
+
+		model.addAttribute("purchases", compras);
+		model.addAttribute("selectedPageSize", evalPageSize);
+		model.addAttribute("pageSizes", PAGE_SIZES);
+		model.addAttribute("pager", pager);
+		return "admin/tables/purchases";
+
 	}
 
 }

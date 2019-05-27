@@ -51,7 +51,7 @@
 
 
 
-                        <div class="bottom-wrap">
+                        <div class="bottom-wrap" sec:authorize="isAuthenticated()">
                             <a href="" class="btn btn-sm btn-primary float-right" th:href="@{/cart/add/{id}(id=${product.id})}">Añadir</a>
                             <div class="price-wrap h5">
                                 <span class="price-new" th:text="${product.price}"></span>€

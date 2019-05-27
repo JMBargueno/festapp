@@ -168,3 +168,7 @@ html, body {
   .navbar-brand{
       font-family: fabiana;
   }
+
+  .backgroundWhite{
+      background-color: #F6F8FF;
+  }

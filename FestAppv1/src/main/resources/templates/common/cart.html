@@ -106,13 +106,12 @@
                                             <td>   </td>
                                             <td>   </td>
                                             <td>
-                                                <button type="button" class="btn btn-default">
-                                                    <span class="glyphicon glyphicon-shopping-cart"></span> Continue
-                                                    Shopping
-                                                </button></td>
+                                                
+                                                    </span><a th:href="@{/products/list}">Continuar comprando</a> 
+                                                </td>
                                             <td>
                                                 <button type="button" class="btn btn-success">
-                                                    Checkout <span class="glyphicon glyphicon-play"></span>
+                                                     <span class="glyphicon glyphicon-play"><a th:href="@{/cart/checkout}">Checkout</a> </span>
                                                 </button></td>
                                         </tr>
                                     </tbody>

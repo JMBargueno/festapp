@@ -41,21 +41,20 @@ public class ShoppingCartService {
 	}
 
 	/**
-	 * Si el producto ya está en el arrayList (en el carrito), solo se incrementará en uno
-	 * la cantidad, una unidad más Si el producto no está en el en el arrayList, significa que
-	 * no se ha comprado nada de él en este momento, por lo que se añade con
-	 * cantidad 1
+	 * Si el producto ya está en el arrayList (en el carrito), solo se incrementará
+	 * en uno la cantidad, una unidad más Si el producto no está en el en el
+	 * arrayList, significa que no se ha comprado nada de él en este momento, por lo
+	 * que se añade con cantidad 1
 	 * 
 	 * @param producto
 	 */
 
 	public void addPurchaseLine(Product p) {
 
-		
 		Boolean agregarAldv = false;
-		for (PurchaseLine ldv : purchaseLines) {
-			if (ldv.getT().getId() == p.getId()) {
-				ldv.setQuantity(ldv.getQuantity() + 1);
+		for (PurchaseLine purchaseLine : purchaseLines) {
+			if (purchaseLine.getT().getId() == p.getId()) {
+				purchaseLine.setQuantity(purchaseLine.getQuantity() + 1);
 				agregarAldv = true;
 			}
 		}
@@ -83,8 +82,19 @@ public class ShoppingCartService {
 		return Collections.unmodifiableList(purchaseLines);
 	}
 
-	
+	public double calcFinalPrice() {
+		double totalPrice = 0;
+		for (PurchaseLine purchaseLine : purchaseLines) {
+			totalPrice += purchaseLine.getLinePrice();
+		}
+		return totalPrice;
 
+	}
+	
+	public void resetCart() {
+		purchaseLines.clear();
+	}
+	
 	
 
 }

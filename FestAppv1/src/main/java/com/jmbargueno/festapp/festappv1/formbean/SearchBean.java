@@ -1,4 +1,9 @@
 package com.jmbargueno.festapp.festappv1.formbean;
+/**
+ * Clase del formbean
+ * @author jmbargueno
+ *
+ */
 
 public class SearchBean {
 

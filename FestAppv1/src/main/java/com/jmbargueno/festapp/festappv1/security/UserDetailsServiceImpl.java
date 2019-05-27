@@ -15,6 +15,8 @@ import com.jmbargueno.festapp.festappv1.model.UserFA;
 import com.jmbargueno.festapp.festappv1.service.UserService;
 
 /**
+ * Clase que implementa el usuario de seguridad
+ * 
  * @author jmbargueno
  *
  */

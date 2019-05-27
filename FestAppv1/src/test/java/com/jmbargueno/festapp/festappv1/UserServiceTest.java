@@ -20,10 +20,11 @@ public class UserServiceTest {
 
 	@Test
 	public void searchByName() {
-		UserFA user = new UserFA("test", "test", null, null, null, "test", "1234", "test", true, null, null);
+		UserFA user = new UserFA("test","test", "123", "test", "1234", "test@test.com", false);
+		
 		userService.save(user);
 
-		assertEquals(user, userService.findByName("test"));
+		assertEquals(true, userService.findByName("test").contains(user));
 
 	}
 }

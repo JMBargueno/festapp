@@ -13,6 +13,9 @@ import org.springframework.stereotype.Repository;
 import com.jmbargueno.festapp.festappv1.model.Event;
 
 /**
+ * 
+ * Repositorio de evento
+ * 
  * @author jmbargueno
  *
  */

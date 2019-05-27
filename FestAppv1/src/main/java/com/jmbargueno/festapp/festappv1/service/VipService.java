@@ -25,7 +25,8 @@ public class VipService extends BaseService<Vip, Long, VipRepository> {
 
 	@Autowired
 	VipRepository vipRepository;
-
+	
+	
 	public Vip findById(Long id) {
 		return vipRepository.findById(id).orElse(null);
 	}

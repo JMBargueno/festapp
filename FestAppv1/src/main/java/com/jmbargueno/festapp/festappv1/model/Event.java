@@ -20,6 +20,7 @@ import lombok.NoArgsConstructor;
 
 
 /**
+ * Clase modelo de evento
  * @author jmbargueno
  *
  */

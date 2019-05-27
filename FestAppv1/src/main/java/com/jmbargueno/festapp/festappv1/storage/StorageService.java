@@ -4,6 +4,8 @@
 package com.jmbargueno.festapp.festappv1.storage;
 
 /**
+ * Clase del Servicio de Storage
+ * 
  * @author jmbargueno
  *
  */

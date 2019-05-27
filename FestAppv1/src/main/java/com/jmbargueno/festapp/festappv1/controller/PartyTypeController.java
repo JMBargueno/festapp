@@ -14,6 +14,8 @@ import com.jmbargueno.festapp.festappv1.model.PartyType;
 import com.jmbargueno.festapp.festappv1.service.PartyTypeService;
 
 /**
+ * Clase controladora de PartyType
+ * 
  * @author jmbargueno
  *
  */
@@ -23,7 +25,14 @@ public class PartyTypeController {
 
 	@Autowired
 	PartyTypeService partyTypeService;
-
+	
+	
+	/**
+	 * Metodo que muestra una pagina segun la id de la fiesta
+	 * @param id
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/{id}")
 	public String showPartyaTypeID(@PathVariable("id") long id, Model model) {
 

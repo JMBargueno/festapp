@@ -23,6 +23,8 @@ import com.jmbargueno.festapp.festappv1.service.PartyTypeService;
 import com.jmbargueno.festapp.festappv1.service.ProductService;
 
 /**
+ * Clase controladora de Productos
+ * 
  * @author jmbargueno
  *
  */

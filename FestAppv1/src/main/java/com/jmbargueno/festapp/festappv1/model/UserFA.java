@@ -68,8 +68,8 @@ public class UserFA {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate registerDate;
 
-	@OneToMany(mappedBy = "userFA")
-	private List<Purchase> purchase = new ArrayList<>();
+//	@OneToMany(mappedBy = "userFA")
+//	private List<Purchase> purchase = new ArrayList<>();
 
 	/**
 	 * @param name         Nombre del usuario.
@@ -86,7 +86,8 @@ public class UserFA {
 	 */	
 	public UserFA(@NotNull String name, String surname, Character gender, LocalDate birthday, String dni,
 			@NotNull String username, @NotNull String password, @NotNull String email, @NotNull boolean isAdmin,
-			LocalDate registerDate, List<Purchase> purchase) {
+			LocalDate registerDate
+			/*, List<Purchase> purchase*/) {
 		super();
 		this.name = name;
 		this.surname = surname;
@@ -98,7 +99,22 @@ public class UserFA {
 		this.email = email;
 		this.isAdmin = isAdmin;
 		this.registerDate = registerDate;
-		this.purchase = purchase;
+		//this.purchase = purchase;
 	}
+
+	public UserFA( @NotNull String name, String surname, String dni, @NotNull String username,
+			@NotNull String password, @NotNull String email, @NotNull boolean isAdmin) {
+		super();
+		
+		this.name = name;
+		this.surname = surname;
+		this.dni = dni;
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.isAdmin = isAdmin;
+	}
+	
+	
 
 }

@@ -1,4 +1,7 @@
 package com.jmbargueno.festapp.festappv1.storage;
+/**
+ * Clase con las propiedades del Storage
+ */
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

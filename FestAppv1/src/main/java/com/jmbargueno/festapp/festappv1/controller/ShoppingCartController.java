@@ -22,7 +22,12 @@ import com.jmbargueno.festapp.festappv1.service.PurchaseLineService;
 import com.jmbargueno.festapp.festappv1.service.PurchaseService;
 import com.jmbargueno.festapp.festappv1.service.ShoppingCartService;
 import com.jmbargueno.festapp.festappv1.service.UserService;
-
+/**
+ * Clase controladora del carrito
+ * 
+ * @author jmbargueno
+ *
+ */
 @Controller
 public class ShoppingCartController {
 	private static final int BUTTONS_TO_SHOW = 5;
@@ -53,7 +58,11 @@ public class ShoppingCartController {
 		this.shoppingCartService = shoppingCartService;
 		this.purchaseLineService = purchaseLineService;
 	}
-
+	/**
+	 * Controlador que muestra el carrito
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/cart")
 	public String showCarrito(Model model) {
 		model.addAttribute("partiesList", partyTypeService.findAll());
@@ -64,7 +73,12 @@ public class ShoppingCartController {
 
 		return "common/cart.html";
 	}
-
+	/**
+	 * Controlador que añade un producto al carrito
+	 * @param id
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/cart/add/{id}")
 	public String productoACarrito(@PathVariable("id") long id, Model model) {
 
@@ -72,7 +86,11 @@ public class ShoppingCartController {
 
 		return "redirect:/products/list";
 	}
-
+/**
+ * Controlador que elimina un producto al carrito
+ * @param id
+ * @return
+ */
 	@GetMapping("/cart/remove/{id}")
 	public String removeProductFromCart(@PathVariable("id") long id) {
 
@@ -90,7 +108,10 @@ public class ShoppingCartController {
 		shoppingCartService.removePurchaseLine(index);
 		return "redirect:/cart";
 	}
-
+/**
+ * Controlador total carrito
+ * @return
+ */
 	@ModelAttribute("cartTotal")
 	public Double totalCart() {
 
@@ -105,7 +126,11 @@ public class ShoppingCartController {
 
 		return 0.0;
 	}
-
+/**
+ * Controlador que guarda y realice el checkout de la compra
+ * @param model
+ * @return
+ */
 	@GetMapping("/cart/checkout")
 	public String showCompra(Model model) {
 		model.addAttribute("partiesList", partyTypeService.findAll());

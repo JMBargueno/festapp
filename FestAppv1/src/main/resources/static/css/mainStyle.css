@@ -172,3 +172,8 @@ html, body {
   .backgroundWhite{
       background-color: #F6F8FF;
   }
+
+  .partytitle{
+      color:  #F6F8FF;
+      font-family: fabiana;
+  }

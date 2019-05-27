@@ -38,6 +38,8 @@ import com.jmbargueno.festapp.festappv1.service.UserService;
 import com.jmbargueno.festapp.festappv1.service.VipService;
 
 /**
+ * Clase Controller de Admin
+ * 
  * @author jmbargueno
  *
  */
@@ -69,6 +71,15 @@ public class AdminController {
 	private static final int[] PAGE_SIZES = { 5, 10, 20, 50 };
 
 	// Consumibles
+	
+	/**
+	 * Metodo que muestra una lista de consumibles
+	 * @param pageSize
+	 * @param page
+	 * @param nombre
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/consumables")
 	public String showConsumable(@RequestParam("pageSize") Optional<Integer> pageSize,
 			@RequestParam("page") Optional<Integer> page, @RequestParam("nombre") Optional<String> nombre,
@@ -111,14 +122,25 @@ public class AdminController {
 
 		return "admin/tables/consumables.html";
 	}
-
+	
+	/**
+	 * Metodo que lleva al formulario para añadir un consumible
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/addConsumable")
 	public String addConsumable(Model model) {
 		model.addAttribute("partiesList", partyTypeService.findAll());
 		model.addAttribute("consumableform", new Consumable());
 		return "admin/add/addConsumable.html";
 	}
-
+	/**
+	 * Metodo que agrega un consumible
+	 * @param uploadFormBean
+	 * @param model
+	 * @param file
+	 * @return
+	 */
 	@PostMapping("/addConsumable/submit")
 	public String addConsumableSubmit(@ModelAttribute("consumableform") UploadFormBean uploadFormBean, Model model,
 			@RequestParam("file") MultipartFile file) {
@@ -135,7 +157,12 @@ public class AdminController {
 
 		return "redirect:/admin/consumables";
 	}
-
+	/**
+	 * Metodo para editar un consumible puscando por id
+	 * @param id
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/editConsumable/{id}")
 	public String editConsumable(@PathVariable("id") long id, Model model) {
 		model.addAttribute("partiesList", partyTypeService.findAll());
@@ -413,6 +440,62 @@ public class AdminController {
 
 		return "admin/tables/users.html";
 	}
+
+//	@GetMapping("/users/historic")
+//	public String showUsersHistoric(@RequestParam("pageSize") Optional<Integer> pageSize,
+//			@RequestParam("page") Optional<Integer> page, @RequestParam("id") Optional<Long> id, Model model) {
+//		model.addAttribute("partiesList", partyTypeService.findAll());
+//		// Evalúa el tamaño de página. Si el parámetro es "nulo", devuelve
+//		// el tamaño de página inicial.
+//		int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
+//
+//		// Calcula qué página se va a mostrar. Si el parámetro es "nulo" o menor
+//		// que 0, se devuelve el valor inicial. De otro modo, se devuelve el valor
+//		// del parámetro decrementado en 1.
+//		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
+//
+//		Long search = id.orElse(null);
+//
+//		Page<Purchase> searchList = null;
+//
+//		if (search == null) {
+//			searchList = purchaseService.findAllPageable(PageRequest.of(evalPage, evalPageSize));
+//		} else {
+//			searchList = purchaseService.findByUserFA(search, PageRequest.of(evalPage, evalPageSize));
+//		}
+//
+//		// Obtenemos la página definida por evalPage y evalPageSize de objetos de
+//		// nuestro modelo
+//		// Page<Producto> products =
+//		// productService.findAllPageable(PageRequest.of(evalPage, evalPageSize));
+//		// Creamos el objeto Pager (paginador) indicando los valores correspondientes.
+//		// Este sirve para que la plantilla sepa cuantas páginas hay en total, cuantos
+//		// botones
+//		// debe mostrar y cuál es el número de objetos a dibujar.
+//		Pager pager = new Pager(searchList.getTotalPages(), searchList.getNumber(), BUTTONS_TO_SHOW);
+//
+//		model.addAttribute("user", searchList);
+//		model.addAttribute("selectedPageSize", evalPageSize);
+//		model.addAttribute("pageSizes", PAGE_SIZES);
+//		model.addAttribute("pager", pager);
+//		model.addAttribute("usersList", userService.findAll());
+//
+//		return "admin/tables/userHistoric.html";
+//	}
+//	@GetMapping("/users/historic/{id}")
+//	public String showOwnList(@PathVariable("id") long id, Model model) {
+//
+//		model.addAttribute("partiesList", partyTypeService.findAll());
+//		Purchase showedHistoric = purchaseService.
+//
+//		if (showedParty != null) {
+//			model.addAttribute("party", showedParty);
+//			return "common/parties.html";
+//		} else {
+//			
+//			return "redirect:/users/historic";
+//		}
+//	}
 
 	@GetMapping("/addUser")
 	public String addUser(Model model) {

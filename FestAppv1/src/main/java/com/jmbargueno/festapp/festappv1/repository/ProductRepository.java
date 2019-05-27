@@ -12,6 +12,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.jmbargueno.festapp.festappv1.model.Product;
 
 /**
+ * 
+ * Repositorio de producto
+ * 
  * @author jmbargueno
  *
  */
@@ -23,9 +26,8 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
 	 * @param nombre Nombre del producto registrado en nuestra base de datos
 	 * @return devuelve el producto buscado por nombre
 	 */
-	public  List<Product> findByNameContainingIgnoreCase(String name);
-	
+	public List<Product> findByNameContainingIgnoreCase(String name);
 
-	public  Page<Product> findByNameContainingIgnoreCase(String name, Pageable pageable);
+	public Page<Product> findByNameContainingIgnoreCase(String name, Pageable pageable);
 	
 }

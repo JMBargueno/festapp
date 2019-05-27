@@ -77,11 +77,14 @@ public class ShoppingCartService {
 	/**
 	 * @return unmodifiable Copia del carrito no modificable, solo vista
 	 */
-
 	public List<PurchaseLine> getProductsInCart() {
 		return Collections.unmodifiableList(purchaseLines);
 	}
 
+	/**
+	 *  Metodo para calcular el precio final
+	 * @return Precio final
+	 */
 	public double calcFinalPrice() {
 		double totalPrice = 0;
 		for (PurchaseLine purchaseLine : purchaseLines) {
@@ -91,6 +94,9 @@ public class ShoppingCartService {
 
 	}
 	
+	/**
+	 * Metodo que elimina todo el carrito
+	 */
 	public void resetCart() {
 		purchaseLines.clear();
 	}

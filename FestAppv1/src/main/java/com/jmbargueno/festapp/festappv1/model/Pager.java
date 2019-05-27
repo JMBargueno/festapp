@@ -4,6 +4,8 @@
 package com.jmbargueno.festapp.festappv1.model;
 
 /**
+ * Clase modelo de pager
+ * 
  * @author jmbargueno
  *
  */

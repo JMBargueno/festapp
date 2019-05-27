@@ -1,5 +1,10 @@
 com.jmbargueno.festapp.festappv1
+com.jmbargueno.festapp.festappv1.config
+com.jmbargueno.festapp.festappv1.controller
+com.jmbargueno.festapp.festappv1.formbean
 com.jmbargueno.festapp.festappv1.model
 com.jmbargueno.festapp.festappv1.repository
+com.jmbargueno.festapp.festappv1.security
 com.jmbargueno.festapp.festappv1.service
 com.jmbargueno.festapp.festappv1.service.base
+com.jmbargueno.festapp.festappv1.storage

@@ -23,7 +23,9 @@ import com.jmbargueno.festapp.festappv1.model.Purchase;
 public interface PurchaseRepository extends JpaRepository<Purchase, Long> {
 	
 	public List<Purchase> findByUserFA(long id);
-
-	public Page<Purchase> findByUserFA(long id, Pageable pageable);
 	
+	public Page<Purchase> findByUserFA(long id, Pageable pageable);
+	public List<Purchase> findById(long id);
+	public Page<Purchase> findById(long id, Pageable pageable);
+
 }

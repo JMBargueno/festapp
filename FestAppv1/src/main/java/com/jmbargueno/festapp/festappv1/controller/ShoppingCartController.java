@@ -56,6 +56,7 @@ public class ShoppingCartController {
 
 	@GetMapping("/cart")
 	public String showCarrito(Model model) {
+		model.addAttribute("partiesList", partyTypeService.findAll());
 
 		if (model.addAttribute("products", shoppingCartService.getProductsInCart()) == null) {
 			return "redirect:/index";
@@ -107,6 +108,7 @@ public class ShoppingCartController {
 
 	@GetMapping("/cart/checkout")
 	public String showCompra(Model model) {
+		model.addAttribute("partiesList", partyTypeService.findAll());
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 

@@ -31,15 +31,15 @@ public class PurchaseService extends BaseService<Purchase, Long, PurchaseReposit
 
 	@Autowired
 	PurchaseRepository purchaseRepository;
-	
-	
-	
-	public Purchase findById(Long id) {
-		
+
+	public Purchase findByIdd(Long id) {
+
 		return purchaseRepository.findById(id).orElse(null);
 	}
 
-	
+	public Page<Purchase> findById(long id, Pageable pageable) {
+		return purchaseRepository.findById(id, pageable);
+	}
 
 	public Page<Purchase> findAllPageable(Pageable pageable) {
 		return purchaseRepository.findAll(pageable);
@@ -48,6 +48,5 @@ public class PurchaseService extends BaseService<Purchase, Long, PurchaseReposit
 	public Page<Purchase> findByUserFA(long id, Pageable pageable) {
 		return purchaseRepository.findByUserFA(id, pageable);
 	}
-
 
 }

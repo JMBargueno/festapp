@@ -708,6 +708,7 @@ public class AdminController {
 	// PartyType
 	/**
 	 * Metodo que muestra lista de fiestas
+	 * 
 	 * @param pageSize
 	 * @param page
 	 * @param nombre
@@ -756,23 +757,27 @@ public class AdminController {
 
 		return "admin/tables/parties.html";
 	}
-/**
- * Metodo que muestra formulario para añadir fiesta
- * @param model
- * @return
- */
+
+	/**
+	 * Metodo que muestra formulario para añadir fiesta
+	 * 
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/addParty")
 	public String addParty(Model model) {
 		model.addAttribute("partiesList", partyTypeService.findAll());
 		model.addAttribute("partyform", new PartyType());
 		return "admin/add/addParty.html";
 	}
-/**
- * Metodo que agrega una fiesta
- * @param party
- * @param model
- * @return
- */
+
+	/**
+	 * Metodo que agrega una fiesta
+	 * 
+	 * @param party
+	 * @param model
+	 * @return
+	 */
 	@PostMapping("addParty/submit")
 	public String addUserSubmit(@ModelAttribute("partyform") PartyType party, Model model) {
 		model.addAttribute("partiesList", partyTypeService.findAll());
@@ -781,12 +786,14 @@ public class AdminController {
 
 		return "redirect:/admin/parties";
 	}
-/**
- * Metodo que muestra formulario de edicion de fiesta
- * @param id
- * @param model
- * @return
- */
+
+	/**
+	 * Metodo que muestra formulario de edicion de fiesta
+	 * 
+	 * @param id
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/editParty/{id}")
 	public String editParty(@PathVariable("id") long id, Model model) {
 		model.addAttribute("partiesList", partyTypeService.findAll());
@@ -802,24 +809,28 @@ public class AdminController {
 			return "redirect:/admin/parties";
 		}
 	}
-/**
- * Metodo que guarda fiesta
- * @param party
- * @param model
- * @return
- */
+
+	/**
+	 * Metodo que guarda fiesta
+	 * 
+	 * @param party
+	 * @param model
+	 * @return
+	 */
 	@PostMapping("/editParty/submit")
 	public String editPartySubmit(@ModelAttribute("partyform") PartyType party, Model model) {
 		model.addAttribute("partiesList", partyTypeService.findAll());
 		partyTypeService.edit(party);
 		return "redirect:/admin/parties";
 	}
-/**
- * Metodo que borra fiesta por id
- * @param id
- * @param model
- * @return
- */
+
+	/**
+	 * Metodo que borra fiesta por id
+	 * 
+	 * @param id
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/delParty/{id}")
 	public String delParty(@PathVariable("id") long id, Model model) {
 		model.addAttribute("partiesList", partyTypeService.findAll());
@@ -831,6 +842,7 @@ public class AdminController {
 	// Events
 	/**
 	 * Metodo que muestra lista de eventos
+	 * 
 	 * @param pageSize
 	 * @param page
 	 * @param nombre
@@ -879,12 +891,14 @@ public class AdminController {
 
 		return "admin/tables/events.html";
 	}
-/**
- * Metodo que muestra formulario para agregar evento
- * @param event
- * @param model
- * @return
- */
+
+	/**
+	 * Metodo que muestra formulario para agregar evento
+	 * 
+	 * @param event
+	 * @param model
+	 * @return
+	 */
 	@PostMapping("/addEvent/submit")
 	public String addEventSubmit(@ModelAttribute("eventform") Event event, Model model) {
 		model.addAttribute("partiesList", partyTypeService.findAll());
@@ -893,12 +907,14 @@ public class AdminController {
 
 		return "redirect:/admin/events";
 	}
-/**
- * Metodo que agrega un evento
- * @param id
- * @param model
- * @return
- */
+
+	/**
+	 * Metodo que agrega un evento
+	 * 
+	 * @param id
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/editEvent/{id}")
 	public String editEvent(@PathVariable("id") long id, Model model) {
 		model.addAttribute("partiesList", partyTypeService.findAll());
@@ -914,9 +930,10 @@ public class AdminController {
 			return "redirect:/admin/events";
 		}
 	}
-	
+
 	/**
 	 * Metodo que guarda evento editado
+	 * 
 	 * @param event
 	 * @param model
 	 * @return
@@ -927,12 +944,14 @@ public class AdminController {
 		eventService.edit(event);
 		return "redirect:/admin/events";
 	}
-/**
- * Metodo que borra evento por id
- * @param id
- * @param model
- * @return
- */
+
+	/**
+	 * Metodo que borra evento por id
+	 * 
+	 * @param id
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/delEvent/{id}")
 	public String delEvent(@PathVariable("id") long id, Model model) {
 		model.addAttribute("partiesList", partyTypeService.findAll());
@@ -940,54 +959,53 @@ public class AdminController {
 		return "redirect:/admin/events";
 	}
 
-//	/**
-//	 * Metodo que muestra lista de compras
-//	 * @param pageSize
-//	 * @param page
-//	 * @param model
-//	 * @return
-//	 */
-//	@GetMapping("/purchases")
-//	public String showPurchases(@RequestParam("pageSize") Optional<Integer> pageSize,
-//			@RequestParam("page") Optional<Integer> page, @RequestParam("id") Optional<Long> id,
-//			Model model) {
-//		model.addAttribute("partiesList", partyTypeService.findAll());
-//		// Evalúa el tamaño de página. Si el parámetro es "nulo", devuelve
-//		// el tamaño de página inicial.
-//		int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
-//
-//		// Calcula qué página se va a mostrar. Si el parámetro es "nulo" o menor
-//		// que 0, se devuelve el valor inicial. De otro modo, se devuelve el valor
-//		// del parámetro decrementado en 1.
-//		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
-//
-//		Long evalNombre = id.orElse(null);
-//
-//		Page<Purchase> events = null;
-//
-//		if (evalNombre == null) {
-//			events = purchaseService.findAllPageable(PageRequest.of(evalPage, evalPageSize));
-//		} else {
-//			events = purchaseService.findById(evalNombre,
-//					PageRequest.of(evalPage, evalPageSize));
-//		}
-//
-//		// Obtenemos la página definida por evalPage y evalPageSize de objetos de
-//		// nuestro modelo
-//		// Page<Producto> products =
-//		// productService.findAllPageable(PageRequest.of(evalPage, evalPageSize));
-//		// Creamos el objeto Pager (paginador) indicando los valores correspondientes.
-//		// Este sirve para que la plantilla sepa cuantas páginas hay en total, cuantos
-//		// botones
-//		// debe mostrar y cuál es el número de objetos a dibujar.
-//		Pager pager = new Pager(events.getTotalPages(), events.getNumber(), BUTTONS_TO_SHOW);
-//
-//		model.addAttribute("event", events);
-//		model.addAttribute("selectedPageSize", evalPageSize);
-//		model.addAttribute("pageSizes", PAGE_SIZES);
-//		model.addAttribute("pager", pager);
-//
-//		return "admin/tables/events.html";
-//	}
+	/**
+	 * Metodo que muestra lista de compras
+	 * 
+	 * @param pageSize
+	 * @param page
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/purchases")
+	public String showPurchases(@RequestParam("pageSize") Optional<Integer> pageSize,
+			@RequestParam("page") Optional<Integer> page, @RequestParam("id") Optional<Long> id, Model model) {
+		model.addAttribute("partiesList", partyTypeService.findAll());
+		// Evalúa el tamaño de página. Si el parámetro es "nulo", devuelve
+		// el tamaño de página inicial.
+		int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
+
+		// Calcula qué página se va a mostrar. Si el parámetro es "nulo" o menor
+		// que 0, se devuelve el valor inicial. De otro modo, se devuelve el valor
+		// del parámetro decrementado en 1.
+		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
+
+		Long evalNombre = id.orElse(null);
+
+		Page<Purchase> purchases = null;
+
+		if (evalNombre == null) {
+			purchases = purchaseService.findAllPageable(PageRequest.of(evalPage, evalPageSize));
+		} else {
+			purchases = purchaseService.findById(evalNombre, PageRequest.of(evalPage, evalPageSize));
+		}
+
+		// Obtenemos la página definida por evalPage y evalPageSize de objetos de
+		// nuestro modelo
+		// Page<Producto> products =
+		// productService.findAllPageable(PageRequest.of(evalPage, evalPageSize));
+		// Creamos el objeto Pager (paginador) indicando los valores correspondientes.
+		// Este sirve para que la plantilla sepa cuantas páginas hay en total, cuantos
+		// botones
+		// debe mostrar y cuál es el número de objetos a dibujar.
+		Pager pager = new Pager(purchases.getTotalPages(), purchases.getNumber(), BUTTONS_TO_SHOW);
+
+		model.addAttribute("purchases", purchases);
+		model.addAttribute("selectedPageSize", evalPageSize);
+		model.addAttribute("pageSizes", PAGE_SIZES);
+		model.addAttribute("pager", pager);
+
+		return "admin/tables/purchases.html";
+	}
 
 }

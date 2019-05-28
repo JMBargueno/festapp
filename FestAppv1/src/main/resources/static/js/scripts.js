@@ -17,6 +17,7 @@ $(document).ready(function () {
 
 //alert(ruta);
 //Switch para darle el active a su correspondiente
+//Mejoranle si uso funciona startswith() para sacar solo la primera parte del string del path
 switch (path) {
     case '/index':
         var elemento = document.getElementById("index");
@@ -81,6 +82,8 @@ switch (path) {
         break;
 
     case '/party/**':
+        default:
+            
             var elemento = document.getElementById("party");
             elemento.className += " active";
             break;

@@ -177,3 +177,11 @@ html, body {
       color:  #F6F8FF;
       font-family: fabiana;
   }
+
+.limit {
+    color: red;
+}
+.checkOutCart{
+    color: white;
+    text-decoration: none;
+}

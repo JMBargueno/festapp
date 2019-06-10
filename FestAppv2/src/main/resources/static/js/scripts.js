@@ -189,3 +189,11 @@ function changePageAndSize() {
 
     });
 }
+
+$( document ).ready(function() {
+
+   $("#modifyQuantity").onblur(function(){
+    
+   });
+
+});

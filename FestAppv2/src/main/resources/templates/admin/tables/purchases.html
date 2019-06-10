@@ -57,8 +57,10 @@
                                 <td th:text="${purchase.id}"></td>
                                 <td th:text="${#temporals.format(purchase.date, 'dd/MM/yyyy')}"></td>
                                 <td th:text="${purchase.finalPrice}"></td>
-                                <td th:text="${purchase.userFA.id}"></td>
-                                <td th:text="${purchase.userFA.username}"></td>
+                                <td th:if="${purchase.userFA != null}" th:text="${purchase.userFA.id}"></td>
+                                <td th:if="${purchase.userFA == null}">Nulo</td>
+                                <td th:if="${purchase.userFA != null}" th:text="${purchase.userFA.username}"></td>
+                                <td th:if="${purchase.userFA == null}">Usuario borrado</td>
                                 
                                 
                            

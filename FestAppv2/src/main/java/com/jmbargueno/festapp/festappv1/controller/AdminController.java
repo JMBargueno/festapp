@@ -699,6 +699,13 @@ public class AdminController {
 	@GetMapping("/delUser/{id}")
 	public String delUser(@PathVariable("id") long id, Model model) {
 		model.addAttribute("partiesList", partyTypeService.findAll());
+		
+
+		for (Purchase purchase : purchaseService.findAll()) {
+			if (purchase.getUserFA().getId() == id) {
+				purchase.setUserFA(null);
+			}
+		}
 		userService.deleteById(id);
 		return "redirect:/admin/users";
 	}

@@ -61,27 +61,29 @@
                                                     <!-- <a class="thumbnail pull-left" href="#"> 
                                                         <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;" th:src="${element.key.image}" /> </a>-->
                                                     <div class="media-body">
-                                                        <h4 class="media-heading"><a href="#"><span
-                                                                    th:text="${element.t.id}">Product name</span></a></h4>
+                                                        <h4 class="media-heading"><span
+                                                            th:text="${element.t.name}">Product name</span></h4>
 
-                                                        <h4 class="media-heading"><a href="#"><span
-                                                                    th:text="${element.t.name}">Product name</span></a>
-                                                        </h4>
+                                                        <span class="media-heading">
+                                                                <span th:if="${element.quantity == element.t.stock}"
+                                                                class="limit">Ha llegado al límite de stock ⚠</span>
+                                                        </span>
 
 
                                                     </div>
                                                 </div>
                                             </td>
                                             <td class="col-sm-1 col-md-1" style="text-align: center">
-                                                <input class="form-control" id="inputQuantity" value="3"
-                                                    th:value="${element.quantity}" type="text" />
+                                                <input class="form-control" id="modifyQuantity"
+                                                    th:max="${element.t.stock}" th:value="${element.quantity}"
+                                                    type="text" />
                                             </td>
-                                            <td class="col-sm-1 col-md-1 text-center"><strong
+                                            <td class="col-sm-1 col-md-1 text-center"><strong id="eprice"
                                                     th:text="${element.t.price}">$4.87</strong></td>
                                             <!-- Como se puede ver en el manual de Th y hablamos en clase, en th se pueden hacer operaciones básicas con variables
                                                 como en java, por lo que se puede multiplicar un valor por otro, como por ejemplo, aquí en precio por cantidad -->
 
-                                            <td class="col-sm-1 col-md-1 text-center"><strong
+                                            <td class="col-sm-1 col-md-1 text-center"><strong id="lprice"
                                                     th:text="${element.linePrice}">$14.61</strong></td>
                                             <td class="col-sm-1 col-md-1">
 
@@ -106,12 +108,14 @@
                                             <td>   </td>
                                             <td>   </td>
                                             <td>
-                                                
-                                                    </span><a th:href="@{/products/list}">Continuar comprando</a> 
-                                                </td>
+
+                                                </span><a th:href="@{/products/list}">Continuar comprando</a>
+                                            </td>
                                             <td>
                                                 <button type="button" class="btn btn-success">
-                                                     <span class="glyphicon glyphicon-play"><a th:href="@{/cart/checkout}">Checkout</a> </span>
+                                                    <span class="glyphicon glyphicon-play"><a
+                                                            th:href="@{/cart/checkout}"
+                                                            class="checkOutCart">Checkout</a> </span>
                                                 </button></td>
                                         </tr>
                                     </tbody>

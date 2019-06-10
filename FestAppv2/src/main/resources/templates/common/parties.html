@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <title>FestApp | Fiestas </title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/mainStyle.css">
+</head>
+
+<body>
+    <!--Header-->
+    <header th:insert="fragments/frag-header.html :: header">
+    </header>
+    <!--Section-->
+    <canvas id="canvas-basic"></canvas>
+    <section class="container-fluid col-12">
+        <div class="row">
+            <main class="col-12 col-md-12">
+
+                <div class="row w-25 p-3"></div>
+                <div class="row w-25 p-3"></div>
+                <div class="row w-25 p-3"></div>
+
+                <div class="col-md-8 mx-auto" th:object="${party}">
+                        <h2 class="title partytitle" th:text="${party.name}"></h2>
+                        <br>
+                        <br>
+                        <br>
+                        <article th:text="${party.description}"></article>
+                        <br>
+                        <br>
+                        <br>
+                        <article>(Aqui iria mas contenido a la hora de crear un tipo de fiesta)
+                                Lorem ipsum dolor sit amet consectetur adipiscing, elit laoreet donec vel dui id nam, volutpat inceptos est commodo fermentum. Platea nisl auctor tempus hac est lectus nam, luctus congue vehicula etiam turpis integer, imperdiet non himenaeos class facilisis donec. Mollis nisi massa molestie non fringilla curabitur libero faucibus cubilia netus, porta dapibus et gravida sapien dui metus inceptos fermentum vel, duis lobortis ante nibh semper tempor praesent euismod rutrum. Pulvinar arcu imperdiet volutpat id congue fermentum pellentesque purus neque massa magna nullam, duis ridiculus scelerisque ac eget enim urna tempus cursus non.
+
+                                Egestas class aptent faucibus aliquam, sed laoreet dui euismod etiam, fringilla accumsan orci. Diam molestie scelerisque praesent mauris vestibulum parturient interdum, arcu lacus nec faucibus netus vulputate malesuada proin, pharetra senectus sed placerat phasellus cras. Neque sem porttitor fermentum eu mus luctus ridiculus risus lacus fringilla et, mauris tristique natoque pharetra tortor bibendum libero blandit feugiat ornare, ad dignissim ultricies senectus ante nam posuere non quis cum.
+                                
+                                Vulputate nec sagittis volutpat nullam auctor ridiculus, eros purus tristique rutrum proin eu, magna in est felis inceptos. Penatibus pretium facilisi mattis quis semper proin, nibh vestibulum habitasse cubilia gravida urna, justo eleifend parturient id mi. Luctus vestibulum habitasse suscipit vitae inceptos senectus sociosqu orci erat faucibus pulvinar hendrerit, hac porta praesent ultrices phasellus dui elementum magna conubia proin. Egestas scelerisque ultrices fames nullam inceptos, pellentesque lobortis duis tempus feugiat, facilisis taciti orci litora.
+                                
+                                Porttitor lectus aliquam cras netus mi conubia taciti porta, quam pharetra non in facilisi libero duis ridiculus condimentum, faucibus interdum velit platea torquent curabitur tristique. Lacus nisi donec id sapien eros ut torquent nisl sagittis, nunc feugiat sem tellus porttitor lectus imperdiet tristique, nec aliquet interdum hac ridiculus fringilla fermentum ornare. Turpis arcu congue nostra volutpat penatibus condimentum neque etiam viverra, felis ullamcorper integer magna velit suspendisse massa curabitur.
+                                
+                                Nisl blandit tellus consequat iaculis, vitae posuere erat fringilla massa, turpis nunc per. Quisque odio nullam blandit ultrices placerat facilisi taciti vitae enim, imperdiet iaculis ridiculus per mi pellentesque hac rhoncus, nisi dictum duis sagittis ac aenean sed luctus. Primis praesent non feugiat dui phasellus taciti quis magnis, sapien fringilla dignissim ultricies congue viverra ac mattis leo, ut consequat velit parturient nascetur donec sollicitudin. Platea malesuada gravida molestie massa facilisi feugiat senectus aenean vel, maecenas egestas nisi vulputate vitae dis nulla risus.
+
+
+                        </article>
+                </div>
+                
+                
+            </main>
+        </div>
+    </section>
+    <div class="row w-25 p-3"></div>
+                <div class="row w-25 p-3"></div>
+    <!--Footer-->
+    <footer th:insert="fragments/frag-footer.html :: footer"></footer>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+        </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+        </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+        </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/granim.js}" charset="utf-8"></script>
+    <script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+</body>
+
+</html>

@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <title>FestApp | Carrito</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/mainStyle.css">
+</head>
+
+<body>
+    <!--Header-->
+    <header th:insert="fragments/frag-header.html :: header">
+    </header>
+    <!--Section-->
+    <canvas id="canvas-basic"></canvas>
+    <section class="container-fluid col-12">
+        <div class="row w-25 p-3"></div>
+        <div class="row w-25 p-3"></div>
+        <div class="row w-25 p-3"></div>
+
+        <div class="row">
+            <main class="col-12 col-md-12 d-flex justify-content-center">
+
+
+                <div class="col-md-8">
+                    <!--Contenido-->
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-10 col-md-offset-1">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Producto</th>
+                                            <th>Cantidad</th>
+                                            <th class="text-center">Precio</th>
+                                            <th class="text-center">Subtotal</th>
+                                            <th> </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <!-- Bucle que va sacando los distintos elementos guardados en el carrito. Recordemos que es
+                                        un HashMap cuya clave es un  producto y cuyo valor es la cantidad de productos, por eso
+                                        vamos sacando un elemento del carrito, esto significa que element, es tipo Entry, es decir,
+                                        pareja clave-valor "entera" (producto-cantidad), por todo esto, cuando queremos, por ejemplo, 
+                                        mostrar el nombre del producto, accedemos mediante: 
+                                        ${element.key.nombre} ya que sacamos la clave de la pareja "entry" que es un producto, 
+                                        y a su vez, accedemos al tributo nombre de ese producto -->
+
+                                        <tr th:each="element : ${products}">
+                                            <td class="col-sm-8 col-md-6">
+                                                <!---->
+                                                <div class="media">
+                                                    <!-- <a class="thumbnail pull-left" href="#"> 
+                                                        <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;" th:src="${element.key.image}" /> </a>-->
+                                                    <div class="media-body">
+                                                        <h4 class="media-heading"><a href="#"><span
+                                                                    th:text="${element.t.id}">Product name</span></a></h4>
+
+                                                        <h4 class="media-heading"><a href="#"><span
+                                                                    th:text="${element.t.name}">Product name</span></a>
+                                                        </h4>
+
+
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="col-sm-1 col-md-1" style="text-align: center">
+                                                <input class="form-control" id="inputQuantity" value="3"
+                                                    th:value="${element.quantity}" type="text" />
+                                            </td>
+                                            <td class="col-sm-1 col-md-1 text-center"><strong
+                                                    th:text="${element.t.price}">$4.87</strong></td>
+                                            <!-- Como se puede ver en el manual de Th y hablamos en clase, en th se pueden hacer operaciones básicas con variables
+                                                como en java, por lo que se puede multiplicar un valor por otro, como por ejemplo, aquí en precio por cantidad -->
+
+                                            <td class="col-sm-1 col-md-1 text-center"><strong
+                                                    th:text="${element.linePrice}">$14.61</strong></td>
+                                            <td class="col-sm-1 col-md-1">
+
+
+                                                <a href="#" th:href="@{/cart/remove/{id}(id=${element.t.id})}"
+                                                    onclick="return confirm('¿Está seguro de que desea borrar este producto?')">❌</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>   </td>
+                                            <td>   </td>
+                                            <td>   </td>
+                                            <td>
+                                                <h3>Total</h3>
+                                            </td>
+                                            <td class="text-right">
+                                                <h3><strong th:text="${cartTotal}">100€</strong></h3>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>   </td>
+                                            <td>   </td>
+                                            <td>   </td>
+                                            <td>
+                                                
+                                                    </span><a th:href="@{/products/list}">Continuar comprando</a> 
+                                                </td>
+                                            <td>
+                                                <button type="button" class="btn btn-success">
+                                                     <span class="glyphicon glyphicon-play"><a th:href="@{/cart/checkout}">Checkout</a> </span>
+                                                </button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </main>
+        </div>
+    </section>
+    <div class="row w-25 p-3"></div>
+    <div class="row w-25 p-3"></div>
+    <div class="row w-25 p-3"></div>
+    <div class="row w-25 p-3"></div>
+    <div class="row w-25 p-3"></div>
+    <div class="row w-25 p-3"></div>
+    <div class="row w-25 p-3"></div>
+    <div class="row w-25 p-3"></div>
+    <!--Footer-->
+    <footer th:insert="fragments/frag-footer.html :: footer"></footer>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+        </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+        </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+        </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/granim.js}" charset="utf-8"></script>
+    <script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+</body>
+
+</html>

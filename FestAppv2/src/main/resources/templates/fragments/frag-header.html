@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <title>FestApp Navbar</title>
+</head>
+
+<body>
+    <!--Header-->
+    <header th:fragment="header">
+        <!--Barra Navegacion-->
+        <nav id="nav" class="navbar navbar-expand-sm navbar-dark bg-primary col-12 fixed-top">
+            <a class="navbar-brand" href="/" th:action="@{/register}">🌶️FestApp</a>
+            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse"
+                data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+                aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="collapsibleNavId">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0 pull-right">
+                    <li class="nav-item">
+                        <a class="nav-link" id="index" th:href="@{/index}" href="index">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a  id="buy" class="nav-link" href="buy.html" th:href="@{/products/list}">Comprar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link  disabled" href="calendar.html"th:href="@{/calendar}">Calendario</a>
+                    </li>
+                    <li class="nav-item dropdown" id="party">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">Fiestas</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownId">
+                                <span th:each="party : ${partiesList}"><a class="dropdown-item" href="addTicket" th:href="@{/party/{id}(id=${party.id})}"><span th:text="${party.name}"></span></a></span>
+                        </div>
+                    </li>
+
+                    <li  sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item dropdown" id ="adminzone">
+                        <a id="dropdownId" class="nav-link dropdown-toggle" href="#"  data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">Zona Administración</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownId">
+                            <a class="dropdown-item" href="#" th:href="@{/admin/users}">Usuarios</a>
+                            <a class="dropdown-item" href="addConsumable" th:href="@{/admin/consumables}">Consumibles</a>
+                            <a class="dropdown-item" href="addTicket" th:href="@{/admin/tickets}">Entradas</a>
+                            <a class="dropdown-item" href="addVip" th:href="@{/admin/vips}">Reservados</a>
+                            <a class="dropdown-item" href="addParty" th:href="@{/admin/parties}">Fiestas</a>
+                            <a class="dropdown-item" href="addEvent" th:href="@{/admin/events}">Eventos</a>
+                            <a class="dropdown-item" href="addEvent" th:href="@{/admin/purchases}">Listado Compras</a>
+                            <a class="dropdown-item" href="#" th:href="@{/h2-console}">Consola H2</a>
+
+
+                        </div>
+                    </li>
+
+                </ul>
+                
+
+                <!--Parte login-->
+                <ul class="navbar-nav mt-2 mt-lg-0 mr-3">
+                        <li class="nav-item" sec:authorize="isAuthenticated()">
+                                <a  id="buy" class="nav-link" href="buy.html" th:href="@{/cart}">Carrito</a>
+                            </li>
+
+                    <li  sec:authorize="isAuthenticated()" class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false" sec:authentication=" principal.username"></a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownId">
+                            <a class="dropdown-item" href="#" th:href="@{/logout}">Salir</a>
+                           
+
+
+                        </div>
+                    </li>
+
+
+                    <li class="nav-item active mr-3" sec:authorize="!isAuthenticated()" >
+                        <!-- Button to Open the Modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                            Login
+                        </button>
+                        
+                    </li>
+
+                    
+                </ul>
+
+
+            </div>
+        </nav>
+        <div class="modal" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Login</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <form method="POST" action="#" th:action="@{/}">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputUser">Usuario</label>
+                                    <input type="text" class="form-control" id="username" name="username" placeholder="Usuario"
+                                        required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputPassword">Password</label>
+                                    <input type="password" class="form-control" id="password" name="password"
+                                        placeholder="Password" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+
+                                <div class="col-md-6">
+                                    <a href="registro" th:href="@{/registro}"> No estoy registrado.</a>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="float-right">
+                                        <button id="registerb" type="submit" class="btn btn-primary">Sign in</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+
+                    </div>
+
+                    <!-- Modal footer 
+                                    <div class="modal-footer border-0">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    </div>
+                                    -->
+                </div>
+            </div>
+        </div>
+    </header>
+</body>
+
+</html>

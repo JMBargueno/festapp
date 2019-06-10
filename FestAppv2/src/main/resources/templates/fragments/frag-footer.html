@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <title>FestApp Navbar</title>
+</head>
+
+<body>
+    <!--Footer-->
+    <footer th:fragment="footer" >
+        <div class="page-footer font-small blue pt-4">
+           
+
+
+            <div class="container-fluid text-center text-md-left">
+
+
+                <div class="row">
+
+
+                    <div class="col-md-6 mt-md-0 mt-3">
+
+                        <h5 class="text-uppercase">FestApp</h5>
+                        <p>FestApp es una plataforma de venta de entradas, reservados y consumibles para discotecas.
+                            Aquí
+                            podrás prepararlo todo para poder tenerlo todo listo cuando salgas de fiesta ;)
+                        </p>
+
+                    </div>
+
+
+                    <hr class="clearfix w-100 d-md-none pb-3">
+
+
+                    <div class="col-md-3 mb-md-0 mb-3">
+
+
+                        <h5 class="text-uppercase">Interesante</h5>
+
+                        <ul class="list-unstyled">
+                            <li>
+                                <a class="footera"
+                                    href="https://listas.20minutos.es/lista/los-mejores-cubatas-560/">Copas
+                                    mas queridas</a>
+                            </li>
+                            <li>
+                                <a class="footera"
+                                    href="https://open.spotify.com/user/1120054102/playlist/3zsApQGpDUXjcxjFHn7vil?si=fAyibsyhSnO26LfZsn4o3A">Spotify
+                                    List</a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                    <div class="col-md-3 mb-md-0 mb-3">
+
+
+                        <h5 class="text-uppercase">Relacionado</h5>
+
+                        <ul class="list-unstyled">
+                            <li>
+                                <a class="footera" th:href="@{/contact}" href="contact">Contactanos</a>
+                            </li>
+                            <li>
+                                <a class="footera" th:href="@{/legal}" href="legal">Aviso Legal</a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="footer-copyright text-center py-1">© 2019 Copyright:
+                <a class="footera" href="https://twitter.com/jmbargueno"> JMB</a>
+            </div>
+
+
+        </div>
+
+    </footer>
+</body>
+
+</html>

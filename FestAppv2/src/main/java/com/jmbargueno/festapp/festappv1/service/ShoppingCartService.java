@@ -56,6 +56,7 @@ public class ShoppingCartService {
 			if (purchaseLine.getT().getId() == p.getId()) {
 				if (productService.areEnoughProducts(purchaseLine.getT(), purchaseLine.getQuantity() + 1)) {
 					purchaseLine.setQuantity(purchaseLine.getQuantity() + 1);
+					purchaseLine.setLinePrice(p.getPrice()*purchaseLine.getQuantity());
 					addedLine = true;
 
 				} else {

@@ -185,3 +185,6 @@ html, body {
     color: white;
     text-decoration: none;
 }
+.center{
+	text-align:center;
+}

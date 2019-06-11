@@ -2,7 +2,7 @@
 <html lang="es">
 
 <head>
-    <title>FestApp | Todas las compras</title>
+    <title>FestApp | Historial de compras</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -30,26 +30,18 @@
     <section class="container-fluid col-12">
         <div class="row">
             <main class="col-12 col-md-12">
-                    <form action="#" th:action="@{/admin/purchases}" method="GET">
-                        <input type="text" name="nombre" placeholder="Buscar Por Id Compra" style="margin-left: 5%; padding: 4px;" />
-                        <button class="btn- btn-danger" type="submit"  style="padding: 4px;">
-                            <span class="glyphicon glyphicon-search">🔎</span>
-                        </button>
-                        </form>
+                    <!--Aqui va el buscar-->
               
                 <!--Tabla-->
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th scope="col">ID</th>
+                                <th scope="col">ID Pedido</th>
                                 <th scope="col">Fecha</th>
                                 <th scope="col">Frecio final</th>
-                                <th scope="col">Id Usuario</th>
-                                <th scope="col">Username</th>
+                                <th scope="col">Detalles</th>
                                 
-                                
-
                             </tr>
                         </thead>
                         <tbody>
@@ -57,10 +49,8 @@
                                 <td th:text="${purchase.id}"></td>
                                 <td th:text="${#temporals.format(purchase.date, 'dd/MM/yyyy')}"></td>
                                 <td th:text="${purchase.finalPrice}"></td>
-                                <td th:if="${purchase.userFA != null}" th:text="${purchase.userFA.id}"></td>
-                                <td th:if="${purchase.userFA == null}">Nulo</td>
-                                <td th:if="${purchase.userFA != null}" th:text="${purchase.userFA.username}"></td>
-                                <td th:if="${purchase.userFA == null}">Usuario borrado</td>
+                                <td>Detalles</td>
+
                                 
                                 
                            

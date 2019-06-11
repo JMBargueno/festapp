@@ -56,7 +56,7 @@ public class ShoppingCartService {
 			if (purchaseLine.getT().getId() == p.getId()) {
 				if (productService.areEnoughProducts(purchaseLine.getT(), purchaseLine.getQuantity() + 1)) {
 					purchaseLine.setQuantity(purchaseLine.getQuantity() + 1);
-					purchaseLine.setLinePrice(p.getPrice()*purchaseLine.getQuantity());
+					purchaseLine.setLinePrice(p.getPrice() * purchaseLine.getQuantity());
 					addedLine = true;
 
 				} else {
@@ -68,7 +68,7 @@ public class ShoppingCartService {
 		if (addedLine == false) {
 			if (p.getStock() - 1 >= 0) {
 				purchaseLines.add(new PurchaseLine(p, 1));
-				
+
 			}
 		}
 	}
@@ -79,8 +79,8 @@ public class ShoppingCartService {
 	 * @param producto
 	 */
 
-	public void removePurchaseLine(int index) {
-		purchaseLines.remove(index);
+	public void removePurchaseLine(PurchaseLine purchaseLine) {
+		purchaseLines.remove(purchaseLine);
 	}
 
 	/**

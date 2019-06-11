@@ -100,19 +100,19 @@ public class ShoppingCartController {
 	 */
 	@GetMapping("/cart/remove/{id}")
 	public String removeProductFromCart(@PathVariable("id") long id) {
-
-		int index = 0;
-
+		
 		List<PurchaseLine> list = shoppingCartService.getProductsInCart();
-
+		
+		PurchaseLine removedLine = null;
+		
 		for (PurchaseLine purchaseLine : list) {
-			if (purchaseLine.getT() == productService.findById(id)) {
-				index = list.indexOf(purchaseLine);
+			
+			if(purchaseLine.getT().getId() == id) {
+				removedLine = purchaseLine;
 			}
-
 		}
-
-		shoppingCartService.removePurchaseLine(index);
+		shoppingCartService.removePurchaseLine(removedLine);
+		
 		return "redirect:/cart";
 	}
 

@@ -42,6 +42,8 @@ public class Purchase {
 	private LocalDate date;
 	private double finalPrice;
 
+	private String ownerUserName;
+
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "purchase", orphanRemoval = true)
 	private List<PurchaseLine> purchaseList = new ArrayList<>();
 
@@ -55,13 +57,7 @@ public class Purchase {
 	 * @param userFA       Usuario que ha relalizado la compra.
 	 * 
 	 */
-	public Purchase(LocalDate date, double finalPrice, List<PurchaseLine> purchaseList, UserFA userFA) {
-		super();
-		this.date = date;
-		this.finalPrice = calcFinalPrice();
-		this.purchaseList = purchaseList;
-		this.userFA = userFA;
-	}
+	
 
 	/**
 	 * Añade una Linea de compra a la compra y setea a la linea de compra su compra.
@@ -99,6 +95,10 @@ public class Purchase {
 
 		return finalPrice;
 
+	}
+
+	public void setThisOwnerUserName() {
+		this.setOwnerUserName(this.getUserFA().getUsername());
 	}
 
 }

@@ -8,9 +8,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,12 +25,14 @@ import com.jmbargueno.festapp.festappv1.model.Event;
 import com.jmbargueno.festapp.festappv1.model.Pager;
 import com.jmbargueno.festapp.festappv1.model.PartyType;
 import com.jmbargueno.festapp.festappv1.model.Purchase;
+import com.jmbargueno.festapp.festappv1.model.PurchaseLine;
 import com.jmbargueno.festapp.festappv1.model.Ticket;
 import com.jmbargueno.festapp.festappv1.model.UserFA;
 import com.jmbargueno.festapp.festappv1.model.Vip;
 import com.jmbargueno.festapp.festappv1.service.ConsumableService;
 import com.jmbargueno.festapp.festappv1.service.EventService;
 import com.jmbargueno.festapp.festappv1.service.PartyTypeService;
+import com.jmbargueno.festapp.festappv1.service.PurchaseLineService;
 import com.jmbargueno.festapp.festappv1.service.PurchaseService;
 import com.jmbargueno.festapp.festappv1.service.TicketService;
 import com.jmbargueno.festapp.festappv1.service.UploadService;
@@ -50,6 +49,9 @@ import com.jmbargueno.festapp.festappv1.service.VipService;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
+	@Autowired
+	PurchaseLineService purchaseLineService;
+
 	@Autowired
 	PurchaseService purchaseService;
 
@@ -522,7 +524,7 @@ public class AdminController {
 	@GetMapping("/users")
 	public String showUsers(@RequestParam("pageSize") Optional<Integer> pageSize,
 			@RequestParam("page") Optional<Integer> page, @RequestParam("nombre") Optional<String> nombre,
-			Model model) {
+			@RequestParam("idBuscado") Optional<Long> idBuscado, Model model) {
 		model.addAttribute("partiesList", partyTypeService.findAll());
 		// Evalúa el tamaño de página. Si el parámetro es "nulo", devuelve
 		// el tamaño de página inicial.
@@ -534,14 +536,17 @@ public class AdminController {
 		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
 
 		String evalNombre = nombre.orElse(null);
+		Long evalIdBuscado = idBuscado.orElse(null);
 
 		Page<UserFA> users = null;
 
-		if (evalNombre == null) {
+		if (evalNombre == null && evalIdBuscado == null) {
 			users = userService.findAllPageable(PageRequest.of(evalPage, evalPageSize));
-		} else {
+		} else if (evalNombre != null) {
 			users = userService.findByNombreContainingIgnoreCasePageable(evalNombre,
 					PageRequest.of(evalPage, evalPageSize));
+		} else if (evalIdBuscado != null) {
+			users = userService.findById(evalIdBuscado, PageRequest.of(evalPage, evalPageSize));
 		}
 
 		// Obtenemos la página definida por evalPage y evalPageSize de objetos de
@@ -563,7 +568,7 @@ public class AdminController {
 		return "admin/tables/users.html";
 	}
 
-	@GetMapping("/users/historic/{id}")
+	@GetMapping("/purchases/historic/{id}")
 	public String showPurchasesHistoric(@PathVariable("id") long id,
 			@RequestParam("pageSize") Optional<Integer> pageSize, @RequestParam("page") Optional<Integer> page,
 			Model model) {
@@ -574,7 +579,7 @@ public class AdminController {
 		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
 
 		Page<Purchase> purchases = null;
-		
+
 		purchases = purchaseService.findByUserFA(searchedUser, PageRequest.of(evalPage, evalPageSize));
 
 		// Obtenemos la página definida por evalPage y evalPageSize de objetos de
@@ -593,6 +598,30 @@ public class AdminController {
 		model.addAttribute("pager", pager);
 
 		return "common/userhistoric.html";
+	}
+
+	@GetMapping("/purchases/details/{id}")
+	public String showPurchasesHistoricDetails(@PathVariable("id") long id,
+			@RequestParam("pageSize") Optional<Integer> pageSize, @RequestParam("page") Optional<Integer> page,
+			Model model) {
+		model.addAttribute("partiesList", partyTypeService.findAll());
+
+		Purchase searchedPurchase = purchaseService.findById(id);
+		int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
+		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
+
+		Page<PurchaseLine> purchaseLines = null;
+
+		purchaseLines = purchaseLineService.findByPurchase(searchedPurchase, PageRequest.of(evalPage, evalPageSize));
+
+		Pager pager = new Pager(purchaseLines.getTotalPages(), purchaseLines.getNumber(), BUTTONS_TO_SHOW);
+
+		model.addAttribute("purchaseLines", purchaseLines);
+		model.addAttribute("selectedPageSize", evalPageSize);
+		model.addAttribute("pageSizes", PAGE_SIZES);
+		model.addAttribute("pager", pager);
+
+		return "common/userhistoricdetails.html";
 	}
 
 	/**

@@ -159,10 +159,12 @@ public class ShoppingCartController {
 			productService.modifyStock(purchaseLine.getT().getId(), purchaseLine.getQuantity());
 
 		}
+		
 		purchase.setDate(LocalDate.now());
 		purchase.setFinalPrice(shoppingCartService.calcFinalPrice());
 		purchase.setPurchaseList(productInCart);
 		purchase.setUserFA(usuario);
+		purchase.setThisOwnerUserName();
 
 		model.addAttribute("purchase", purchaseService.save(purchase));
 		shoppingCartService.resetCart();

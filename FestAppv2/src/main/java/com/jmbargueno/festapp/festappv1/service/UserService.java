@@ -58,6 +58,10 @@ public class UserService extends BaseService<UserFA, Long, UserRepository> {
 		return userRepository.findByNameContainingIgnoreCase(name, pageable);
 	}
 	
+	public Page<UserFA> findById(Long id, Pageable pageable) {
+		return userRepository.findById(id, pageable);
+	}
+	
 	
 
 }

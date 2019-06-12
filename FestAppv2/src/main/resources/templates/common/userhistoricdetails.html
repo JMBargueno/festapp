@@ -2,7 +2,7 @@
 <html lang="es">
 
 <head>
-    <title>FestApp | Historial de compras</title>
+    <title>FestApp | Detalles de compra</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -37,20 +37,22 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th scope="col">ID Pedido</th>
-                                <th scope="col">Fecha</th>
-                                <th scope="col">Frecio final</th>
-                                <th scope="col">Detalles</th>
+                                <th scope="col">Linea pedido</th>
+                                <th scope="col">Producto</th>
+                                <th scope="col">Precio</th>
+                                <th scope="col">Cantidad</th>
+                                <th scope="col">Subtotal</th>
                                 
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:each="purchase : ${purchases}">
-                                <td th:text="${purchase.id}"></td>
-                                <td th:text="${#temporals.format(purchase.date, 'dd/MM/yyyy')}"></td>
-                                <td th:text="${purchase.finalPrice}"></td>
-                                <td ><a href=""
-                                    th:href="@{/admin/purchases/details/{id}(id=${purchase.id})}">Detalles</a></td>
+                            <tr th:each="purchaseLine : ${purchaseLines}">
+                                <td th:text="${purchaseLine.id}"></td>
+                                <td th:text="${purchaseLine.t.name}"></td>
+                                <td th:text="${purchaseLine.t.price}"></td>
+                                <td th:text="${purchaseLine.quantity}"></td>
+                                <td th:text="${purchaseLine.linePrice}"></td>
+                                
 
                                 
                                 
@@ -71,30 +73,30 @@
                         <div class="col-3"></div>
                         <div class="col-4" style="text-align: center;">
                             <nav aria-label="Page navigation example mx-auto">
-                                <ul th:if="${purchases.totalPages != 1}" class="pagination pagination-circle pg-blue">
-                                    <li th:class="${purchases.number == 0} ? disabled" class="page-item disabled">
+                                <ul th:if="${purchaseLines.totalPages != 1}" class="pagination pagination-circle pg-blue">
+                                    <li th:class="${purchaseLines.number == 0} ? disabled" class="page-item disabled">
                                         <a th:href="@{/admin/purchases/(pageSize=${selectedPageSize}, page=1)}"
                                             class="page-link">First</a>
                                     </li>
     
-                                    <li th:class="${purchases.number == 0} ? disabled" class="page-item disabled"></li>
-                                    <a th:href="@{/admin/purchases/(pageSize=${selectedPageSize}, page=${purchases.number})}"
+                                    <li th:class="${purchaseLines.number == 0} ? disabled" class="page-item disabled"></li>
+                                    <a th:href="@{/admin/purchases/(pageSize=${selectedPageSize}, page=${purchaseLines.number})}"
                                         class="page-link" aria-label="Previous">
                                         <span aria-hidden="true">&larr;</span>
                                     </a>
                                     </li>
     
-                                    <li th:class="${purchases.number == (page - 1)} ? 'active pointer-disabled'"
+                                    <li th:class="${purchaseLines.number == (page - 1)} ? 'active pointer-disabled'"
                                         class="page-item active" th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
                                           <a th:href="@{/admin/purchases/(pageSize=${selectedPageSize}, page=${page})}" class="page-link" th:text="${page}">1</a>
                                         </li>
                               
-                                      <li th:class="${purchases.number + 1 == purchases.totalPages} ? disabled" class="page-item">
-                                          <a th:href="@{/admin/purchases/(pageSize=${selectedPageSize}, page=${purchases.number + 2})}" class="page-link">&rarr;</a>
+                                      <li th:class="${purchaseLines.number + 1 == purchaseLines.totalPages} ? disabled" class="page-item">
+                                          <a th:href="@{/admin/purchases/(pageSize=${selectedPageSize}, page=${purchaseLines.number + 2})}" class="page-link">&rarr;</a>
                                         </li>
                                       
-                                      <li th:class="${purchases.number + 1 == purchases.totalPages} ? disabled" class="page-item">
-                                          <a th:href="@{/admin/purchases/(pageSize=${selectedPageSize}, page=${purchases.totalPages})}" class="page-link">Last</a>
+                                      <li th:class="${purchaseLines.number + 1 == purchaseLines.totalPages} ? disabled" class="page-item">
+                                          <a th:href="@{/admin/purchases/(pageSize=${selectedPageSize}, page=${purchaseLines.totalPages})}" class="page-link">Last</a>
                                         </li>
                                     </ul>
                                 </nav>

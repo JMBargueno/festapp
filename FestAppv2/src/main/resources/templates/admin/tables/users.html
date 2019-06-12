@@ -33,11 +33,12 @@
             <main class="col-12 col-md-12">
 
                 <form action="#" th:action="@{/admin/users}" method="GET">
-                    <input type="text" name="nombre" placeholder="Buscar Por Nombre" style="margin-left: 5%; padding: 4px;" />
+                    <input type="text" name="nombre" placeholder="Buscar Por Nombre" style=" padding: 4px;" />
                     <button class="btn- btn-danger" type="submit"  style="padding: 4px;">
                         <span class="glyphicon glyphicon-search">🔎</span>
                     </button>
                     </form>
+                    <div class="row w-25 p-3"></div>
                 <!--Tabla-->
                 <div class=" table-responsive">
                     <table class="table table-striped">
@@ -62,14 +63,19 @@
                                 <td th:text="${user.id}"></td>
                                 <td th:text="${user.name}"></td>
                                 <td th:text="${user.surname}"></td>
-                                <td th:text="${user.gender}"></td>
-                                <td th:text="${user.birthday}"></td>
+                                <td>
+                                        
+                                    <span th:if="${user.gender == H}"> 🙎‍♂️</span>
+                                    <span th:unless="${user.gender == H}"> 🙎‍</span>
+                                </td>
+                                <td th:text="${#temporals.format(user.birthday, 'dd/MM/yyyy')}"></td>
+                                
                                 <td th:text="${user.username}"></td>
                                 <td th:text="${user.email}"></td>
                                 <td th:text="${user.phoneNumber}"></td>
                                 <td th:text="${#temporals.format(user.registerDate, 'dd/MM/yyyy')}"></td>
                             <td><a href=""
-								th:href="@{/admin/users/historic/{id}(id=${user.id})}" >
+								th:href="@{/admin/purchases/historic/{id}(id=${user.id})}" >
 									Historial</a></td>
                             <td><a href="" th:href="@{/admin/editUser/{id}(id=${user.id})}">✏</a></td>
                             <td><a href="#" th:href="@{/admin/delUser/{id}(id=${user.id})}" onclick="return confirm('¿Está seguro de que desea borrar este usuario?')">❌</a></td>

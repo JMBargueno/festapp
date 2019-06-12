@@ -582,14 +582,7 @@ public class AdminController {
 
 		purchases = purchaseService.findByUserFA(searchedUser, PageRequest.of(evalPage, evalPageSize));
 
-		// Obtenemos la página definida por evalPage y evalPageSize de objetos de
-		// nuestro modelo
-		// Page<Producto> products =
-		// productService.findAllPageable(PageRequest.of(evalPage, evalPageSize));
-		// Creamos el objeto Pager (paginador) indicando los valores correspondientes.
-		// Este sirve para que la plantilla sepa cuantas páginas hay en total, cuantos
-		// botones
-		// debe mostrar y cuál es el número de objetos a dibujar.
+		
 		Pager pager = new Pager(purchases.getTotalPages(), purchases.getNumber(), BUTTONS_TO_SHOW);
 
 		model.addAttribute("purchases", purchases);

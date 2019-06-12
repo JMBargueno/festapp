@@ -52,8 +52,8 @@
                                 <th scope="col">Email</th>
                                 <th scope="col">Teléfono</th>
                                 <th scope="col">Registro</th>
-                                <th scope="col">Historial</th>
-                                <th scope="col">Edit</th>
+                                <th scope="col">Compras</th>
+                                <th scope="col">Editar</th>
                                 <th scope="col">Borrar</th>
                             </tr>
                         </thead>
@@ -68,7 +68,9 @@
                                 <td th:text="${user.email}"></td>
                                 <td th:text="${user.phoneNumber}"></td>
                                 <td th:text="${#temporals.format(user.registerDate, 'dd/MM/yyyy')}"></td>
-                            <th scope="col">Historial</th>
+                            <td><a href=""
+								th:href="@{/admin/users/historic/{id}(id=${user.id})}" >
+									Historial</a></td>
                             <td><a href="" th:href="@{/admin/editUser/{id}(id=${user.id})}">✏</a></td>
                             <td><a href="#" th:href="@{/admin/delUser/{id}(id=${user.id})}" onclick="return confirm('¿Está seguro de que desea borrar este usuario?')">❌</a></td>
 

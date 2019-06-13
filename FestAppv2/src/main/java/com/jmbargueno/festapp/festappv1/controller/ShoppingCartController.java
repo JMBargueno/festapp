@@ -100,19 +100,19 @@ public class ShoppingCartController {
 	 */
 	@GetMapping("/cart/remove/{id}")
 	public String removeProductFromCart(@PathVariable("id") long id) {
-		
+
 		List<PurchaseLine> list = shoppingCartService.getProductsInCart();
-		
+
 		PurchaseLine removedLine = null;
-		
+
 		for (PurchaseLine purchaseLine : list) {
-			
-			if(purchaseLine.getT().getId() == id) {
+
+			if (purchaseLine.getT().getId() == id) {
 				removedLine = purchaseLine;
 			}
 		}
 		shoppingCartService.removePurchaseLine(removedLine);
-		
+
 		return "redirect:/cart";
 	}
 
@@ -152,7 +152,7 @@ public class ShoppingCartController {
 		UserFA usuario = userService.searchByUsername(user.getUsername());
 
 		List<PurchaseLine> productInCart = shoppingCartService.getProductsInCart();
-		
+
 		Purchase purchase = new Purchase();
 
 		for (PurchaseLine purchaseLine : productInCart) {
@@ -160,7 +160,7 @@ public class ShoppingCartController {
 			productService.modifyStock(purchaseLine.getT().getId(), purchaseLine.getQuantity());
 
 		}
-		
+
 		purchase.setDate(LocalDate.now());
 		purchase.setFinalPrice(shoppingCartService.calcFinalPrice());
 		purchase.setPurchaseList(productInCart);

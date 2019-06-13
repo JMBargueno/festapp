@@ -13,6 +13,10 @@ window.mobilecheck = function () {
 //Recarga de página
 $(document).ready(function () {
     changePageAndSize();
+
+    $("#modifyQuantity").onblur(function(){
+    
+    });
 });
 
 //alert(ruta);
@@ -137,17 +141,6 @@ var granimInstance = new Granim({
 
 
 
-
-// Permite recargar la página cada vez que cambia el tamaño de página
-/*
-function changePageAndSize() {
-	$('#pageSizeSelect').change(function(evt) {
-		window.location.replace(path+"?pageSize=" + this.value + "&page=1");
-	});
-}
-*/
-
-
 /**
  * Esta función trocea los parámetros de la URL que actualmente
  * hay cargada en esta pestaña del navegador, y nos permite obtener
@@ -190,10 +183,3 @@ function changePageAndSize() {
     });
 }
 
-$( document ).ready(function() {
-
-   $("#modifyQuantity").onblur(function(){
-    
-   });
-
-});

@@ -152,6 +152,7 @@ public class ShoppingCartController {
 		UserFA usuario = userService.searchByUsername(user.getUsername());
 
 		List<PurchaseLine> productInCart = shoppingCartService.getProductsInCart();
+		
 		Purchase purchase = new Purchase();
 
 		for (PurchaseLine purchaseLine : productInCart) {

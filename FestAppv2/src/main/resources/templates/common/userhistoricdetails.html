@@ -49,9 +49,9 @@
                             <tr th:each="purchaseLine : ${purchaseLines}">
                                 <td th:text="${purchaseLine.id}"></td>
                                 <td th:text="${purchaseLine.t.name}"></td>
-                                <td th:text="${purchaseLine.t.price}"></td>
+                                <td th:text="${purchaseLine.t.price} + €"></td>
                                 <td th:text="${purchaseLine.quantity}"></td>
-                                <td th:text="${purchaseLine.linePrice}"></td>
+                                <td th:text="${purchaseLine.linePrice} + €"></td>
                                 
 
                                 

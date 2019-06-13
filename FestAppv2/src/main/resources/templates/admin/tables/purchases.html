@@ -54,9 +54,9 @@
 						</thead>
 						<tbody>
 							<tr th:classappend="${purchase.userFA == null} ? inactivo" th:each="purchase : ${purchases}">
-								<td th:text="${purchase.id}"></td>
+								<td> <span th:text="${purchase.id}"> </td>
 								<td th:text="${#temporals.format(purchase.date, 'dd/MM/yyyy')}"></td>
-							<td th:text="${purchase.finalPrice}"></td>
+							<td th:text="${purchase.finalPrice} + €"></td>
 
 							<td>
 								

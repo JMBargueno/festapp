@@ -48,7 +48,7 @@
                             <tr th:each="purchase : ${purchases}">
                                 <td th:text="${purchase.id}"></td>
                                 <td th:text="${#temporals.format(purchase.date, 'dd/MM/yyyy')}"></td>
-                                <td th:text="${purchase.finalPrice}"></td>
+                                <td th:text="${purchase.finalPrice} + €"></td>
                                 <td ><a href=""
                                     th:href="@{/admin/purchases/details/{id}(id=${purchase.id})}">Detalles</a></td>
 

@@ -13,6 +13,7 @@ window.mobilecheck = function () {
 //Recarga de página
 $(document).ready(function () {
     changePageAndSize();
+    dateFilter();
 
     $("#modifyQuantity").onblur(function(){
     
@@ -180,6 +181,18 @@ function changePageAndSize() {
 
 
 
+    });
+    
+}
+
+function dateFilter (){
+    $('#totalFilter').change(function(){
+        // Url base
+        var urlBase = path;
+        // Establece el tamaño de página recién seleccionado
+        var dateFilter = "?dateFilter=" + this.value;
+        // Siempre que se cambia el tamaño de página, nos vamos a la página 1
+        window.location.replace(urlBase + dateFilter);
     });
 }
 

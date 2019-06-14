@@ -30,19 +30,31 @@
     <section class="container-fluid col-12">
         <div class="row">
             <main class="col-12 col-md-12">
-                    <!--Aqui va el buscar-->
-              
+                <!--Aqui va el buscar-->
+
                 <!--Tabla-->
-                <div class=" col-4 totalPrice"> <h4> <span>Total gastado:</span> <span th:text="${cartTotalUser}"></span><span>€</span></h4></div>
+
                 <div class="table-responsive">
+
                     <table class="table table-striped">
                         <thead>
+                            <tr>
+                                <th scope="col"> <span>Total gastado:</span> <span
+                                        th:text="${cartTotalUser}"></span><span>€</span></th>
+                                        <th>
+                                                <select class="form-control pagination" id="totalFilter">
+                                                        <option value="0" selected>Total gastado</option>
+                                                        <option value="1">Gasto Anual</option>
+                                                        <option value="2">Gasto Mensual</option>
+                                                </select>
+                                            </th>
+                            </tr>
                             <tr>
                                 <th scope="col">ID Pedido</th>
                                 <th scope="col">Fecha</th>
                                 <th scope="col">Frecio final</th>
                                 <th scope="col">Detalles</th>
-                                
+
                             </tr>
                         </thead>
                         <tbody>

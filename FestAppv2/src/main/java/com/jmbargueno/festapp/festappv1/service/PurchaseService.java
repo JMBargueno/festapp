@@ -48,14 +48,32 @@ public class PurchaseService extends BaseService<Purchase, Long, PurchaseReposit
 	public List<Purchase> findByUserFA(UserFA user) {
 		return purchaseRepository.findByUserFA(user);
 	}
+	
+	
 
-	public double calcAllPurchases(UserFA user) {
+	public double calcAllPurchases(UserFA user, int opt) {
 		double sumTotal = 0;
-		List<Purchase> listOfUser = this.findByUserFA(user);
-		for (Purchase purchase : listOfUser) {
+		List<Purchase> listOfUser;
+		switch (opt) {
+		case 0:
+			listOfUser = this.findByUserFA(user);
+			for (Purchase purchase : listOfUser) {
+				sumTotal += purchase.getFinalPrice();
+			}
 
-			sumTotal += purchase.getFinalPrice();
+			break;
+		case 1:
+			
+			break;
 
+		case 2:
+			break;
+		default:
+			listOfUser = this.findByUserFA(user);
+			for (Purchase purchase : listOfUser) {
+				sumTotal += purchase.getFinalPrice();
+			}
+			break;
 		}
 
 		return sumTotal;

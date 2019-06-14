@@ -3,6 +3,8 @@
  */
 package com.jmbargueno.festapp.festappv1.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -43,5 +45,20 @@ public class PurchaseService extends BaseService<Purchase, Long, PurchaseReposit
 		return purchaseRepository.findByUserFA(user, pageable);
 	}
 
+	public List<Purchase> findByUserFA(UserFA user) {
+		return purchaseRepository.findByUserFA(user);
+	}
+
+	public double calcAllPurchases(UserFA user) {
+		double sumTotal = 0;
+		List<Purchase> listOfUser = this.findByUserFA(user);
+		for (Purchase purchase : listOfUser) {
+
+			sumTotal += purchase.getFinalPrice();
+
+		}
+
+		return sumTotal;
+	}
 
 }

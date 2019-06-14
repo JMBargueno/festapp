@@ -199,3 +199,6 @@ html, body {
 .textProduct{
     padding-left: 2%;
 }
+.totalPrice {
+    background-color: aliceblue;
+}

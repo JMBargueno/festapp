@@ -3,6 +3,7 @@
  */
 package com.jmbargueno.festapp.festappv1.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.jmbargueno.festapp.festappv1.model.Consumable;
 import com.jmbargueno.festapp.festappv1.model.Pager;
 import com.jmbargueno.festapp.festappv1.model.Purchase;
+import com.jmbargueno.festapp.festappv1.model.PurchaseLine;
 import com.jmbargueno.festapp.festappv1.model.UserFA;
 import com.jmbargueno.festapp.festappv1.service.PartyTypeService;
 import com.jmbargueno.festapp.festappv1.service.PurchaseService;
@@ -117,7 +119,18 @@ public class UserController {
 		model.addAttribute("pageSizes", PAGE_SIZES);
 		model.addAttribute("pager", pager);
 
-		return "common/userhistoric.html";
+		return "common/oneUserHistoric.html";
+	}
+
+	@ModelAttribute("cartTotalUser")
+	public Double totalPurchasesForUser() {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+		User user = (User) auth.getPrincipal();
+
+		UserFA loggedUser = userService.searchByUsername(user.getUsername());
+
+		return purchaseService.calcAllPurchases(loggedUser);
 	}
 
 }

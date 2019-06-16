@@ -13,10 +13,11 @@ window.mobilecheck = function () {
 //Recarga de página
 $(document).ready(function () {
     changePageAndSize();
+    dateFilter();
+    setFilter()
 
-    $("#modifyQuantity").onblur(function(){
     
-    });
+    
 });
 
 //alert(ruta);
@@ -86,11 +87,11 @@ switch (path) {
         break;
 
     case '/party/**':
-        default:
-            
-            var elemento = document.getElementById("party");
-            elemento.className += " active";
-            break;
+    default:
+
+        var elemento = document.getElementById("party");
+        elemento.className += " active";
+        break;
 
 
 }
@@ -181,5 +182,48 @@ function changePageAndSize() {
 
 
     });
+
 }
 
+function dateFilter() {
+    $('#totalFilter').change(function () {
+        // Url base
+        var urlBase = path;
+
+        var dateFilter = "?dateFilter=" + this.value;
+
+
+        window.location.replace(urlBase + dateFilter);
+
+
+    });
+}
+
+
+function setFilter(){
+    var filter = $.urlParam('dateFilter');
+    
+    switch (filter) {
+        case "0":
+                $('#opt0').prop("selected", true);
+                $('#opt1').removeAttr("selected");
+                $('#opt2').removeAttr("selected");
+            break;
+        case "1":
+                $('#opt0').removeAttr("selected");
+                $('#opt1').prop("selected", true);
+                $('#opt2').removeAttr("selected");
+            break;
+        case "2":
+                $('#opt0').removeAttr("selected");
+                $('#opt1').removeAttr("selected");
+                $('#opt2').prop("selected", true);
+            break;
+        default:
+                $('#opt0').attr("selected", true);
+                $('#opt1').removeAttr("selected");
+                $('#opt2').removeAttr("selected");
+            break;
+
+    }
+}

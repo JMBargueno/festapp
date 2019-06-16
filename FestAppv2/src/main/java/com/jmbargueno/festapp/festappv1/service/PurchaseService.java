@@ -3,6 +3,9 @@
  */
 package com.jmbargueno.festapp.festappv1.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -43,5 +46,54 @@ public class PurchaseService extends BaseService<Purchase, Long, PurchaseReposit
 		return purchaseRepository.findByUserFA(user, pageable);
 	}
 
+	public List<Purchase> findByUserFA(UserFA user) {
+		return purchaseRepository.findByUserFA(user);
+	}
+
+	public List<Purchase> findByUserAndMonth(UserFA user) {
+		return purchaseRepository.findUserAndMonth(user);
+	}
+
+	public List<Purchase> findByUserAndYear(UserFA user) {
+		return purchaseRepository.findUserAndYear(user);
+	}
+
+	public double calcAllPurchases(UserFA user, Optional <Integer> opt) {
+		double sumTotal = 0;
+		List<Purchase> listOfUser;
+		
+		int evalOpt = opt.orElse(0);
+		
+		switch (evalOpt) {
+		case 0:
+			listOfUser = this.findByUserFA(user);
+			for (Purchase purchase : listOfUser) {
+				sumTotal += purchase.getFinalPrice();
+			}
+
+			break;
+		case 1:
+			listOfUser = this.findByUserAndMonth(user);
+			for (Purchase purchase : listOfUser) {
+				sumTotal += purchase.getFinalPrice();
+			}
+			break;
+
+		case 2:
+			listOfUser = this.findByUserAndYear(user);
+			for (Purchase purchase : listOfUser) {
+				sumTotal += purchase.getFinalPrice();
+			}
+			break;
+		default:
+			listOfUser = this.findByUserFA(user);
+			for (Purchase purchase : listOfUser) {
+				sumTotal += purchase.getFinalPrice();
+			}
+			break;
+		}
+
+		return sumTotal;
+	}
 
 }

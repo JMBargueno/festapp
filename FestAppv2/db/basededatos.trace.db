@@ -3899,3 +3899,39 @@ Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/Users/jmb
 	at org.h2.mvstore.FileStore.open(FileStore.java:172)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:390)
 	... 62 more
+2019-06-14 12:28:50 jdbc[23]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PURCHASES" no encontrada
+Table "PURCHASES" not found; SQL statement:
+SELECT * FROM PURCHASES WHERE (USERFA_ID = 2) [42102-199]
+2019-06-14 12:28:51 jdbc[23]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PURCHASES" no encontrada
+Table "PURCHASES" not found; SQL statement:
+SELECT * FROM PURCHASES WHERE (USERFA_ID = 2) [42102-199]
+2019-06-14 12:28:52 jdbc[23]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PURCHASES" no encontrada
+Table "PURCHASES" not found; SQL statement:
+SELECT * FROM PURCHASES WHERE (USERFA_ID = 2) [42102-199]
+2019-06-14 12:28:52 jdbc[23]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PURCHASES" no encontrada
+Table "PURCHASES" not found; SQL statement:
+SELECT * FROM PURCHASES WHERE (USERFA_ID = 2) [42102-199]
+2019-06-14 12:28:52 jdbc[23]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PURCHASES" no encontrada
+Table "PURCHASES" not found; SQL statement:
+SELECT * FROM PURCHASES WHERE (USERFA_ID = 2) [42102-199]
+2019-06-14 12:31:55 jdbc[23]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT * FROM PURCHASE WHERE (USERFA_ID = 2) AND EXTRACT (MONTH FROM DATE)[*]! = EXTRACT (MONTH FROM SYSDATE)"
+Syntax error in SQL statement "SELECT * FROM PURCHASE WHERE (USERFA_ID = 2) AND EXTRACT (MONTH FROM DATE)[*]! = EXTRACT (MONTH FROM SYSDATE)"; SQL statement:
+SELECT * FROM PURCHASE WHERE (USERFA_ID = 2) AND EXTRACT (MONTH FROM DATE)! = EXTRACT (MONTH FROM SYSDATE) [42000-199]
+2019-06-14 12:32:38 jdbc[23]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT * FROM PURCHASE WHERE (USERFA_ID = 2) AND ((EXTRACT (MONTH FROM DATE))  = (EXTRACT (MONTH FROM SYSDATE))[*]"; se esperaba "[, ::, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"
+Syntax error in SQL statement "SELECT * FROM PURCHASE WHERE (USERFA_ID = 2) AND ((EXTRACT (MONTH FROM DATE))  = (EXTRACT (MONTH FROM SYSDATE))[*]"; expected "[, ::, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"; SQL statement:
+SELECT * FROM PURCHASE WHERE (USERFA_ID = 2) AND ((EXTRACT (MONTH FROM DATE))  = (EXTRACT (MONTH FROM SYSDATE)) [42001-199]
+2019-06-14 12:32:39 jdbc[23]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT * FROM PURCHASE WHERE (USERFA_ID = 2) AND ((EXTRACT (MONTH FROM DATE))  = (EXTRACT (MONTH FROM SYSDATE))[*]"; se esperaba "[, ::, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"
+Syntax error in SQL statement "SELECT * FROM PURCHASE WHERE (USERFA_ID = 2) AND ((EXTRACT (MONTH FROM DATE))  = (EXTRACT (MONTH FROM SYSDATE))[*]"; expected "[, ::, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"; SQL statement:
+SELECT * FROM PURCHASE WHERE (USERFA_ID = 2) AND ((EXTRACT (MONTH FROM DATE))  = (EXTRACT (MONTH FROM SYSDATE)) [42001-199]
+2019-06-14 12:32:39 jdbc[23]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT * FROM PURCHASE WHERE (USERFA_ID = 2) AND ((EXTRACT (MONTH FROM DATE))  = (EXTRACT (MONTH FROM SYSDATE))[*]"; se esperaba "[, ::, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"
+Syntax error in SQL statement "SELECT * FROM PURCHASE WHERE (USERFA_ID = 2) AND ((EXTRACT (MONTH FROM DATE))  = (EXTRACT (MONTH FROM SYSDATE))[*]"; expected "[, ::, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"; SQL statement:
+SELECT * FROM PURCHASE WHERE (USERFA_ID = 2) AND ((EXTRACT (MONTH FROM DATE))  = (EXTRACT (MONTH FROM SYSDATE)) [42001-199]

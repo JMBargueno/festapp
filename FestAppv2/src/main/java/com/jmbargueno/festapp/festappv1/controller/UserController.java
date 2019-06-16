@@ -3,6 +3,7 @@
  */
 package com.jmbargueno.festapp.festappv1.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.jmbargueno.festapp.festappv1.model.Consumable;
 import com.jmbargueno.festapp.festappv1.model.Pager;
 import com.jmbargueno.festapp.festappv1.model.Purchase;
+import com.jmbargueno.festapp.festappv1.model.PurchaseLine;
 import com.jmbargueno.festapp.festappv1.model.UserFA;
 import com.jmbargueno.festapp.festappv1.service.PartyTypeService;
 import com.jmbargueno.festapp.festappv1.service.PurchaseService;
@@ -88,7 +90,8 @@ public class UserController {
 
 	@GetMapping("/profile/history")
 	public String showPurchases(@RequestParam("pageSize") Optional<Integer> pageSize,
-			@RequestParam("page") Optional<Integer> page, @RequestParam("id") Optional<Long> id, Model model) {
+			@RequestParam("page") Optional<Integer> page, @RequestParam("id") Optional<Long> id,
+			@RequestParam("dateFilter") Optional<Integer> dateFilter, Model model) {
 		model.addAttribute("partiesList", partyTypeService.findAll());
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -100,6 +103,14 @@ public class UserController {
 		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
 
 		Page<Purchase> purchases = null;
+
+		Integer evalDate = dateFilter.orElse(null);
+
+
+	    this.totalPurchasesForUser(dateFilter);
+
+			
+		
 		purchases = purchaseService.findByUserFA(loggedUser, PageRequest.of(evalPage, evalPageSize));
 
 		// Obtenemos la página definida por evalPage y evalPageSize de objetos de
@@ -117,7 +128,18 @@ public class UserController {
 		model.addAttribute("pageSizes", PAGE_SIZES);
 		model.addAttribute("pager", pager);
 
-		return "common/userhistoric.html";
+		return "common/oneUserHistoric.html";
+	}
+
+	@ModelAttribute("cartTotalUser")
+	public Double totalPurchasesForUser(Optional<Integer> dateFilter) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+		User user = (User) auth.getPrincipal();
+
+		UserFA loggedUser = userService.searchByUsername(user.getUsername());
+
+		return purchaseService.calcAllPurchases(loggedUser, dateFilter);
 	}
 
 }

@@ -33,7 +33,14 @@ public interface PurchaseRepository extends JpaRepository<Purchase, Long> {
 
 	public Page<Purchase> findById(long id, Pageable pageable);
 
-	@Query("SELECT * FROM PURCHASE WHERE (USERFA_ID = :#{#USER.ID}) AND  AND (EXTRACT (MONTH FROM DATE)  = EXTRACT (MONTH FROM SYSDATE))")
-	public Page<Purchase> findByUserFAAndMonth(@Param("USER") UserFA user);
+	@Query("select p from Purchase p where (userFA = :fuser) and (extract (month from date) = extract( month from sysdate)) and (extract (year from date) = extract( year from sysdate))")
+	public List<Purchase> findUserAndMonth(@Param("fuser") UserFA user);
+	
+	@Query("select p from Purchase p where (userFA = :fuser) and (extract (year from date) = extract( year from sysdate))")
+	public List<Purchase> findUserAndYear(@Param("fuser") UserFA user);
+
+	
+	
+	
 
 }

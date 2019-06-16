@@ -104,21 +104,13 @@ public class UserController {
 
 		Page<Purchase> purchases = null;
 
-		switch (dateFilter.get()) {
-		case 0:
-			this.totalPurchasesForUser(0);
-			break;
-		case 1:
-			this.totalPurchasesForUser(1);
-			break;
-		case 2:
-			this.totalPurchasesForUser(3);
-			break;
+		Integer evalDate = dateFilter.orElse(null);
 
-		default:
 
-			break;
-		}
+	    this.totalPurchasesForUser(dateFilter);
+
+			
+		
 		purchases = purchaseService.findByUserFA(loggedUser, PageRequest.of(evalPage, evalPageSize));
 
 		// Obtenemos la página definida por evalPage y evalPageSize de objetos de
@@ -140,14 +132,14 @@ public class UserController {
 	}
 
 	@ModelAttribute("cartTotalUser")
-	public Double totalPurchasesForUser(int opt) {
+	public Double totalPurchasesForUser(Optional<Integer> dateFilter) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
 		User user = (User) auth.getPrincipal();
 
 		UserFA loggedUser = userService.searchByUsername(user.getUsername());
 
-		return purchaseService.calcAllPurchases(loggedUser, opt);
+		return purchaseService.calcAllPurchases(loggedUser, dateFilter);
 	}
 
 }

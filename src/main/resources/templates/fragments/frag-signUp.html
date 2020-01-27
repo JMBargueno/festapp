@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <title>FestApp</title>
+</head>
+
+<body>
+    <div th:fragment="registerform">
+        <div class="col-12 d-flex justify-content-center">
+                
+            <form method="POST" th:action="@{/registro/submit}" th:object="${userform}" id="register" name="register"
+                class="col-12 col-md-5">
+                <br>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputName">Nombre</label>
+                        <input type="text" size="20" class="form-control" id="inputName" aria-describedby="nameHelp"
+                            placeholder="Introduzca su nombre" required th:field="*{name}">
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="inputSurname">Apellidos</label>
+                        <input type="text" class="form-control" id="inputSurname" aria-describedby="surnameHelp"
+                            placeholder="Introduzca sus apellidos" required th:field="*{surname}">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputUser">Username</label>
+                        <input type="text" class="form-control" id="inputUser" aria-describedby="userHelp"
+                            placeholder="Introduzca su nombre de usuario" required th:field="*{username}">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail">Correo Electrónico.</label>
+                        <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
+                            placeholder="Introduzca su email" required th:field="*{email}">
+                        <small id="emailHelp" class="form-text text-muted">No compartiremos tu correo con
+                            nadie.</small>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputPasswd">Contraseña.</label>
+                        <input type="password" class="form-control" id="passwordOne" placeholder="Passwd" required
+                            th:field="*{password}">
+                    </div>
+
+
+                    <div class="form-group col-md-6">
+                        <label for="inputPasswd2">Repetir Contraseña.</label>
+                        <input type="password" class="form-control" id="passwordTwo" placeholder="Passwd" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputDni">DNI.</label>
+                        <input type="text" class="form-control" id="dni" placeholder="Introduzca su DNI" required
+                            th:field="*{dni}">
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="inputPhone">Número de teléfono.</label>
+                        <input type="text" class="form-control" id="phone"
+                            placeholder="Introduzca su numero de teléfono" required th:field="*{phoneNumber}">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-7">
+                        <label for="inputBirthday">Fecha de Nacimiento.</label>
+                        <br>
+                        <input class="col-md-8 form-control" type="date" id="birthday" required th:field="*{birthday}"
+                            th:value="*{birthday}">
+
+                    </div>
+
+
+
+
+                    <!-- Multiple Radios -->
+
+
+                    <div class="form-group col-md-5">
+                        <label class="col-md-4 control-label" for="radios">Género.</label>
+                        <div class="col-md-12">
+                            <div class="form-row">
+                                <div class="radio col-md-6">
+                                    <label for="radios-0">
+                                        <input type="radio" name="radios" id="radios-0" value="h" checked="checked"
+                                            th:field="*{gender}">
+                                        Hombre
+                                    </label>
+                                </div>
+
+
+                                <div class="radio col-md-6">
+                                    <label for="radios-1">
+                                        <input type="radio" name="radios" id="radios-1" value="m" th:field="*{gender}">
+                                        Mujer
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+                        <br>
+
+
+                    </div>
+                </div>
+                <!--Final Formulario-->
+
+
+                <div class="form-row">
+
+                    <!--Sumbit-->
+                    <div class="form-group col-md-2 d-flex justify-align-right">
+                        <input class="btn btn-primarym registerb" type="button" value="Submit" onClick="passwordValidator()" />
+
+                    </div>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+</body>
+
+</html>
